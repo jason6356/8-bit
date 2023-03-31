@@ -1,0 +1,69 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    width:100%;
+    height:100vh;
+}
+
+body nav{
+    background-color:#AEC2B6;
+}
+
+body nav a{
+    color:#fff;
+}
+
+body nav ul a:hover{
+    background:#fff;
+    color:#000;
+    border-radius:10px;
+}
+
+.projectBox{
+    border:1px solid #000;
+    width:70%;
+    padding:30px;
+    margin:10px;
+}
+
+.projectBox .pBox-img{
+    float:left;
+    margin-top:-25px;
+    margin-left:-20px;
+} 
+
+.projectBox .pBox-content{
+    margin-left:22%;
+}
+
+.pBox-viewmore{
+    position:absolute;
+}
+
+.projectBox .pBox-content .pBox-details,
+.projectBox .pBox-content .pBox-viewmore{
+    display:inline-block;
+}
+
+.benefitBox{
+    display:inline-block;
+    margin-left:22%;
+    margin-top:5px;
+}
+
+footer{
+    background:#AEC2B6;
+    padding:57px;
+    margin-top:3%;
+    color:#fff;
+}
+
+footer h2,
+footer h5{
+    margin-left:40%;
+}
+
+

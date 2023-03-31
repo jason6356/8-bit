@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/nav.css" rel="stylesheet">
+    <link href="css/company_home.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <title>Home</title>
+</head>
+<body>
+    <div id="sidenav" class="sidenav">
+        <a href="#" class="logo">Sunergy</a>
+        <a href="company_home.html" class ="active">Dashboard</a>
+        <a href="html/user_manage.html">User Management</a>
+        <a href="html/appointment.html">Appointment</a>
+        <a href="html/report.html">Report & Analysis</a>
+        <a href="html/customer.html">Customer Services</a>
+        <a href="html/content_manage.html">Content Management</a>
+        <a href="html/sign_in.html">Sign Out</a>
+    </div>
+
+    <div class="main">
+        
+        <div class="profile">
+            <img src="#" alt="">
+            Hello, (Staff name).
+        </div>
+
+        <div class="cards-container">
+            <div class="visitor-card">
+                <p>New Visitors</p>
+                <span>3,324</span>
+            </div>
+            <div class="project-card">
+                <p>Projects</p>
+                <span>3,324</span>
+            </div>
+            <div class="feedback-card">
+                <p>Customer Feedback</p>
+                <span>3,324</span>
+            </div>
+        </div>
+
+        <div class="chart">
+            <div class="bar-container">
+                <canvas id="bar" style="width:100%;max-width:600px"></canvas>
+                <script>
+                    var xValues = ["Jan", "Feb", "Mar", "Apr", "May"];
+                    var yValues = [55, 49, 44, 24, 15];
+                    var barColors = "#AEC2B6";
+
+                    new Chart("bar", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
+                    },
+                    options: {
+                        legend: {display: false},
+                        title: {
+                        display: true,
+                        text: "Sunergy Bar Chart"
+                        }
+                    }
+                    });
+                </script>
+            </div>
+            <div class="doughnut-container">
+                <canvas id="doughnut" style="width:100%;max-width:400px"></canvas>
+                <script>
+                    var xValues = ["1", "2", "3", "4", "5"];
+                    var yValues = [55, 49, 44, 24, 15];
+                    var barColors = "#AEC2B6";
+                    
+                    new Chart("doughnut", {
+                      type: "doughnut",
+                      data: {
+                        labels: xValues,
+                        datasets: [{
+                          backgroundColor: barColors,
+                          data: yValues
+                        }]
+                      },
+                      options: {
+                        title: {
+                          display: true,
+                          text: "Sunergy Doughnut chart"
+                        }
+                      }
+                    });
+                    </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

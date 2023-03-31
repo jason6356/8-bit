@@ -1,0 +1,52 @@
+.profile img {
+    border: #AEC2B6;
+    border-radius: 90;
+}
+
+.profile {
+    display: flex;
+    padding: 32px;
+    margin: 16px;
+    flex: auto;
+    background-color: #AEC2B6;
+    border-radius: 5px;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    text-align: center;
+}
+
+.visitor-card, .project-card, .feedback-card {
+    padding: 16px;
+    margin: 32px 16px;
+    border-radius: 5px;
+    flex: 1;
+    background-color: #AEC2B6;
+}
+
+.chart {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.bar-container, .doughnut-container {
+    border: #AEC2B6 1px solid;
+    border-radius: 10px;
+    padding-left: 64px;
+    margin: 16px;
+    flex: 1 1 auto;
+    background-color: white;
+}
+
+.bar-container {
+    padding-top: 40px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}

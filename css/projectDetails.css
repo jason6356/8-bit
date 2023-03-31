@@ -1,0 +1,90 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.img-caption{
+    color:#fff;
+    font-weight:bold;
+    font-size:20px;
+    margin-top:-10%;
+    margin-left:5%;
+    position:absolute;
+}
+
+.generation{
+    display:inline-block;
+    margin:35px;
+    color:#000;
+    width:50px;
+}
+
+.design1,
+.design2{
+    background:#aec2b6;
+    width:300px;
+    height:300px;
+    border-radius:20px;
+    transform:rotate(45deg);
+    margin-top:5%;
+    z-index:-999;
+    position:relative;
+}
+
+.design1{
+    margin-left:-13%;
+}
+
+.design2{
+    float:right;
+    margin-right:-13%;
+}
+
+.projectName{
+    font-weight:bold;
+    font-size:20px;
+}
+
+.smallDesc{
+    width:100px;
+}
+
+.Fcontainer{
+    margin-top:-25%;
+}
+
+.Fcontainer .container-left{
+    margin-left:20%;
+}
+
+.Fcontainer .container-right{
+    float:right;
+    margin-top:-30%;
+}
+/**/
+.Scontainer .container-right{
+    float:right;
+    width:100px;
+    margin-top:-20%;
+    margin-right:30%;
+}
+
+.Scontainer .container-left{
+    margin-top:15%;
+}
+
+footer{
+    background:#AEC2B6;
+    padding:57px;
+    color:#fff;
+}
+
+footer h2,
+footer h5{
+    margin-left:40%;
+}
+

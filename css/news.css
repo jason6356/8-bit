@@ -1,0 +1,50 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+nav{
+    background-color:#AEC2B6;
+}
+
+nav ul a{
+    color:#fff;
+}
+
+.img-caption{
+    position:absolute;
+    margin-top:-30%;
+    margin-left:35%;
+    color:#fff;
+    font-weight:bold;
+    font-size:30px;
+}
+
+.newsPg .newsPg-title{
+    font-weight:bold;
+    font-size:20px;
+}
+
+.newsCard{
+    display:inline-block;
+    width:450px;
+    background:#D9D9D9;
+    margin:10px;
+}
+
+.newsCard .news-img{
+    float:left;
+}
+
+footer{
+    background:#AEC2B6;
+    padding:57px;
+    margin-top:3%;
+    color:#fff;
+}
+
+footer h2,
+footer h5{
+    margin-left:40%;
+}
+

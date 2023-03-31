@@ -1,0 +1,36 @@
+.tab {
+    overflow: hidden;
+}
+
+.tab button {
+    border: none;
+    padding: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(193, 224, 193);
+    width: 80px;
+}
+
+.tab button:hover {
+    background-color: rgb(152, 201, 152);
+    cursor: pointer;
+}
+
+.tab button.active {
+    font-weight: bold;
+    background-color: rgb(138, 211, 138);
+}
+
+.tabcontent{
+    display: none;
+    background-color: rgb(243, 244, 245);
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: solid 1px rgb(193, 224, 193);
+    padding: 0 10px;
+}
+
+.tabcontent#Project {
+    display: block;
+}

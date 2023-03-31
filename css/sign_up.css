@@ -1,0 +1,55 @@
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-sizing: border-box;
+    background-color: #AEC2B6;
+}
+
+span.logo {
+    font-size: 32px;
+    padding-bottom: 32px;
+    font-weight: bold;
+    color: white;
+    margin: 20px;
+}
+
+.sign-up {
+    background-color: white;
+    border: 5px solid transparent;
+    border-radius: 10px;
+    box-shadow: 5px 10px #818181;
+    margin: auto;
+    margin-top: 100px;
+    width: 25%;
+    height: 625px;
+    padding: 0 30px 25px 30px;
+}
+
+p.welcome {
+    font-size: 25px;
+}
+
+p span {
+    font-size: 35px;
+}
+
+input[type=text], input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #AEC2B6;
+    color: white;
+    font-weight: bold;
+    padding: 14px 20px;
+    margin: 20px 0 5px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
