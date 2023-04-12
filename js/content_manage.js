@@ -14,8 +14,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // Initialize variables
-let tableBody = document.querySelector(".table tbody");
-let addUser = document.querySelector(".add-user"),
+let tableBody = document.querySelector("#Project tbody");
+let addUser = document.querySelector("#addAProject"),
   popup = document.querySelector(".popup"),
   addform = document.querySelector(".add form"),
   updateform = document.querySelector(".update form");
@@ -23,20 +23,34 @@ let addUser = document.querySelector(".add-user"),
 const database = firebase.database();
 const projectRef = firebase.database().ref('Project');
 
-// Write data to Authentication, Realtime and firestore
-function createProject(projectId, companyName, companyCaption, generation, tressPlanted, CO2offset, description) {
+let projectCount  = 0;
+
+// Write data to Realtime database
+function createProject(companyName, companyCaption, generation, tressPlanted, CO2offset, description) {
     // Add the user's information to the Realtime Database
-    database.ref('Project/' + projectId).set({
-        companyName: companyName,
-        companyCaption: companyCaption,
-        generation: generation,
-        tressPlanted: tressPlanted,
-        CO2offset: CO2offset,
-        description: description,
-    }).then((onFullFiled)=>{
-        console.log("Project Created!");
-    }, (onRejected)=>{
-        console.log(onRejected);
+
+    projectRef.get().then((querySnapshot) => {
+        let projectCount = querySnapshot.size;
+        if (isNaN(projectCount)) {
+            console.log("Error: project count is not a number.");
+            return;
+        }
+        projectCount++;
+        var projectId = "P" + projectCount.toString().padStart(5, "0");
+    
+        database.ref('Project/' + projectId).set({
+            companyName: companyName,
+            companyCaption: companyCaption,
+            generation: generation,
+            tressPlanted: tressPlanted,
+            CO2offset: CO2offset,
+            description: description,
+        }).then((onFullFiled)=>{
+            alert("Project Created!");
+            console.log("Project Created!");
+        }, (onRejected)=>{
+            console.log(onRejected);
+        });
     });
    
 }
@@ -69,6 +83,78 @@ projectRef.on('value', (snapshot) => {
       tableBody.innerHTML += tr;
       i++;
     }
+
+    // Edit
+    let editButtons = document.querySelectorAll(".edit");
+    editButtons.forEach(edit=>{
+      edit.addEventListener("click", ()=>{
+        document.querySelector(".update").classList.add("active");
+        let projectId = edit.parentElement.parentElement.dataset.id;
+        projectRef.child(projectId).get().then((snapshot =>{
+          //console.log(snapshot.val());
+  
+          updateform.companyName.value = snapshot.val().companyName;
+          updateform.companyCaption.value = snapshot.val().companyCaption;
+          updateform.generation.value = snapshot.val().generation;
+          updateform.tressPlanted.value = snapshot.val().tressPlanted;
+          updateform.CO2Offset.value = snapshot.val().CO2offset;
+          updateform.description.value = snapshot.val().description;
+        }))
+        updateform.addEventListener("submit", ()=>{
+          //e.preventDefault();
+          projectRef.child(projectId).update({
+            companyName: updateform.companyName.value,
+            companyCaption: updateform.companyCaption.value,
+            generation: updateform.generation.value,
+            tressPlanted: updateform.tressPlanted.value,
+            CO2offset: updateform.CO2Offset.value,
+            description: updateform.description.value,
+          }).then((onFullFilled)=>{
+            alert("Updated");
+            console.log('Updated');
+            document.querySelector(".update").classList.remove("active");
+            updateform.reset();
+          },(onRejected)=>{
+            console.log(onRejected);
+          });
+        })
+  
+      })
+    })
+
+    // Delete
+    let deleteButtons = document.querySelectorAll(".delete");
+    deleteButtons.forEach(deleteBtn=>{
+      deleteBtn.addEventListener("click", ()=>{
+        let projectId = deleteBtn.parentElement.parentElement.dataset.id;
+        projectRef.child(projectId).remove().then(()=>{
+          alert("Deleted");
+          console.log('Deleted');
+        })
+      })
+    })
+
 });
+
+// Write Dynamic Data
+addUser.addEventListener("click", ()=>{
+    document.querySelector(".add").classList.add("active")
+  
+    addform.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      createProject(addform.companyName.value, addform.companyCaption.value, addform.generation.value, addform.tressPlanted.value, addform.CO2Offset.value, addform.description.value);
+      addform.reset();
+      popup.classList.remove("active");
+    })
+  })
+
+//Close Popup
+window.addEventListener("click", (e)=>{
+    if(e.target == popup){
+      popup.classList.remove("active");
+      addform.reset();
+      updateform.reset();
+    }
+})
 
 //createProject(456, "test2", "hello", 123456, 1234, 123456, "desblablabla");

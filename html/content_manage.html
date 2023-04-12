@@ -36,7 +36,7 @@
         <div id="Project" class="tabcontent">
             <h3>Project</h3>
             <input type="search" placeholder="search">
-            <button id="addAProject" name="addNew" onclick="addAppointment">Add New</button>
+            <button id="addAProject" name="addNew">Add New</button>
             <div class="table">
                 <table>
                     <thead>
@@ -207,6 +207,7 @@
                     </tr>
                 </table>
 
+                <!--
                 <div class="addProjectPage">
                     <h2>Add New Project</h2>
                     <th>Project ID</th>
@@ -240,6 +241,35 @@
                     <input type="text" id="Description" placeholder="Description">
                     <br>
                 </div>
+                -->
+
+                <div class="popup add">
+                    <form action="">
+                        <input type="text" id="companyName" placeholder="Company Name" name="companyName">
+                        <input type="text" id="companyCaption" placeholder="Company Caption" name="companyCaption">
+                        <input type="number" id="generation" placeholder="Generation" name="generation">
+                        <input type="number" id="tressPlanted" placeholder="Tress Planted" name="tressPlanted">
+                        <input type="number" id="CO2Offset" placeholder="CO2Offset" name="CO2Offset">
+                        <input type="description" id="description" placeholder="description" name="description">
+
+                        <input type="submit" value="submit" >
+                        
+                    </form>
+                </div>
+
+                <div class="popup update">
+                    <form action="">
+                        <input type="text" id="companyName" placeholder="Company Name" name="companyName">
+                        <input type="text" id="companyCaption" placeholder="Company Caption" name="companyCaption">
+                        <input type="number" id="generation" placeholder="Generation" name="generation">
+                        <input type="number" id="tressPlanted" placeholder="Tress Planted" name="tressPlanted">
+                        <input type="number" id="CO2Offset" placeholder="CO2Offset" name="CO2Offset">
+                        <input type="description" id="description" placeholder="description" name="description">
+
+                        <input type="submit" id="update-button" name="update-button" value="submit" >
+                    </form>
+                </div>
+
             </div>
         </div>
           
