@@ -30,9 +30,9 @@ function createProject(companyName, companyCaption, generation, tressPlanted, CO
     // Add the user's information to the Realtime Database
 
     projectRef.get().then((querySnapshot) => {
-        let projectCount = querySnapshot.size;
+        let projectCount = querySnapshot.numChildren();
         if (isNaN(projectCount)) {
-            console.log("Error: project count is not a number.");
+            console.log("Error: project count is not a number. It is " + projectCount);
             return;
         }
         projectCount++;
