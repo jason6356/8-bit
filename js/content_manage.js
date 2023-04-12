@@ -14,7 +14,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // Initialize variables
-let tableBody = document.querySelector("#Project tbody");
+let tableBody = document.querySelector(".table tbody");
 let addUser = document.querySelector(".add-user"),
   popup = document.querySelector(".popup"),
   addform = document.querySelector(".add form"),
@@ -24,21 +24,51 @@ const database = firebase.database();
 const projectRef = firebase.database().ref('Project');
 
 // Write data to Authentication, Realtime and firestore
-function createProject(ProjectId, email, password, name, phone, dob, position) {
+function createProject(projectId, companyName, companyCaption, generation, tressPlanted, CO2offset, description) {
     // Add the user's information to the Realtime Database
-    database.ref('staffs/' + ProjectId).set({
-        name: name,
-        phone: phone,
-        email: email,
-        password: password,
-        dob: dob,
-        position: position,
+    database.ref('Project/' + projectId).set({
+        companyName: companyName,
+        companyCaption: companyCaption,
+        generation: generation,
+        tressPlanted: tressPlanted,
+        CO2offset: CO2offset,
+        description: description,
     }).then((onFullFiled)=>{
-        console.log("Writed");
+        console.log("Project Created!");
     }, (onRejected)=>{
         console.log(onRejected);
     });
    
 }
 
-//createProject(123, 123, 123, 123, 123, 123, 123);
+//Read Data
+projectRef.on('value', (snapshot) => {
+    const projects = snapshot.val();
+    
+    tableBody.innerHTML = "";
+
+    let i = 1;
+
+    for(project in projects){
+      let tr = `
+      <tr data-id = ${project} >
+          <td>${i}</td>
+          <td>${project}</td>
+          <td>${projects[project].companyName}</td>
+          <td>${projects[project].companyCaption}</td>
+          <td>${projects[project].generation}</td>
+          <td>${projects[project].tressPlanted}</td>
+          <td>${projects[project].CO2offset}</td>
+          <td>${projects[project].description}</td>
+          <td>
+              <button class="edit">Edit</button>
+              <button class="delete">Delete</button>
+          </td>
+      </tr>
+      `
+      tableBody.innerHTML += tr;
+      i++;
+    }
+});
+
+//createProject(456, "test2", "hello", 123456, 1234, 123456, "desblablabla");
