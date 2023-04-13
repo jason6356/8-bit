@@ -29,29 +29,28 @@ let projectCount  = 0;
 function createProject(companyName, companyCaption, generation, tressPlanted, CO2offset, description) {
     // Add the user's information to the Realtime Database
 
-    projectRef.get().then((querySnapshot) => {
-        let projectCount = querySnapshot.numChildren();
-        if (isNaN(projectCount)) {
-            console.log("Error: project count is not a number. It is " + projectCount);
-            return;
-        }
-        projectCount++;
-        var projectId = "P" + projectCount.toString().padStart(5, "0");
-    
-        database.ref('Project/' + projectId).set({
-            companyName: companyName,
-            companyCaption: companyCaption,
-            generation: generation,
-            tressPlanted: tressPlanted,
-            CO2offset: CO2offset,
-            description: description,
-        }).then((onFullFiled)=>{
-            alert("Project Created!");
-            console.log("Project Created!");
-        }, (onRejected)=>{
-            console.log(onRejected);
-        });
+    generateId().then(function(projectId) {
+      console.log("Generated new project ID:", projectId);
+
+      database.ref('Project/' + projectId).set({
+        companyName: companyName,
+        companyCaption: companyCaption,
+        generation: generation,
+        tressPlanted: tressPlanted,
+        CO2offset: CO2offset,
+        description: description,
+    }).then((onFullFiled)=>{
+        alert("Project Created!");
+        console.log("Project Created!");
+    }, (onRejected)=>{
+        console.log(onRejected);
     });
+
+    }).catch(function(error) {
+      console.log("Error generating new project ID:", error);
+    });
+
+    
    
 }
 
@@ -148,6 +147,35 @@ addUser.addEventListener("click", ()=>{
       location.reload();
     })
   })
+
+  function generateId() {
+    return new Promise(function(resolve, reject) {
+      var ref = firebase.database().ref("Project");
+  
+      ref.once("value")
+        .then(function(dataSnapshot) {
+          var lastSequenceNumber = 0;
+          dataSnapshot.forEach(function(transactionSnapshot) {
+            var projectID = transactionSnapshot.key;
+            if (projectID != null && projectID.startsWith("P")) {
+              var sequenceNumber = parseInt(projectID.substring(1));
+              if (!isNaN(sequenceNumber) && sequenceNumber > lastSequenceNumber) {
+                lastSequenceNumber = sequenceNumber;
+              }
+            }
+          });
+          var nextSequenceNumber = lastSequenceNumber + 1;
+          var paddedSequenceNumber = String(nextSequenceNumber).padStart(5, "0");
+          let newProjectId = "P" + paddedSequenceNumber;
+          resolve(newProjectId);
+        })
+        .catch(function(error) {
+          // Handle error
+          console.log(error);
+          reject(error);
+        });
+    });
+  }
 
 //Close Popup
 window.addEventListener("click", (e)=>{
