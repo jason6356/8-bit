@@ -145,6 +145,7 @@ addUser.addEventListener("click", ()=>{
       createProject(addform.companyName.value, addform.companyCaption.value, addform.generation.value, addform.tressPlanted.value, addform.CO2Offset.value, addform.description.value);
       addform.reset();
       popup.classList.remove("active");
+      location.reload();
     })
   })
 
