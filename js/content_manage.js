@@ -22,36 +22,66 @@ let addUser = document.querySelector("#addAProject"),
 
 const database = firebase.database();
 const projectRef = firebase.database().ref('Project');
+var storageRef = firebase.storage().ref();
 
 let projectCount  = 0;
 
-// Write data to Realtime database
-function createProject(companyName, companyCaption, generation, tressPlanted, CO2offset, description) {
-    // Add the user's information to the Realtime Database
+function createProject(companyName, companyCaption, generation, treesPlanted, CO2offset, description, images) {
 
-    generateId().then(function(projectId) {
-      console.log("Generated new project ID:", projectId);
+  let Generation = parseInt(generation);
+  let TreesPlanted = parseInt(treesPlanted);
+  let CO2Offset = parseInt(CO2offset);
 
-      database.ref('Project/' + projectId).set({
-        companyName: companyName,
-        companyCaption: companyCaption,
-        generation: generation,
-        tressPlanted: tressPlanted,
-        CO2offset: CO2offset,
-        description: description,
-    }).then((onFullFiled)=>{
-        alert("Project Created!");
-        console.log("Project Created!");
-    }, (onRejected)=>{
-        console.log(onRejected);
+  // Add the user's information to the Realtime Database
+  generateId().then(function(projectId) {
+    console.log("Generated new project ID:", projectId);
+
+    // Upload images to Firebase Storage
+    var promises = [];
+    images.forEach(function(image) {
+      var storageRef = firebase.storage().ref('project-images/' + projectId + '/' + image.name);
+      var uploadTask = storageRef.put(image);
+      promises.push(uploadTask);
     });
 
+    Promise.all(promises).then(function() {
+      console.log("All images uploaded successfully");
+
+      // Get the download URLs of the uploaded images
+      var imageUrls = [];
+      promises.forEach(function(uploadTask) {
+        uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+          imageUrls.push(url);
+
+          // Save the project data to the Realtime Database
+          if (imageUrls.length == images.length) {
+            database.ref('Project/' + projectId).set({
+              companyName: companyName,
+              companyCaption: companyCaption,
+              generation: Generation,
+              treesPlanted: TreesPlanted,
+              CO2offset: CO2Offset,
+              description: description,
+              imageUrls: imageUrls
+            }).then(function() {
+              alert("Project Created!");
+              console.log("Project Created!");
+              location.reload();
+            }).catch(function(error) {
+              console.log("Error saving project data:", error);
+            });
+          }
+        }).catch(function(error) {
+          console.log("Error getting download URL:", error);
+        });
+      });
     }).catch(function(error) {
-      console.log("Error generating new project ID:", error);
+      console.log("Error uploading images:", error);
     });
 
-    
-   
+  }).catch(function(error) {
+    console.log("Error generating new project ID:", error);
+  });
 }
 
 //Read Data
@@ -70,7 +100,7 @@ projectRef.on('value', (snapshot) => {
           <td>${projects[project].companyName}</td>
           <td>${projects[project].companyCaption}</td>
           <td>${projects[project].generation}</td>
-          <td>${projects[project].tressPlanted}</td>
+          <td>${projects[project].treesPlanted}</td>
           <td>${projects[project].CO2offset}</td>
           <td>${projects[project].description}</td>
           <td>
@@ -95,7 +125,7 @@ projectRef.on('value', (snapshot) => {
           updateform.companyName.value = snapshot.val().companyName;
           updateform.companyCaption.value = snapshot.val().companyCaption;
           updateform.generation.value = snapshot.val().generation;
-          updateform.tressPlanted.value = snapshot.val().tressPlanted;
+          updateform.treesPlanted.value = snapshot.val().treesPlanted;
           updateform.CO2Offset.value = snapshot.val().CO2offset;
           updateform.description.value = snapshot.val().description;
         }))
@@ -105,7 +135,7 @@ projectRef.on('value', (snapshot) => {
             companyName: updateform.companyName.value,
             companyCaption: updateform.companyCaption.value,
             generation: updateform.generation.value,
-            tressPlanted: updateform.tressPlanted.value,
+            treesPlanted: updateform.treesPlanted.value,
             CO2offset: updateform.CO2Offset.value,
             description: updateform.description.value,
           }).then((onFullFilled)=>{
@@ -113,6 +143,7 @@ projectRef.on('value', (snapshot) => {
             console.log('Updated');
             document.querySelector(".update").classList.remove("active");
             updateform.reset();
+            popup.classList.remove("active");
           },(onRejected)=>{
             console.log(onRejected);
           });
@@ -135,18 +166,26 @@ projectRef.on('value', (snapshot) => {
 
 });
 
-// Write Dynamic Data
 addUser.addEventListener("click", ()=>{
-    document.querySelector(".add").classList.add("active")
-  
-    addform.addEventListener("submit", (e)=>{
-      e.preventDefault();
-      createProject(addform.companyName.value, addform.companyCaption.value, addform.generation.value, addform.tressPlanted.value, addform.CO2Offset.value, addform.description.value);
-      addform.reset();
-      popup.classList.remove("active");
-      location.reload();
-    })
-  })
+  document.querySelector(".add").classList.add("active")
+
+  addform.addEventListener("submit", (e)=>{
+    e.preventDefault();
+
+    const images = [];
+    document.querySelectorAll("#projectImage").forEach(function(input) {
+      for (let i = 0; i < input.files.length; i++) {
+        images.push(input.files[i]);
+      }
+
+      createProject(addform.companyName.value, addform.companyCaption.value, addform.generation.value, addform.tressPlanted.value, addform.CO2Offset.value, addform.description.value, images);
+      //addform.reset();
+      //popup.classList.remove("active");
+      
+    });
+    
+  });
+});
 
   function generateId() {
     return new Promise(function(resolve, reject) {
@@ -181,9 +220,8 @@ addUser.addEventListener("click", ()=>{
 window.addEventListener("click", (e)=>{
     if(e.target == popup){
       popup.classList.remove("active");
+      //document.querySelector(".update").classList.remove("active");
       addform.reset();
       updateform.reset();
     }
 })
-
-//createProject(456, "test2", "hello", 123456, 1234, 123456, "desblablabla");
