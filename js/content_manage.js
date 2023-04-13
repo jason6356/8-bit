@@ -152,7 +152,6 @@ projectRef.on('value', (snapshot) => {
       })
     })
 
-    // Delete
     let deleteButtons = document.querySelectorAll(".delete");
     deleteButtons.forEach(deleteBtn=>{
       deleteBtn.addEventListener("click", ()=>{
@@ -160,9 +159,22 @@ projectRef.on('value', (snapshot) => {
         projectRef.child(projectId).remove().then(()=>{
           alert("Deleted");
           console.log('Deleted');
-        })
-      })
-    })
+
+          // Retrieve a reference to Firebase Storage instance
+          const storage = firebase.storage();
+
+          // Retrieve a reference to the specific Firebase Storage bucket you are using
+          const storageRef = storage.ref(`/project-images/${projectId}`);
+
+          // Delete the image folder
+          storageRef.delete().then(() => {
+            console.log('Image folder deleted successfully');
+          }).catch((error) => {
+            console.error('Error deleting image folder:', error);
+          });
+        });
+      });
+    });
 
 });
 
