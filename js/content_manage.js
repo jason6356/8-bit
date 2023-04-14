@@ -113,6 +113,11 @@ projectRef.on('value', (snapshot) => {
       i++;
     }
 
+    if(i < 10){
+      const paginationSection = document.querySelector('.tb-footer');
+      paginationSection.style.display = "none";
+    }
+
     // Edit
     let editButtons = document.querySelectorAll(".edit");
     editButtons.forEach(edit=>{
@@ -157,7 +162,7 @@ projectRef.on('value', (snapshot) => {
       deleteBtn.addEventListener("click", ()=>{
         let projectId = deleteBtn.parentElement.parentElement.dataset.id;
         projectRef.child(projectId).remove().then(()=>{
-          alert("Deleted");
+          // alert("Deleted");
           console.log('Deleted');
 
           // Retrieve a reference to Firebase Storage instance
