@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+html, body {
+    font-family: 'Comfortaa', cursive;
+}
+
+.p-70 {
+    padding: 70px;
+}
+
+.bg-gray {
+    background-color: #e9ecef;
+}
+
+.py-6 {
+    padding-top: 2rem;
+}
+
+.text-para {
+    color: #000;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.list-unstyled li a{
+    text-decoration: none;
+}
+
+.list-unstyled li a:hover {
+    text-decoration: underline;
+}
