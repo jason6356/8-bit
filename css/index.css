@@ -1,9 +1,12 @@
+
+/* roboto font */
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
 html, body {
     font-family: 'Comfortaa', cursive;
 }
 
+/* align the home page first content center */
 .first-view {
     height:750px;
     display: flex;
@@ -17,6 +20,7 @@ html, body {
     flex-wrap: wrap;
 }
 
+/* project images display */
 .row1-col1 {
     background-image: url(/image/1.jpg);
     background-repeat: none;
@@ -41,6 +45,7 @@ html, body {
     background-size: cover;
 }
 
+/* hover effect for the project images */
 .hovtxt {
     background: #000000;
     opacity: 0;
@@ -56,10 +61,6 @@ html, body {
 
 .p-70 {
     padding: 70px;
-}
-
-.bg-gray {
-    background-color: #e9ecef;
 }
 
 .py-6 {
