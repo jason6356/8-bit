@@ -44,7 +44,7 @@ html, body {
 .hovtxt {
     background: #000000;
     opacity: 0;
-    transition-duration: 1.2s;
+    transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
     height: 250px;
     max-height: 100%;
@@ -64,10 +64,6 @@ html, body {
 
 .py-6 {
     padding-top: 2rem;
-}
-
-.text-heading {
-    color: #6c757d;
 }
 
 .text-para {
@@ -94,4 +90,14 @@ html, body {
 
 .p-200{
     padding: 0px 200px;
+}
+
+.btn-24 {
+    font-size: 24px;
+    padding: 10px;
+    color: #000;
+}
+
+.btn-24:hover {
+    color: #6ECB63;
 }
