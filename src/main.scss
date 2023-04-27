@@ -1,0 +1,9 @@
+$primary: #6ECB63 !default;
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+:root {
+    --bs-body-font-family: 'Comfortaa', cursive;
+}
+
+@import "node_modules/bootstrap/scss/bootstrap";

@@ -27,10 +27,43 @@ var storageRef = firebase.storage().ref();
 let projectCount  = 0;
 
 function createProject(companyName, companyCaption, generation, treesPlanted, CO2offset, description, images) {
+  if (typeof companyName !== 'string' || companyName.trim().length === 0) {
+    console.log('Error: companyName must be a non-empty string');
+    return;
+  }
 
-  let Generation = parseInt(generation);
-  let TreesPlanted = parseInt(treesPlanted);
-  let CO2Offset = parseInt(CO2offset);
+  if (typeof companyCaption !== 'string' || companyCaption.trim().length === 0) {
+    console.log('Error: companyCaption must be a non-empty string');
+    return;
+  }
+
+  const parsedGeneration = parseInt(generation);
+  if (isNaN(parsedGeneration) || parsedGeneration <= 0) {
+    console.log('Error: generation must be a positive integer');
+    return;
+  }
+
+  const parsedTreesPlanted = parseInt(treesPlanted);
+  if (isNaN(parsedTreesPlanted) || parsedTreesPlanted <= 0) {
+    console.log('Error: treesPlanted must be a positive integer');
+    return;
+  }
+
+  const parsedCO2Offset = parseInt(CO2offset);
+  if (isNaN(parsedCO2Offset) || parsedCO2Offset <= 0) {
+    console.log('Error: CO2offset must be a positive integer');
+    return;
+  }
+
+  if (typeof description !== 'string' || description.trim().length === 0) {
+    console.log('Error: description must be a non-empty string');
+    return;
+  }
+
+  if (!Array.isArray(images) || images.length === 0) {
+    console.log('Error: images must be a non-empty array');
+    return;
+  }
 
   // Add the user's information to the Realtime Database
   generateId().then(function(projectId) {
@@ -58,9 +91,9 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
             database.ref('Project/' + projectId).set({
               companyName: companyName,
               companyCaption: companyCaption,
-              generation: Generation,
-              treesPlanted: TreesPlanted,
-              CO2offset: CO2Offset,
+              generation: parsedGeneration,
+              treesPlanted: parsedTreesPlanted,
+              CO2offset: parsedCO2Offset,
               description: description,
               imageUrls: imageUrls
             }).then(function() {
@@ -126,7 +159,7 @@ projectRef.on('value', (snapshot) => {
         let projectId = edit.parentElement.parentElement.dataset.id;
         projectRef.child(projectId).get().then((snapshot =>{
           //console.log(snapshot.val());
-  
+
           updateform.companyName.value = snapshot.val().companyName;
           updateform.companyCaption.value = snapshot.val().companyCaption;
           updateform.generation.value = snapshot.val().generation;
@@ -134,26 +167,29 @@ projectRef.on('value', (snapshot) => {
           updateform.CO2Offset.value = snapshot.val().CO2offset;
           updateform.description.value = snapshot.val().description;
         }))
-        updateform.addEventListener("submit", ()=>{
-          //e.preventDefault();
-          projectRef.child(projectId).update({
-            companyName: updateform.companyName.value,
-            companyCaption: updateform.companyCaption.value,
-            generation: updateform.generation.value,
-            treesPlanted: updateform.treesPlanted.value,
-            CO2offset: updateform.CO2Offset.value,
-            description: updateform.description.value,
-          }).then((onFullFilled)=>{
-            alert("Updated");
-            console.log('Updated');
-            document.querySelector(".update").classList.remove("active");
-            updateform.reset();
-            popup.classList.remove("active");
-          },(onRejected)=>{
-            console.log(onRejected);
-          });
+
+        updateform.addEventListener("submit", (event)=>{
+          event.preventDefault();
+          if (validateForm(updateform)) {
+            projectRef.child(projectId).update({
+              companyName: updateform.companyName.value,
+              companyCaption: updateform.companyCaption.value,
+              generation: updateform.generation.value,
+              treesPlanted: updateform.treesPlanted.value,
+              CO2offset: updateform.CO2Offset.value,
+              description: updateform.description.value,
+            }).then((onFullFilled)=>{
+              alert("Updated");
+              console.log('Updated');
+              document.querySelector(".update").classList.remove("active");
+              updateform.reset();
+              popup.classList.remove("active");
+            },(onRejected)=>{
+              console.log(onRejected);
+            });
+          }
         })
-  
+
       })
     })
 
@@ -165,18 +201,6 @@ projectRef.on('value', (snapshot) => {
           // alert("Deleted");
           console.log('Deleted');
 
-          // Retrieve a reference to Firebase Storage instance
-          const storage = firebase.storage();
-
-          // Retrieve a reference to the specific Firebase Storage bucket you are using
-          const storageRef = storage.ref(`/project-images/${projectId}`);
-
-          // Delete the image folder
-          storageRef.delete().then(() => {
-            console.log('Image folder deleted successfully');
-          }).catch((error) => {
-            console.error('Error deleting image folder:', error);
-          });
         });
       });
     });
@@ -196,8 +220,6 @@ addUser.addEventListener("click", ()=>{
       }
 
       createProject(addform.companyName.value, addform.companyCaption.value, addform.generation.value, addform.tressPlanted.value, addform.CO2Offset.value, addform.description.value, images);
-      //addform.reset();
-      //popup.classList.remove("active");
       
     });
     
@@ -233,11 +255,52 @@ addUser.addEventListener("click", ()=>{
     });
   }
 
+  function validateForm(form) {
+    let isValid = true;
+  
+    // Validate companyName
+    if (form.companyName.value.trim() === "") {
+      alert("Please enter a company name");
+      isValid = false;
+    }
+  
+    // Validate companyCaption
+    if (form.companyCaption.value.trim() === "") {
+      alert("Please enter a company caption");
+      isValid = false;
+    }
+  
+    // Validate generation
+    if (form.generation.value.trim() === "" || isNaN(parseInt(form.generation.value))) {
+      alert("Please enter a valid generation number");
+      isValid = false;
+    }
+  
+    // Validate treesPlanted
+    if (form.treesPlanted.value.trim() === "" || isNaN(parseInt(form.treesPlanted.value))) {
+      alert("Please enter a valid number of trees planted");
+      isValid = false;
+    }
+  
+    // Validate CO2Offset
+    if (form.CO2Offset.value.trim() === "" || isNaN(parseInt(form.CO2Offset.value))) {
+      alert("Please enter a valid CO2 offset number");
+      isValid = false;
+    }
+  
+    // Validate description
+    if (form.description.value.trim() === "") {
+      alert("Please enter a project description");
+      isValid = false;
+    }
+  
+    return isValid;
+  }
+
 //Close Popup
 window.addEventListener("click", (e)=>{
     if(e.target == popup){
       popup.classList.remove("active");
-      //document.querySelector(".update").classList.remove("active");
       addform.reset();
       updateform.reset();
     }

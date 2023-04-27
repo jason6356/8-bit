@@ -1,26 +1,7 @@
-*{
-    margin:0;
-    padding:0;
-}
-
-nav{
-    background:#AEC2B6;
-}
-
-nav ul a{
-    color:#fff;
-}
-
-.containerLeft{
-    float:left;
-    width:50%;
-    height:100vh;
-    margin:10px;
-}
-
 .containerRight{
     display:flex;
     flex-direction:column;
+    height:750px;
 }
 
 .containerRight input,
@@ -28,13 +9,4 @@ nav ul a{
     border-radius:10px;
     border:1px solid #000;
     padding:10px;
-}
-
-.containerRight button{
-    text-align:center;
-    padding:10px;
-    border-radius:10px;
-    background:#AEC2B6;
-    color:#fff;
-    border:none;
 }
