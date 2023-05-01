@@ -4,213 +4,195 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunergy - Project</title>
-    <link rel="stylesheet" href="/css/project.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- bootstrap saas file -->
+    <link rel="stylesheet" href="../src/main.css">
+
+    <!-- local css file-->
+    <link rel="stylesheet" href="../css/project.css">
+
+    <!-- font awesome icon with personal id (need register) -->
+    <script src="https://kit.fontawesome.com/dbd99f58c7.js" crossorigin="anonymous"></script>
+
+
+    <title>Project</title>
 </head>
 <body>
-    <nav class="navbar" id="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
-                  </button>
-                  <a class="navbar-brand" href="../index.html">SUNERGY</a>
+    <div class="container">
+        <!-- navigation bar -->
+        <nav class="navbar navbar-expand-md bg-white navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand text-black fw-bold" href="../index.html">SUNERGY</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ms-auto list-unstyled">
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/project.html">Project</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/service.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/aboutUs.html">About</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-white btn-outline-dark" href="/html/contact.html">Contact</a>
+                    </li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/html/project.html">Projects</a></li>
-                    <li><a href="/html/service.html">Services</a></li>
-                    <li><a href="/html/news.html">News</a></li>
-                    <li><a href="/html/aboutUs.html">About</a></li>
-                    <li><a href="/html/contact.html">Contact</a></li>
-                </ul>
+        </nav>
+    </div>
+
+    <!--top image-->
+    <div class="col-8 text-center mx-auto">
+        <figure>
+            <img class="img-fluid rounded" src="/image/4.jpg" alt="pic">
+            <figcaption class="partner-com">Partner Company Name Sdn. Bhd.</figcaption>
+            <figcaption class="cap fw-bold">The modern world and <br>people everywhere.</figcaption>
+        </figure>
+    </div>
+
+    <!-- number of generation, trees planted and co2 offset -->
+    <div class="container-lg mt-5">
+        <div class="row lead my-4 pb-5 justify-content-center fs-6">
+            <div class="col-md-4">
+                <img class="img-fluid" src="/image/generation.png" alt="1.jpg">
+                <div class="mx-3">111,929</div>
+                <div class="mx-3">Generation (MWh)</div>
+            </div>
+            <div class="col-md-4">
+                <img class="img-fluid" src="/image/trees-planted.png" alt="1.jpg">
+                <div class="mx-3">1,079,086</div>
+                <div class="mx-3">Trees Planted</div>
+            </div>
+            <div class="col-md-2">
+                <img class="img-fluid" src="/image/co2-offset.png" alt="1.jpg">
+                <div class="mx-3">64,771</div>
+                <div class="mx-3">CO2 Offset (tonnes)</div>
             </div>
         </div>
-    </nav>
+    </div>
+
+    <!--business concern-->
+    <div class="container-lg my-5 col-md-7">
+        <div class="mb-4">
+            <div class="col-md-5 fs-2 fw-bold">BUSINESS CONCERN</div>
+        </div>
+        <div class="fs-5 fw-light">
+            With our extensive expertise offering bespoke carbon neutral technologies & financing solutions in the region, SUNERGY stands at the forefront in providing green energy solutions to meet your renewable energy goals. We help every client find the best approach to save money and the planet.
+        </div>
+    </div>
+
+    <!--about project-->
+    <div class="container-lg my-5 py-5 col-md-7 justify-content-center align-items-center">
+        <div class="mb-4">
+            <div class="col-md-5 fs-2 fw-bold">ABOUT PROJECT</div>
+        </div>
+        <div class="fs-5 fw-light">
+            With our extensive expertise offering bespoke carbon neutral technologies & financing solutions in the region, SUNERGY stands at the forefront in providing green energy solutions to meet your renewable energy goals. We help every client find the best approach to save money and the planet.
+        </div>
+    </div>
+
+    <!-- project gallery listing header with arrows key -->
+    <div class="container-lg pt-5">
+        <div class="row lead my-4 justify-content-center align-items-center">
+            <div class="col-md-5">
+                <div class="fs-2 fw-bold">PROJECT GALLERY</div>
+            </div>
+            <div class="col-md-5 text-end">
+                <i class="arrow fa-solid fa-angles-left"></i>
+                <i class="arrow fa-solid fa-angles-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- project gallery listing -->
+    <div class="gallery container-lg my-5 pb-5">
+        <div class="row justify-content-evenly">
+            <div class="col-lg-2">
+                <img class="img-fluid" src="../image/3.jpg" alt="1.jpg">
+            </div>
+            <div class="col-lg-2">
+                <img class="img-fluid" src="../image/8.jpg" alt="1.jpg">
+            </div>
+            <div class="col-lg-2">
+                <img class="img-fluid" src="../image/7.jpg" alt="1.jpg">
+            </div>
+            <div class="col-lg-2">
+                <img class="img-fluid" src="../image/4.jpg" alt="1.jpg">
+            </div>
+        </div>
+    </div>
+
+    asdjfdsaf
     
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-      
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:100%; height:600px;">
-            <div class="carousel-caption">
-                <h3>Renewable Energy</h3>
-                <p>Shaping Asia Pacific’s Renewable Energy</p>
-              </div>
-          </div>
-      
-          <div class="item">
-            <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:100%; height:600px;">
-            <div class="carousel-caption">
-                <h3>Renewable Energy</h3>
-                <p>Shaping Asia Pacific’s Renewable Energy</p>
-              </div>
-          </div>
-      
-          <div class="item">
-            <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:100%; height:600px;">
-            <div class="carousel-caption">
-                <h3>Renewable Energy</h3>
-                <p>Shaping Asia Pacific’s Renewable Energy</p>
-              </div>
-          </div>
-        </div>
-      
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-      <div class="projectPg-title">
-        <h1>Collaboration Projects</h1>
-        <h4>Collaboration Projects Collaboration Projects Collaboration Projects</h4>
-      </div>
-      <div class="projectPg-content">
-        <div class="projectBox">
-            <div class="pBox1">
-                <div class="pBox-img">
-                    <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:180px; height:130px;"/>
-                </div>
-                <div class="pBox-content">
-                    <div class="pBox-title">
-                    Tesco Sdn.Bhd.
+    <!-- footer navigation section -->
+    <footer>
+        <div class="py-6 border-top">
+            <div class="container py-4">
+                <div class="row justify-content-evenly">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="fw-bold text-uppercase fs-4">sunergy</div>
+                        <p>Welcome to Sunergy, a sustainable energy company committed to providing 
+                        reliable and affordable solar energy solutions to our clients.
+                        </p>
+                        <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="https://www.youtube.com/" class="text-para" title="YouTube"><i class="fab fa-youtube" style='font-size:24px'></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/" class="text-para" title="Twitter"><i class="fab fa-twitter" style='font-size:24px'></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/" class="text-para" title="Facebook"><i class="fab fa-facebook" style='font-size:24px'></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/" class="text-para" title="Instagram"><i class="fab fa-instagram" style='font-size:24px'></i></a>
+                        </li>
+                        </ul>
                     </div>
-                    <div class="pBox-details">
-                        With our extensive expertise offering bespoke carbon neutral technologies & financing
-                        solutions in the region, SUNERGY stands at the forefront in providing green energy 
-                        solutions to meet your renewable energy goals. We help every client find the best approach 
-                        to save money and the planet.
+
+                    <div class="col-lg-4">
+                        <h6 class="text-uppercase mb-3">Mailing List</h6>
+                        <p class="mb-3">Sign up to our mailing list to get the latest updates about our new products and promotions.</p>
+                        <form action="#" id="input-group mb-3">
+                        <div class="input-group mb-3">
+                            <input type="email" placeholder="Email Address" aria-label="Email Address" class="form-control">
+                            <button class="btn btn-outline-dark" type="submit"><i class="fa fa-paper-plane text-lg"></i></button>
+                        </div>
+                        </form>
                     </div>
-                    <div class="pBox-viewmore">
-                        >
+
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-heading mb-3">Company</h6>
+                        <ul class="list-unstyled">
+                        <li><a href="/html/project.html" class="text-para text-uppercase">Project</a></li>
+                        <li><a href="/html/service.html" class="text-para text-uppercase">Services</a></li>
+                        <li><a href="/html/news.html" class="text-para text-uppercase">News</a></li>
+                        <li><a href="/html/aboutUs.html" class="text-para text-uppercase">About</a></li>
+                        <li><a href="/html/contact.html" class="text-para text-uppercase">Contact</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="projectBox">
-            <div class="pBox2">
-                <div class="pBox-img">
-                    <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:180px; height:130px;"/>
-                </div>
-                <div class="pBox-content">
-                    <div class="pBox-title">
-                    Tesco Sdn.Bhd.
-                    </div>
-                    <div class="pBox-details">
-                        With our extensive expertise offering bespoke carbon neutral technologies & financing
-                        solutions in the region, SUNERGY stands at the forefront in providing green energy 
-                        solutions to meet your renewable energy goals. We help every client find the best approach 
-                        to save money and the planet.
-                    </div>
-                    <div class="pBox-viewmore">
-                        >
+
+        <div class="py-4 border-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col text-md-start">
+                        <p class="text-sm text-center mb-md-0">&copy; 2023 Sunergy Sdn. Bhd. Privacy Policy</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="projectBox">
-            <div class="pBox3">
-                <div class="pBox-img">
-                    <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:180px; height:130px;"/>
-                </div>
-                <div class="pBox-content">
-                    <div class="pBox-title">
-                    Tesco Sdn.Bhd.
-                    </div>
-                    <div class="pBox-details">
-                        With our extensive expertise offering bespoke carbon neutral technologies & financing
-                        solutions in the region, SUNERGY stands at the forefront in providing green energy 
-                        solutions to meet your renewable energy goals. We help every client find the best approach 
-                        to save money and the planet.
-                    </div>
-                    <div class="pBox-viewmore">
-                        >
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="projectBox">
-            <div class="pBox4">
-                <div class="pBox-img">
-                    <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:180px; height:130px;"/>
-                </div>
-                <div class="pBox-content">
-                    <div class="pBox-title">
-                    Tesco Sdn.Bhd.
-                    </div>
-                    <div class="pBox-details">
-                        With our extensive expertise offering bespoke carbon neutral technologies & financing
-                        solutions in the region, SUNERGY stands at the forefront in providing green energy 
-                        solutions to meet your renewable energy goals. We help every client find the best approach 
-                        to save money and the planet.
-                    </div>
-                    <div class="pBox-viewmore">
-                        >
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <ul class="pagination">
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-      </ul>
-      <div class="benefitContent">
-        <h2>Why Choose Us</h2>
-        <div class="benefitBox">
-            <div class="bBox1">
-                Benefits
-            </div>
-        </div>
-        <div class="benefitBox">
-            <div class="bBox2">
-                Benefits
-            </div>
-        </div>
-        <div class="benefitBox">
-            <div class="bBox3">
-                Benefits
-            </div>
-        </div>
-        <div class="benefitBox">
-            <div class="bBox4">
-                Benefits
-            </div>
-        </div>
-        <div class="benefitBox">
-            <div class="bBox5">
-                Benefits
-            </div>
-        </div>
-        <div class="benefitBox">
-            <div class="bBox6">
-                Benefits
-            </div>
-        </div>
-      </div>
-      <footer>
-        <h2>Ready To Get Started?</h2>
-        <h5>Join The Community Now</h5>
+
     </footer>
 </body>
 </html>
