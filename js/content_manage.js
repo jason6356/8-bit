@@ -301,7 +301,6 @@ addUser.addEventListener("click", ()=>{
 window.addEventListener("click", (e)=>{
     if(e.target == popup){
       popup.classList.remove("active");
-      console.log('hi :)')
       addform.reset();
       updateform.reset();
     }
