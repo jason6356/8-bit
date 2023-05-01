@@ -1,157 +1,35 @@
-*{
-    margin:0;
-    padding:0;
+.intro img{
+    height: 200px;
 }
 
-.aboutUs{
-    background-color:#AEC2B6;
-    width:90%;
-    height:100vh;
-    border-radius:0 0 50px 0;
-    color:#fff;
+.intro1 img:nth-child(1) {
+    width: 60%;
 }
 
-.aboutUs-title,
-.aboutUs-details{
-    width:300px;
-    
+.intro1 img:nth-child(2) {
+    width: 39%;
 }
 
-.aboutUs-img{
-    float:right;
+.intro2 img:nth-child(1) {
+    width: 45%;
 }
 
-.mission{
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
-    align-items:center;
-    padding:10px;
-    margin:10px;
+.intro2 img:nth-child(2) {
+    width: 54%;
 }
 
-.mission .mission-details{
-    width:500px;
+.arrow {
+    font-size: 24px;
+    padding: 10px;
+    color: #000;
+    cursor: pointer;
 }
 
-.ourService{
-    width:100%;
-    height:100vh;
-    background:#AEC2B6;
+.arrow:hover {
+    color: #6ECB63;
 }
 
-.cardGallery{
-    margin-top:5px;
-    display:flex;
-    justify-content:center;
+.leadership img {
+    width: 200px;
+    height: 200px;
 }
-
-.card{
-    margin-left:30px;
-    width:20%;
-    background:#fff;
-    padding-bottom:5px;
-}
-
-.card .card-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.card .card-content{
-    padding:10px;
-}
-
-.card .card-line{
-    border:2px solid #D9D9D9;
-    border-radius:20px;
-    width:70%;
-    margin-left:10px;
-}
-
-.card .card-btn button{
-    margin-left:10px; 
-    background:#AEC2B6;
-    border:none;
-    color:#fff;
-    padding:10px;
-    border-radius:5px;
-}
-
-.team{
-    width:100%;
-    height:100vh;
-}
-
-.team-title{
-    font-weight:bold;
-    font-size:30px;
-}
-
-.team .staff{
-    display:inline-block;
-    margin:10px;
-}
-
-.team .staffCard{
-    background:#AEC2B6;
-    width:250px;
-    height:300px;
-    border-radius:15px;
-    align-items:center;
-    justify-content:center;
-    display:flex;
-    flex-direction:column;
-}
-
-.team .staff img{
-    border-radius:50%;
-}
-
-.team .staff .staffName{
-    color:#fff;
-    font-weight:bold;
-    font-size:20px;
-    margin:10px;
-}
-
-.description{
-    text-align: center;
-    width:80%;
-}
-
-.joinUs{
-    background:#AEC2B6;
-    padding:20px;
-    border-radius:15px;
-    width:80%;
-    height:25%;
-    color:#fff;
-    text-align:center;
-}
-
-.joinUs span{
-    font-weight:bold;
-    font-size:20px;
-}
-
-.joinUs button{
-    border:none;
-    background:#BBD6B8;
-    padding:10px;
-    border-radius:15px;
-}
-
-footer{
-    background:#AEC2B6;
-    padding:57px;
-    margin-top:3%;
-    color:#fff;
-}
-
-footer h2,
-footer h5{
-    margin-left:40%;
-}
-
