@@ -31,6 +31,7 @@ var swiper = new Swiper(".mySwiper", {
     },
     autoplay: {
         delay: 5000,
+        loop: true,
     },
     navigation: {
       nextEl: ".swiper-button-next",
