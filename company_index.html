@@ -18,6 +18,9 @@
     
         <!-- bootstrap saas file -->
         <link rel="stylesheet" href="/src/main.css">
+
+        <!-- chart  -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     
         <title>Sunergy Sdn. Bhd.</title>
 </head>
@@ -27,42 +30,42 @@
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-info">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline">SUNERGY</span>
+                        <span class="fs-5 d-none d-sm-inline mt-3 fw-bold">SUNERGY</span>
                     </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start gap-3" id="menu">
                         <li class="nav-item">
-                            <a href="#" class="nav-link align-middle px-0">
-                                <i class="fa-solid fa-house text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Dashboard</span>
+                            <a href="company_index.html" class="nav-link align-middle px-0">
+                                <i class="fa-solid fa-house text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fa-solid fa-users text-white"></i><span class="ms-1 d-none d-sm-inline text-white">User Management</span></a>
+                            <a href="/html/user_manage.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-users text-white"></i><span class="ms-3 d-none d-sm-inline text-white fw-light">User</span></a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fa-solid fa-calendar-check text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Appointment</span></a>
+                            <a href="/html/appointment.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-calendar-check text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Appointment</span></a>
                         </li>
                         <li>
                             <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                <i class="fa-solid fa-table text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Content Management</span></a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                <i class="fa-solid fa-table text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Content</span><i class="fa-sharp fa-solid fa-caret-down text-white ms-3"></i></a>
+                            <ul class="collapse nav flex-column ms-3" id="submenu2" data-bs-parent="#menu">
                                 <li class="w-100">
-                                    <a href="#" class="nav-link px-0"><i class="fa-solid fa-city text-white"></i> <span class="d-none d-sm-inline text-white">Project</span></a>
+                                    <a href="/html/content_manage.html" class="nav-link px-0"><i class="fa-solid fa-city text-white"></i> <span class="d-none d-sm-inline text-white fw-light">Project</span></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link px-0"><i class="fa-solid fa-newspaper text-white"></i> <span class="d-none d-sm-inline text-white">News</span></a>
+                                    <a href="/html/content_manage.html" class="nav-link px-0"><i class="fa-solid fa-newspaper text-white"></i> <span class="d-none d-sm-inline text-white fw-light">News</span></a>
                                 </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fa-solid fa-chart-simple text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Report</span> </a>
+                            <a href="/html/report.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-chart-simple text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Report</span> </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fa-solid fa-envelope text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Customer Services</span> </a>
+                            <a href="/html/customer.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-envelope text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Inbox</span> </a>
                         </li>
                     </ul>
                     <hr>
@@ -71,7 +74,7 @@
                             <img src="/image/leader1.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">Hii Puong Hou</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow fw-light">
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li>
@@ -85,7 +88,7 @@
             <div class="col py-3">
                 <div class="container-fluid-px-4">
                     <div class="row g-3 my-2 d-flex justify-content-center">
-                        <div class="col-10 col-lg-12">
+                        <div class="col-10 col-md-12 col-lg-12">
                             <div class="p-3 bg-info shadow-sm d-flex justify-content-start align-items-center rounded">
                                 <img src="/image/leader1.png" alt="hugenerd" width="100" height="100" class="rounded-circle ms-5">
                                 <h3 class="fs-2 ms-5 text-white">Hello, Hii Puong Hou</h3>
@@ -122,8 +125,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="container">
+                    <div class="row my-2">
+                        <div class="col-md-6 py-1">
+                            <div class="card">
+                                <div class="card-body">
+                                    <canvas id="bar"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 py-1">
+                            <div class="card">
+                                <div class="card-body">
+                                    <canvas id="doughnut"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="/js/dashboard.js"></script>
 </body>
 </html>
