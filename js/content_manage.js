@@ -197,6 +197,19 @@ projectRef.on('value', (snapshot) => {
     deleteButtons.forEach(deleteBtn=>{
       deleteBtn.addEventListener("click", ()=>{
         let projectId = deleteBtn.parentElement.parentElement.dataset.id;
+
+        projectRef.child(projectId).get().then((snapshot =>{
+          //console.log(snapshot.val());
+          
+          let projectPhotoURL = snapshot.val().imageUrls;
+
+          const photoRef = firebase.storage().refFromURL(projectPhotoURL);
+
+          photoRef.delete();
+        }))
+
+
+
         projectRef.child(projectId).remove().then(()=>{
           // alert("Deleted");
           console.log('Deleted');
