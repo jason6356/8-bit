@@ -4,115 +4,219 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunergy - News</title>
-    <link rel="stylesheet" href="/css/news.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- bootstrap saas file -->
+    <link rel="stylesheet" href="../src/main.css">
+
+    <!-- local css file-->
+    <link rel="stylesheet" href="../css/news.css">
+
+    <!-- font awesome icon with personal id (need register) -->
+    <script src="https://kit.fontawesome.com/dbd99f58c7.js" crossorigin="anonymous"></script>
+
+    <!-- bootstrap js url -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <title>News</title>
 </head>
 <body>
-    <nav class="navbar" id="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
-                  </button>
-                  <a class="navbar-brand" href="../index.html">SUNERGY</a>
+    <div class="container">
+        <!-- navigation bar -->
+        <nav class="navbar navbar-expand-md bg-white navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand text-black fw-bold" href="../index.html">SUNERGY</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ms-auto list-unstyled">
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/project.html">Project</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/service.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/aboutUs.html">About</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-white btn-outline-dark" href="/html/contact.html">Contact</a>
+                    </li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/html/project.html">Projects</a></li>
-                    <li><a href="/html/service.html">Services</a></li>
-                    <li><a href="/html/news.html">News</a></li>
-                    <li><a href="/html/aboutUs.html">About</a></li>
-                    <li><a href="/html/contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:100%; height:600px; margin-top:-5%;"/>
-    <div class="img-caption">
-        NEWS & MEDIA RELEASE
+        </nav>
     </div>
-    <div class="newsPg">
-        <div class="newsPg-title">
-            Latest News
-        </div>
-        <div class="newsPg-content">
-            <div class="newsCard">
-                <div class="news-img">
-                    <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:200px; height:150px"/>
+
+    <!-- intro and image -->
+    <div class="container-lg my-5">
+        <div class="intro row justify-content-center"><div class="col-md-1"></div>
+            <div class="description col-md-5 text-center">
+                <div class="text-md-start">
+                    <div class="fw-bold fs-1 my-3">
+                        MEDIA RELEASE   
+                    </div>
+                    Catch us on the latest nes and gain more insight to the latest trend and development on <span class="text-primary">renewable energy</span>. 
                 </div>
-                <div class="news-date">
-                    March 18,2013
+                <div class="my-4 text-md-start">
+                    <a href="/html/aboutUs.html" class="btn btn-outline-primary btn-white btn-lg">About Us <i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="/html/contact.html" class="btn btn-primary btn-lg text-white">Contact Us <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
-                <div class="news-title">
-                    News Title
-                </div>
-                <div class="news-details">
-                    A little bit of description about the news. Sample small text and words.
-                </div>
-                <button>Read More</button>
             </div>
-            <div class="newsCard">
-                <div class="news-img">
-                    <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:200px; height:150px"/>
-                </div>
-                <div class="news-date">
-                    March 18,2013
-                </div>
-                <div class="news-title">
-                    News Title
-                </div>
-                <div class="news-details">
-                    A little bit of description about the news. Sample small text and words.
-                </div>
-                <button>Read More</button>
-            </div>
-            <div class="newsCard">
-                <div class="news-img">
-                    <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:200px; height:150px"/>
-                </div>
-                <div class="news-date">
-                    March 18,2013
-                </div>
-                <div class="news-title">
-                    News Title
-                </div>
-                <div class="news-details">
-                    A little bit of description about the news. Sample small text and words.
-                </div>
-                <button>Read More</button>
-            </div>
-            <div class="newsCard">
-                <div class="news-img">
-                    <img src="/image/american-public-power-association-513dBrMJ_5w-unsplash.jpg" alt="" style="width:200px; height:150px"/>
-                </div>
-                <div class="news-date">
-                    March 18,2013
-                </div>
-                <div class="news-title">
-                    News Title
-                </div>
-                <div class="news-details">
-                    A little bit of description about the news. Sample small text and words.
-                </div>
-                <button>Read More</button>
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <img class="img-fluid rounded" src="../image/3.jpg" alt="pic">
+                <img class="img-fluid rounded" src="../image/5.jpg" alt="pic">
+                <img class="img-fluid rounded" src="../image/6.jpg" alt="pic">
             </div>
         </div>
-        <ul class="pagination">
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-          </ul>
     </div>
+
+    <br>
+
+    <!-- Lastest News -->
+    <div class="container-lg my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 text-center text-md-start">
+                <div class="fw-bold fs-1">
+                    LATEST NEWS
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- news -->
+    <div class="news container-lg my-5">
+        <div class="row justify-content-center text-center text-md-start mb-5">
+            <div class="col-md-2">
+                <img class="img-fluid rounded" src="../image/10.png" alt="pic">
+            </div>
+            <div class="col-md-3">
+                <div class="fw-light mt-1">March 18, 2023</div>
+                <div class="fw-bold fs-3">News Title</div>
+                <div class="">A little bit of description about the news. Sample small text and words.</div>
+                <div class="btn btn-outline-primary mt-3">Read more</div>
+            </div>
+            <div class="col-md-2">
+                <img class="img-fluid rounded" src="../image/4.jpg" alt="pic">
+            </div>
+            <div class="col-md-3">
+                <div class="fw-light mt-1">March 18, 2023</div>
+                <div class="fw-bold fs-3">News Title</div>
+                <div class="">A little bit of description about the news. Sample small text and words.</div>
+                <div class="btn btn-outline-primary mt-3">Read more</div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center text-md-start mb-5">
+            <div class="col-md-2">
+                <img class="img-fluid rounded" src="../image/2.jpg" alt="pic">
+            </div>
+            <div class="col-md-3">
+                <div class="fw-light mt-1">March 18, 2023</div>
+                <div class="fw-bold fs-3">News Title</div>
+                <div class="">A little bit of description about the news. Sample small text and words.</div>
+                <div class="btn btn-outline-primary mt-3">Read more</div>
+            </div>
+            <div class="col-md-2">
+                <img class="img-fluid rounded" src="../image/9.png" alt="pic">
+            </div>
+            <div class="col-md-3">
+                <div class="fw-light mt-1">March 18, 2023</div>
+                <div class="fw-bold fs-3">News Title</div>
+                <div class="">A little bit of description about the news. Sample small text and words.</div>
+                <div class="btn btn-outline-primary mt-3">Read more</div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center text-md-start mb-5">
+            <div class="col-md-2">
+                <img class="img-fluid rounded" src="../image/7.jpg" alt="pic">
+            </div>
+            <div class="col-md-3">
+                <div class="fw-light mt-1">March 18, 2023</div>
+                <div class="fw-bold fs-3">News Title</div>
+                <div class="">A little bit of description about the news. Sample small text and words.</div>
+                <div class="btn btn-outline-primary mt-3">Read more</div>
+            </div>
+            <div class="col-md-2">
+                <img class="img-fluid rounded" src="../image/8.jpg" alt="pic">
+            </div>
+            <div class="col-md-3">
+                <div class="fw-light mt-1">March 18, 2023</div>
+                <div class="fw-bold fs-3">News Title</div>
+                <div class="">A little bit of description about the news. Sample small text and words.</div>
+                <div class="btn btn-outline-primary mt-3">Read more</div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- footer navigation section -->
     <footer>
-        <h2>Ready To Get Started?</h2>
-        <h5>Join The Community Now</h5>
+        <div class="py-6 border-top">
+            <div class="container py-4">
+                <div class="row justify-content-evenly">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="fw-bold text-uppercase fs-4">sunergy</div>
+                        <p>Welcome to Sunergy, a sustainable energy company committed to providing 
+                        reliable and affordable solar energy solutions to our clients.
+                        </p>
+                        <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="https://www.youtube.com/" class="text-para" title="YouTube"><i class="fab fa-youtube" style='font-size:24px'></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/" class="text-para" title="Twitter"><i class="fab fa-twitter" style='font-size:24px'></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/" class="text-para" title="Facebook"><i class="fab fa-facebook" style='font-size:24px'></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/" class="text-para" title="Instagram"><i class="fab fa-instagram" style='font-size:24px'></i></a>
+                        </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <h6 class="text-uppercase mb-3">Mailing List</h6>
+                        <p class="mb-3">Sign up to our mailing list to get the latest updates about our new products and promotions.</p>
+                        <form action="#" id="input-group mb-3">
+                        <div class="input-group mb-3">
+                            <input type="email" placeholder="Email Address" aria-label="Email Address" class="form-control">
+                            <button class="btn btn-outline-dark" type="submit"><i class="fa fa-paper-plane text-lg"></i></button>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-heading mb-3">Company</h6>
+                        <ul class="list-unstyled">
+                        <li><a href="/html/project.html" class="text-para text-uppercase">Project</a></li>
+                        <li><a href="/html/service.html" class="text-para text-uppercase">Services</a></li>
+                        <li><a href="/html/news.html" class="text-para text-uppercase">News</a></li>
+                        <li><a href="/html/aboutUs.html" class="text-para text-uppercase">About</a></li>
+                        <li><a href="/html/contact.html" class="text-para text-uppercase">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-4 border-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col text-md-start">
+                        <p class="text-sm text-center mb-md-0">&copy; 2023 Sunergy Sdn. Bhd. Privacy Policy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </footer>
 </body>
 </html>
