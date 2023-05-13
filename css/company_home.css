@@ -1,4 +1,4 @@
-.profile img {
+/* .profile img {
     border: #AEC2B6;
     border-radius: 90;
 }
@@ -77,4 +77,12 @@
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+} */
+
+#visitor {
+    background-color: #B0DAFF;
+}
+
+.text-gray {
+    color: gray;
 }

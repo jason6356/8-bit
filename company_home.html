@@ -4,130 +4,140 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <!-- local css and js file -->
     
-    <!-- local css and js file -->
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/company_home.css">
+        <!-- bootstrap js url -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
+        <!-- swiper js cdn css -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    
+        <!-- font awesome icon with personal id (need register) -->
+        <script src="https://kit.fontawesome.com/dbd99f58c7.js" crossorigin="anonymous"></script>
+    
+        <!-- bootstrap saas file -->
+        <link rel="stylesheet" href="/src/main.css">
 
-    <!-- bootstrap js url -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-
-    <!-- swiper js cdn css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-
-    <!-- font awesome icon with personal id (need register) -->
-    <script src="https://kit.fontawesome.com/dbd99f58c7.js" crossorigin="anonymous"></script>
-
-    <!-- bootstrap saas file -->
-    <link rel="stylesheet" href="/src/main.css">
-
-    <!-- chart  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
-
-    <title>Sunergy Sdn. Bhd.</title>
+        <!-- chart  -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    
+        <title>Sunergy Sdn. Bhd.</title>
 </head>
 <body>
-    <div id="sidenav" class="sidenav">
-        <a href="#" class="logo">Sunergy</a>
-        <a href="company_home.html" class ="active">Dashboard</a>
-        <a href="html/user_manage.html">User Management</a>
-        <a href="html/appointment.html">Appointment</a>
-        <a href="html/report.html">Report & Analysis</a>
-        <a href="html/customer.html">Customer Services</a>
-        <a href="html/content_manage.html">Content Management</a>
-        <a href="html/sign_in.html">Sign Out</a>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-info">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline mt-3 fw-bold">SUNERGY</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start gap-3" id="menu">
+                        <li class="nav-item">
+                            <a href="company_index.html" class="nav-link align-middle px-0">
+                                <i class="fa-solid fa-house text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/html/user_manage.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-users text-white"></i><span class="ms-3 d-none d-sm-inline text-white fw-light">User</span></a>
+                        </li>
+                        <li>
+                            <a href="/html/appointment.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-calendar-check text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Appointment</span></a>
+                        </li>
+                        <li>
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                <i class="fa-solid fa-table text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Content</span><i class="fa-sharp fa-solid fa-caret-down text-white ms-3"></i></a>
+                            <ul class="collapse nav flex-column ms-3" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="/html/content_manage.html" class="nav-link px-0"><i class="fa-solid fa-city text-white"></i> <span class="d-none d-sm-inline text-white fw-light">Project</span></a>
+                                </li>
+                                <li>
+                                    <a href="/html/content_manage.html" class="nav-link px-0"><i class="fa-solid fa-newspaper text-white"></i> <span class="d-none d-sm-inline text-white fw-light">News</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="/html/report.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-chart-simple text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Report</span> </a>
+                        </li>
+                        <li>
+                            <a href="/html/customer.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-envelope text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Inbox</span> </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/image/leader1.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                            <span class="d-none d-sm-inline mx-1">Hii Puong Hou</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow fw-light">
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col py-3 bg-secondary">
+                <div class="container-fluid-px-4">
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-2">
+                                            <img src="/image/leader1.png" alt="hugenerd" width="100" height="100" class="rounded-circle ms-5">
+                                        </div>
+                                        <div class="col-8">
+                                            <h3 class="fs-2 ms-5 text-black">Hello, Hii Puong Hou</h3>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-10 col-md-4 col-lg-3">
+
+                        </div>
+                        <div class="col-10 col-md-4 col-lg-3">
+
+                        </div>
+                        <div class="col-10 col-md-4 col-lg-4">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid-px-4">
+                    <div class="row my-2 g-3 d-flex justify-content-center">
+                        <div class="col-10 col-lg-5 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <canvas id="bar"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-10 col-lg-5 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <canvas id="doughnut" style="height: 1px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="main">
-        
-        <div class="profile">
-            <div class="user-img-container">
-                <img src="image/user.png" alt="User">
-            </div>
-            <div class="welcome-msg">Hello, (Staff name).</div>
-        </div>
-
-        <div class="cards-container">
-            <div class="visitor-card">
-                <div class="image-container">
-                    <img src="image/visitors.png" alt="Visitors">
-                </div>
-                <p>New Visitors</p>
-                <span>3,324</span>
-            </div>
-            <div class="project-card">
-                <div class="image-container">
-                    <img src="image/project.png" alt="Projects">
-                </div>
-                <p>Projects</p>
-                <span>3,324</span>
-            </div>
-            <div class="feedback-card">
-                <div class="image-container">
-                    <img src="image/feedback.png" alt="Feedbacks">  
-                </div>
-                <p>Customer Feedback</p>
-                <span>3,324</span>
-            </div>
-        </div>
-
-        <div class="chart">
-            <div class="bar-container">
-                <canvas id="bar" style="width:100%;max-width:600px"></canvas>
-                <script>
-                    var xValues = ["Jan", "Feb", "Mar", "Apr", "May"];
-                    var yValues = [55, 49, 44, 24, 15];
-                    var barColors = "#AEC2B6";
-
-                    new Chart("bar", {
-                    type: "bar",
-                    data: {
-                        labels: xValues,
-                        datasets: [{
-                        backgroundColor: barColors,
-                        data: yValues
-                        }]
-                    },
-                    options: {
-                        legend: {display: false},
-                        title: {
-                        display: true,
-                        text: "Sunergy Bar Chart"
-                        }
-                    }
-                    });
-                </script>
-            </div>
-            <div class="doughnut-container">
-                <canvas id="doughnut" style="width:100%;max-width:400px"></canvas>
-                <script>
-                    var xValues = ["1", "2", "3", "4", "5"];
-                    var yValues = [55, 49, 44, 24, 15];
-                    var barColors = "#AEC2B6";
-                    
-                    new Chart("doughnut", {
-                      type: "doughnut",
-                      data: {
-                        labels: xValues,
-                        datasets: [{
-                          backgroundColor: barColors,
-                          data: yValues
-                        }]
-                      },
-                      options: {
-                        title: {
-                          display: true,
-                          text: "Sunergy Doughnut chart"
-                        }
-                      }
-                    });
-                    </script>
-            </div>
-        </div>
-    </div>
+    <script src="/js/dashboard.js"></script>
 </body>
 </html>
