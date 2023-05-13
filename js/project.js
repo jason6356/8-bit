@@ -22,7 +22,13 @@ var storageRef = firebase.storage().ref();
 projectRef.on('value', (snapshot) => {
     const projects = snapshot.val();
     
-    /*
+
+
+    
+
+});
+
+/*
     tableBody.innerHTML = "";
 
     let i = 1;
@@ -48,5 +54,3 @@ projectRef.on('value', (snapshot) => {
       i++;
     }
     */
-
-});

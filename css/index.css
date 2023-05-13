@@ -22,25 +22,21 @@ html, body {
 
 /* project images display */
 .row1-col1 {
-    background-image: url(/image/1.jpg);
     background-repeat: none;
     background-size: cover;
 }
 
 .row1-col2 {
-    background-image: url(/image/2.jpg);
     background-repeat: none;
     background-size: cover;
 }
 
 .row2-col1 {
-    background-image: url(/image/3.jpg);
     background-repeat: none;
     background-size: cover;
 }
 
 .row2-col2 {
-    background-image: url(/image/4.jpg);
     background-repeat: none;
     background-size: cover;
 }
