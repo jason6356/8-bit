@@ -17,8 +17,8 @@ firebase.initializeApp(firebaseConfig);
 let tableBody = document.querySelector("#Project tbody");
 let addUser = document.querySelector("#addAProject"),
     popup = document.querySelector(".popup"),
-    addform = document.querySelector("#add"),
-    updateform = document.querySelector(".update form");
+    addform = document.querySelector("#addNewModal"),
+    updateform = document.querySelector("#editField .mb-3");
 
 const database = firebase.database();
 const projectRef = firebase.database().ref('Project');
@@ -137,7 +137,7 @@ projectRef.on('value', (snapshot) => {
             <td>${projects[project].CO2offset}</td>
             <td>${projects[project].description}</td>
             <td>
-                <button class="edit btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                <button class="edit btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">Edit</button>
                 <button class="delete btn btn-outline-danger">Delete</button>
             </td>
         </tr>
@@ -146,10 +146,12 @@ projectRef.on('value', (snapshot) => {
         i++;
     }
 
+    /*
     if (i < 10) {
         const paginationSection = document.querySelector('.tb-footer');
         paginationSection.style.display = "none";
     }
+    */
 
     // Edit
     let editButtons = document.querySelectorAll(".edit");
@@ -159,20 +161,31 @@ projectRef.on('value', (snapshot) => {
             projectRef.child(projectId).get().then((snapshot => {
                 //console.log(snapshot.val());
 
-                updateform.companyName.value = snapshot.val().companyName;
-                updateform.companyCaption.value = snapshot.val().companyCaption;
-                updateform.generation.value = snapshot.val().generation;
-                updateform.treesPlanted.value = snapshot.val().treesPlanted;
-                updateform.CO2Offset.value = snapshot.val().CO2offset;
-                updateform.description.value = snapshot.val().description;
+                document.getElementById("companyName1").value = snapshot.val().companyName;
+                document.getElementById("companyCaption1").value = snapshot.val().companyCaption;
+                document.getElementById("generation1").value = snapshot.val().generation;
+                document.getElementById("treesPlanted1").value = snapshot.val().treesPlanted;
+                document.getElementById("CO2Offset1").value = snapshot.val().CO2offset;
+                document.getElementById("description1").value = snapshot.val().description;
+
+                //updateform.companyName1.value = snapshot.val().companyName;
+                //updateform.companyCaption1.value = snapshot.val().companyCaption;
+                //updateform.generation1.value = snapshot.val().generation;
+                //updateform.treesPlanted1.value = snapshot.val().treesPlanted;
+                //updateform.CO2Offset1.value = snapshot.val().CO2offset;
+                //updateform.description1.value = snapshot.val().description;
                 //updateform.projectImage1.value = snapshot.val().photoUrl;
             }))
 
-            updateform.addEventListener("submit", (event) => {
-                event.preventDefault();
-                if (validateForm(updateform)) {
 
-                    let files = updateform.projectImage1.files;
+            let saveButton = document.querySelector("#update-button");
+
+            saveButton.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                    console.log('Update Button Clicked');
+
+                    let files = document.getElementById("projectImage1").files;
                     if (files.length > 0) {
 
                         // Upload new photos to Firebase Storage
@@ -197,12 +210,12 @@ projectRef.on('value', (snapshot) => {
                                         // Update photoUrls in Realtime Database
                                         if (downloadURLs.length === files.length) {
                                             projectRef.child(projectId).update({
-                                                companyName: updateform.companyName.value,
-                                                companyCaption: updateform.companyCaption.value,
-                                                generation: updateform.generation.value,
-                                                treesPlanted: updateform.treesPlanted.value,
-                                                CO2offset: updateform.CO2Offset.value,
-                                                description: updateform.description.value,
+                                                companyName: document.getElementById("companyName1").value,
+                                                companyCaption: document.getElementById("companyCaption1").value,
+                                                generation: document.getElementById("generation1").value,
+                                                treesPlanted: document.getElementById("treesPlanted1").value,
+                                                CO2offset: document.getElementById("CO2Offset1").value,
+                                                description: document.getElementById("description1").value,
                                                 imageUrls: downloadURLs,
                                             }).then(() => {
                                                 console.log('Updated photoUrls');
@@ -227,25 +240,21 @@ projectRef.on('value', (snapshot) => {
                     } else {
                         // Update form without uploading new photos
                         projectRef.child(projectId).update({
-                            companyName: updateform.companyName.value,
-                            companyCaption: updateform.companyCaption.value,
-                            generation: updateform.generation.value,
-                            treesPlanted: updateform.treesPlanted.value,
-                            CO2offset: updateform.CO2Offset.value,
-                            description: updateform.description.value,
+                            companyName: document.getElementById("companyName1").value,
+                            companyCaption: document.getElementById("companyCaption1").value,
+                            generation: document.getElementById("generation1").value,
+                            treesPlanted: document.getElementById("treesPlanted1").value,
+                            CO2offset: document.getElementById("CO2Offset1").value,
+                            description: document.getElementById("description1").value,
                         }).then((onFullFilled) => {
                             alert("Updated");
                             console.log('Updated');
-                            document.querySelector(".update").classList.remove("active");
-                            updateform.reset();
-                            popup.classList.remove("active");
                         }, (onRejected) => {
                             console.log(onRejected);
                         });
                     }
-
-                }
             })
+
 
         })
     })
