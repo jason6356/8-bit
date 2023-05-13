@@ -72,7 +72,7 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
     // Upload images to Firebase Storage
     var promises = [];
     images.forEach(function(image) {
-      var storageRef = firebase.storage().ref('project-images/' + projectId + '/' + image.name);
+      var storageRef = firebase.storage().ref('photos/' + projectId + '/' + image.name);
       var uploadTask = storageRef.put(image);
       promises.push(uploadTask);
     });
@@ -151,47 +151,198 @@ projectRef.on('value', (snapshot) => {
       paginationSection.style.display = "none";
     }
 
+  /*
     // Edit
-    let editButtons = document.querySelectorAll(".edit");
-    editButtons.forEach(edit=>{
-      edit.addEventListener("click", ()=>{
-        document.querySelector(".update").classList.add("active");
-        let projectId = edit.parentElement.parentElement.dataset.id;
-        projectRef.child(projectId).get().then((snapshot =>{
-          //console.log(snapshot.val());
+let editButtons = document.querySelectorAll(".edit");
+editButtons.forEach(edit=>{
+  edit.addEventListener("click", ()=>{
+    document.querySelector(".update").classList.add("active");
+    let projectId = edit.parentElement.parentElement.dataset.id;
+    projectRef.child(projectId).get().then((snapshot =>{
+      //console.log(snapshot.val());
 
-          updateform.companyName.value = snapshot.val().companyName;
-          updateform.companyCaption.value = snapshot.val().companyCaption;
-          updateform.generation.value = snapshot.val().generation;
-          updateform.treesPlanted.value = snapshot.val().treesPlanted;
-          updateform.CO2Offset.value = snapshot.val().CO2offset;
-          updateform.description.value = snapshot.val().description;
-        }))
+      updateform.companyName.value = snapshot.val().companyName;
+      updateform.companyCaption.value = snapshot.val().companyCaption;
+      updateform.generation.value = snapshot.val().generation;
+      updateform.treesPlanted.value = snapshot.val().treesPlanted;
+      updateform.CO2Offset.value = snapshot.val().CO2offset;
+      updateform.description.value = snapshot.val().description;
+      //updateform.projectImage1.value = snapshot.val().photoUrl;
+    }))
 
-        updateform.addEventListener("submit", (event)=>{
-          event.preventDefault();
-          if (validateForm(updateform)) {
-            projectRef.child(projectId).update({
-              companyName: updateform.companyName.value,
-              companyCaption: updateform.companyCaption.value,
-              generation: updateform.generation.value,
-              treesPlanted: updateform.treesPlanted.value,
-              CO2offset: updateform.CO2Offset.value,
-              description: updateform.description.value,
-            }).then((onFullFilled)=>{
-              alert("Updated");
-              console.log('Updated');
-              document.querySelector(".update").classList.remove("active");
-              updateform.reset();
-              popup.classList.remove("active");
-            },(onRejected)=>{
-              console.log(onRejected);
+    updateform.addEventListener("submit", (event)=>{
+      event.preventDefault();
+      if (validateForm(updateform)) {
+
+        let file = updateform.projectImage1.files[0];
+        if (file) {
+
+          // Delete existing photo from Firebase Storage
+          let storageRef = firebase.storage().ref(`photos/${projectId}`);
+          storageRef.listAll().then((res) => {
+            res.items.forEach((itemRef) => {
+              itemRef.delete().then(() => {
+                console.log('Deleted existing file');
+
+                // Upload new photo to Firebase Storage
+                storageRef.child(file.name).put(file).then((snapshot) => {
+                  console.log('Uploaded a file');
+                  // Update photoUrl in Realtime Database
+                  storageRef.child(file.name).getDownloadURL().then((url) => {
+                    projectRef.child(projectId).update({
+                      companyName: updateform.companyName.value,
+                      companyCaption: updateform.companyCaption.value,
+                      generation: updateform.generation.value,
+                      treesPlanted: updateform.treesPlanted.value,
+                      CO2offset: updateform.CO2Offset.value,
+                      description: updateform.description.value,
+                      imageUrls: url,
+                    }).then((onFullFilled)=>{
+                      console.log('Updated photoUrl');
+                      alert("Updated");
+                      location.reload();
+                      //updateProject();
+                    },(onRejected)=>{
+                      console.log(onRejected);
+                    });
+                  }).catch((error) => {
+                    console.log(error);
+                  });
+                });
+              }).catch((error) => {
+                console.log(error);
+              });
             });
-          }
-        })
+          }).catch((error) => {
+            console.log(error);
+          });
+        } else {
+          // Update form without uploading new photo
+          projectRef.child(projectId).update({
+            companyName: updateform.companyName.value,
+            companyCaption: updateform.companyCaption.value,
+            generation: updateform.generation.value,
+            treesPlanted: updateform.treesPlanted.value,
+            CO2offset: updateform.CO2Offset.value,
+            description: updateform.description.value,
+          }).then((onFullFilled)=>{
+            alert("Updated");
+            console.log('Updated');
+            document.querySelector(".update").classList.remove("active");
+            updateform.reset();
+            popup.classList.remove("active");
+          },(onRejected)=>{
+            console.log(onRejected);
+          });
+        }
 
-      })
+      }
     })
+
+  })
+})
+*/
+
+// Edit
+let editButtons = document.querySelectorAll(".edit");
+editButtons.forEach(edit=>{
+  edit.addEventListener("click", ()=>{
+    document.querySelector(".update").classList.add("active");
+    let projectId = edit.parentElement.parentElement.dataset.id;
+    projectRef.child(projectId).get().then((snapshot =>{
+      //console.log(snapshot.val());
+
+      updateform.companyName.value = snapshot.val().companyName;
+      updateform.companyCaption.value = snapshot.val().companyCaption;
+      updateform.generation.value = snapshot.val().generation;
+      updateform.treesPlanted.value = snapshot.val().treesPlanted;
+      updateform.CO2Offset.value = snapshot.val().CO2offset;
+      updateform.description.value = snapshot.val().description;
+      //updateform.projectImage1.value = snapshot.val().photoUrl;
+    }))
+
+    updateform.addEventListener("submit", (event)=>{
+      event.preventDefault();
+      if (validateForm(updateform)) {
+
+        let files = updateform.projectImage1.files;
+        if (files.length > 0) {
+
+          // Upload new photos to Firebase Storage
+          let promises = [];
+          for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            let storageRef = firebase.storage().ref(`photos/${projectId}/${file.name}`);
+            promises.push(storageRef.put(file));
+          }
+
+          Promise.all(promises).then(() => {
+            console.log('Uploaded all files');
+
+            // Get download URLs of all uploaded photos
+            let downloadURLs = [];
+            let storageRef = firebase.storage().ref(`photos/${projectId}`);
+            storageRef.listAll().then((res) => {
+              res.items.forEach((itemRef) => {
+                itemRef.getDownloadURL().then((url) => {
+                  downloadURLs.push(url);
+
+                  // Update photoUrls in Realtime Database
+                  if (downloadURLs.length === files.length) {
+                    projectRef.child(projectId).update({
+                      companyName: updateform.companyName.value,
+                      companyCaption: updateform.companyCaption.value,
+                      generation: updateform.generation.value,
+                      treesPlanted: updateform.treesPlanted.value,
+                      CO2offset: updateform.CO2Offset.value,
+                      description: updateform.description.value,
+                      imageUrls: downloadURLs,
+                    }).then(() => {
+                      console.log('Updated photoUrls');
+                      alert("Updated");
+                      location.reload();
+                      //updateProject();
+                    }).catch((error) => {
+                      console.log(error);
+                    });
+                  }
+                }).catch((error) => {
+                  console.log(error);
+                });
+              });
+            }).catch((error) => {
+              console.log(error);
+            });
+          }).catch((error) => {
+            console.log(error);
+          });
+
+        } else {
+          // Update form without uploading new photos
+          projectRef.child(projectId).update({
+            companyName: updateform.companyName.value,
+            companyCaption: updateform.companyCaption.value,
+            generation: updateform.generation.value,
+            treesPlanted: updateform.treesPlanted.value,
+            CO2offset: updateform.CO2Offset.value,
+            description: updateform.description.value,
+          }).then((onFullFilled)=>{
+            alert("Updated");
+            console.log('Updated');
+            document.querySelector(".update").classList.remove("active");
+            updateform.reset();
+            popup.classList.remove("active");
+          },(onRejected)=>{
+            console.log(onRejected);
+          });
+        }
+
+      }
+    })
+
+  })
+})
+
 
     let deleteButtons = document.querySelectorAll(".delete");
     deleteButtons.forEach(deleteBtn=>{
