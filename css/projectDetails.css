@@ -1,90 +1,150 @@
-*{
-    margin:0;
-    padding:0;
+figure {
+    position: relative;
+}
+  
+figcaption {
+    position: absolute;
+    left: 5%;
+    color: #fff;
+    text-align: left;
 }
 
-body{
-    overflow-x:hidden;
+figcaption.cap{
+    bottom: 10%;
+    right: 0;
+    font-size: xx-large;
 }
 
-.img-caption{
-    color:#fff;
-    font-weight:bold;
-    font-size:20px;
-    margin-top:-10%;
-    margin-left:5%;
-    position:absolute;
+figcaption.partner-com {
+    bottom: 25%;
+    left: 5%;
+    font-size: large;
 }
 
-.generation{
-    display:inline-block;
-    margin:35px;
-    color:#000;
-    width:50px;
+.arrow {
+    font-size: 24px;
+    padding: 10px;
+    color: #000;
+    cursor: pointer;
 }
 
-.design1,
-.design2{
-    background:#aec2b6;
-    width:300px;
-    height:300px;
-    border-radius:20px;
-    transform:rotate(45deg);
-    margin-top:5%;
-    z-index:-999;
-    position:relative;
+.arrow:hover {
+    color: #6ECB63;
 }
 
-.design1{
-    margin-left:-13%;
+.gallery img {
+    width: 200px;
+    height: 200px;
 }
 
-.design2{
-    float:right;
-    margin-right:-13%;
+footer a{
+    text-decoration: none;
 }
 
-.projectName{
-    font-weight:bold;
-    font-size:20px;
+@media screen and (max-width: 1500px) {
+    figcaption.cap{
+        bottom: 10%;
+        right: 0;
+        font-size: x-large;
+    }
+    figcaption.partner-com {
+        bottom: 25%;
+        left: 5%;
+        font-size: medium;
+    }
 }
 
-.smallDesc{
-    width:100px;
+@media screen and (max-width: 1150px) {
+    figcaption.cap{
+        bottom: 10%;
+        right: 0;
+        font-size: large;
+    }
+    figcaption.partner-com {
+        bottom: 25%;
+        left: 5%;
+        font-size: small;
+    }
 }
 
-.Fcontainer{
-    margin-top:-25%;
+@media screen and (max-width: 925px) {
+    figcaption.cap{
+        bottom: 10%;
+        right: 0;
+        font-size: medium;
+    }
+    figcaption.partner-com {
+        bottom: 25%;
+        left: 5%;
+        font-size: x-small;
+    }
 }
 
-.Fcontainer .container-left{
-    margin-left:20%;
+@media screen and (max-width: 750px) {
+    figcaption.cap{
+        bottom: 10%;
+        right: 0;
+        font-size: small;
+    }
+    figcaption.partner-com {
+        bottom: 25%;
+        left: 5%;
+        font-size: xx-small;
+    }
 }
 
-.Fcontainer .container-right{
-    float:right;
-    margin-top:-30%;
-}
-/**/
-.Scontainer .container-right{
-    float:right;
-    width:100px;
-    margin-top:-20%;
-    margin-right:30%;
-}
-
-.Scontainer .container-left{
-    margin-top:15%;
+@media screen and (max-width: 600px) {
+    figcaption.cap{
+        bottom: 10%;
+        right: 0;
+        font-size: small;
+    }
+    figcaption.partner-com {
+        bottom: 28%;
+        left: 5%;
+        font-size: xx-small;
+    }
 }
 
-footer{
-    background:#AEC2B6;
-    padding:57px;
-    color:#fff;
+@media screen and (max-width: 500px) {
+    figcaption.cap{
+        bottom: 10%;
+        right: 0;
+        font-size: small;
+    }
+    figcaption.partner-com {
+        bottom: 30%;
+        left: 5%;
+        font-size: xx-small;
+    }
 }
 
-footer h2,
-footer h5{
-    margin-left:40%;
+@media screen and (max-width: 400px) {
+    figcaption.cap{
+        bottom: 10%;
+        right: 0;
+        font-size: small;
+    }
+    figcaption.partner-com {
+        bottom: 33%;
+        left: 5%;
+        font-size: xx-small;
+    }
 }
 
+@media screen and (max-width: 350px) {
+    figcaption.cap{
+        bottom: 10%;
+        right: 0;
+        font-size: small;
+    }
+    figcaption.partner-com {
+        bottom: 40%;
+        left: 5%;
+        font-size: xx-small;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+}
