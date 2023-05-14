@@ -1,24 +1,5 @@
-figure {
-    position: relative;
-}
-  
-figcaption {
-    position: absolute;
-    left: 5%;
-    color: #fff;
-    text-align: left;
-}
-
-figcaption.cap{
-    bottom: 10%;
-    right: 0;
-    font-size: xx-large;
-}
-
-figcaption.partner-com {
-    bottom: 25%;
-    left: 5%;
-    font-size: large;
+.intro img{
+    height: 200px;
 }
 
 .arrow {
@@ -32,119 +13,43 @@ figcaption.partner-com {
     color: #6ECB63;
 }
 
-.gallery img {
+.leadership img {
     width: 200px;
     height: 200px;
 }
 
-footer a{
-    text-decoration: none;
-}
-
-@media screen and (max-width: 1500px) {
-    figcaption.cap{
-        bottom: 10%;
-        right: 0;
-        font-size: x-large;
+@media screen and (min-width: 951px) {
+    .intro1 img:nth-child(1) {
+        width: 60%;
     }
-    figcaption.partner-com {
-        bottom: 25%;
-        left: 5%;
-        font-size: medium;
+    
+    .intro1 img:nth-child(2) {
+        width: 39%;
     }
-}
-
-@media screen and (max-width: 1150px) {
-    figcaption.cap{
-        bottom: 10%;
-        right: 0;
-        font-size: large;
+    
+    .intro2 img:nth-child(1) {
+        width: 45%;
     }
-    figcaption.partner-com {
-        bottom: 25%;
-        left: 5%;
-        font-size: small;
+    
+    .intro2 img:nth-child(2) {
+        width: 54%;
     }
 }
 
-@media screen and (max-width: 925px) {
-    figcaption.cap{
-        bottom: 10%;
-        right: 0;
-        font-size: medium;
-    }
-    figcaption.partner-com {
-        bottom: 25%;
-        left: 5%;
-        font-size: x-small;
+@media screen and (max-width: 950px) {
+    .intro img{
+        width: 100%;
+        height: 150px;
     }
 }
 
-@media screen and (max-width: 750px) {
-    figcaption.cap{
-        bottom: 10%;
-        right: 0;
-        font-size: small;
-    }
-    figcaption.partner-com {
-        bottom: 25%;
-        left: 5%;
-        font-size: xx-small;
+@media screen and (max-width: 545px) {
+    .intro img{
+        width: 100%;
+        height: 125px;
     }
 }
 
-@media screen and (max-width: 600px) {
-    figcaption.cap{
-        bottom: 10%;
-        right: 0;
-        font-size: small;
-    }
-    figcaption.partner-com {
-        bottom: 28%;
-        left: 5%;
-        font-size: xx-small;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    figcaption.cap{
-        bottom: 10%;
-        right: 0;
-        font-size: small;
-    }
-    figcaption.partner-com {
-        bottom: 30%;
-        left: 5%;
-        font-size: xx-small;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    figcaption.cap{
-        bottom: 10%;
-        right: 0;
-        font-size: small;
-    }
-    figcaption.partner-com {
-        bottom: 33%;
-        left: 5%;
-        font-size: xx-small;
-    }
-}
-
-@media screen and (max-width: 350px) {
-    figcaption.cap{
-        bottom: 10%;
-        right: 0;
-        font-size: small;
-    }
-    figcaption.partner-com {
-        bottom: 40%;
-        left: 5%;
-        font-size: xx-small;
-    }
-}
-
-@media screen and (max-width: 767px) {
-
+.image-parent{
+    max-width:250px;
 }
