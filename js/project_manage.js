@@ -17,8 +17,8 @@ firebase.initializeApp(firebaseConfig);
 let tableBody = document.querySelector("#Project tbody");
 let addUser = document.querySelector("#addAProject"),
     popup = document.querySelector(".popup"),
-    addform = document.querySelector("#addNewModal"),
-    updateform = document.querySelector("#editField .mb-3");
+    addform = document.querySelector("#add form"),
+    saveChanges = document.querySelector("#edit form");
 
 const database = firebase.database();
 const projectRef = firebase.database().ref('Project');
@@ -167,20 +167,9 @@ projectRef.on('value', (snapshot) => {
                 document.getElementById("treesPlanted1").value = snapshot.val().treesPlanted;
                 document.getElementById("CO2Offset1").value = snapshot.val().CO2offset;
                 document.getElementById("description1").value = snapshot.val().description;
-
-                //updateform.companyName1.value = snapshot.val().companyName;
-                //updateform.companyCaption1.value = snapshot.val().companyCaption;
-                //updateform.generation1.value = snapshot.val().generation;
-                //updateform.treesPlanted1.value = snapshot.val().treesPlanted;
-                //updateform.CO2Offset1.value = snapshot.val().CO2offset;
-                //updateform.description1.value = snapshot.val().description;
-                //updateform.projectImage1.value = snapshot.val().photoUrl;
             }))
 
-
-            let saveButton = document.querySelector("#update-button");
-
-            saveButton.addEventListener("submit", (event) => {
+            saveChanges.addEventListener("submit", (event) => {
                 event.preventDefault();
 
                     console.log('Update Button Clicked');
@@ -249,6 +238,7 @@ projectRef.on('value', (snapshot) => {
                         }).then((onFullFilled) => {
                             alert("Updated");
                             console.log('Updated');
+                            location.reload();
                         }, (onRejected) => {
                             console.log(onRejected);
                         });
@@ -273,14 +263,17 @@ projectRef.on('value', (snapshot) => {
                 const photoRef = firebase.storage().refFromURL(projectPhotoURL);
 
                 photoRef.delete();
+
+                console.log('Photo Deleted');
             }))
 
 
 
             projectRef.child(projectId).remove().then(() => {
                 // alert("Deleted");
-                console.log('Deleted');
-
+                console.log('Project Deleted');
+                alert('Project Deleted');
+                location.reload();
             });
         });
     });
@@ -298,7 +291,7 @@ addUser.addEventListener("click", () => {
                 images.push(input.files[i]);
             }
 
-            createProject(addform.companyName.value, addform.companyCaption.value, addform.generation.value, addform.tressPlanted.value, addform.CO2Offset.value, addform.description.value, images);
+            createProject(document.getElementById("companyName").value, document.getElementById("companyCaption").value, document.getElementById("generation").value, document.getElementById("treesPlanted").value, document.getElementById("CO2Offset").value, document.getElementById("description").value, images);
 
         });
 
