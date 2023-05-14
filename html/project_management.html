@@ -34,7 +34,7 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start gap-3" id="menu">
                         <li class="nav-item">
-                            <a href="../company_index.html" class="nav-link align-middle px-0">
+                            <a href="company_index.html" class="nav-link align-middle px-0">
                                 <i class="fa-solid fa-house text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Dashboard</span>
                             </a>
                         </li>
@@ -51,10 +51,10 @@
                                 <i class="fa-solid fa-table text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Content</span><i class="fa-sharp fa-solid fa-caret-down text-white ms-3"></i></a>
                             <ul class="collapse nav flex-column ms-3" id="submenu2" data-bs-parent="#menu">
                                 <li class="w-100">
-                                    <a href="/html/project_management.html" class="nav-link px-0"><i class="fa-solid fa-city text-white"></i> <span class="d-none d-sm-inline text-white fw-light">Project</span></a>
+                                    <a href="/html/content_manage.html" class="nav-link px-0"><i class="fa-solid fa-city text-white"></i> <span class="d-none d-sm-inline text-white fw-light">Project</span></a>
                                 </li>
                                 <li>
-                                    <a href="/html/news_manage.html" class="nav-link px-0"><i class="fa-solid fa-newspaper text-white"></i> <span class="d-none d-sm-inline text-white fw-light">News</span></a>
+                                    <a href="/html/content_manage.html" class="nav-link px-0"><i class="fa-solid fa-newspaper text-white"></i> <span class="d-none d-sm-inline text-white fw-light">News</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -64,7 +64,7 @@
                                 <i class="fa-solid fa-chart-simple text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Report</span> </a>
                         </li>
                         <li>
-                            <a href="/html/inbox.html" class="nav-link px-0 align-middle">
+                            <a href="/html/customer.html" class="nav-link px-0 align-middle">
                                 <i class="fa-solid fa-envelope text-white"></i> <span class="ms-3 d-none d-sm-inline text-white fw-light">Inbox</span> </a>
                         </li>
                     </ul>
@@ -94,17 +94,17 @@
                     <h5 class="modal-title" id="exampleModalLabel">Edit Project</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" >
                         <div class="container-fluid">
-                            <div class="row">
+                            <div class="row" id="editField">
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Company Name</label>
-                                        <input type="text" class="form-control" id="companyName" placeholder="" name="companyName">
+                                        <input type="text" class="form-control" id="companyName1" placeholder="" name="companyName1">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Company Caption</label>
-                                        <textarea class="form-control" id="companyCaption" rows="3" name="companyCaption"></textarea>
+                                        <textarea class="form-control" id="companyCaption1" rows="3" name="companyCaption1"></textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-6 col-lg-4 col-md-4">
@@ -115,9 +115,9 @@
                                                 <input
                                                   class="form-control"
                                                   type="number"
-                                                  id="generation"
+                                                  id="generation1"
                                                   min="1"
-                                                  name="generation"
+                                                  name="generation1"
                                                   placeholder="0"
                                                   required
                                                 />
@@ -131,9 +131,9 @@
                                                 <input
                                                   class="form-control"
                                                   type="number"
-                                                  id="treesPlanted"
+                                                  id="treesPlanted1"
                                                   min="1"
-                                                  name="treesPlanted"
+                                                  name="treesPlanted1"
                                                   placeholder="0"
                                                   required
                                                 />
@@ -147,9 +147,9 @@
                                                 <input
                                                   class="form-control"
                                                   type="number"
-                                                  id="CO2Offset"
+                                                  id="CO2Offset1"
                                                   min="1"
-                                                  name="CO2Offset"
+                                                  name="CO2Offset1"
                                                   placeholder="0"
                                                   required
                                                 />
@@ -161,7 +161,7 @@
                                     <div class="row mb-3">
                                         <div class="col">
                                             <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                            <textarea class="form-control" id="description" name="description" rows="6"></textarea>
+                                            <textarea class="form-control" id="description1" name="description1" rows="6"></textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -175,9 +175,11 @@
                         </div>
 
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" id="edit">
+                    <form>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="update-button" name="update-button" class="btn btn-info text-white">Save changes</button>
+                    <button type="submit" id="update-button" name="update-button" class="updatebtn btn btn-info text-white">Save changes</button>
+                    </form>
                     </div>
                 </div>
                 </div>
@@ -273,8 +275,10 @@
 
                     </div>
                     <div class="modal-footer" id="add">
+                        <form>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-info text-white">Submit</button>
+                        </form>
                     </div>
                 </div>
                 </div>
