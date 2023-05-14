@@ -131,11 +131,19 @@ projectRef.on('value', (snapshot) => {
             <td>${i}</td>
             <td>${project}</td>
             <td>${projects[project].companyName}</td>
-            <td>${projects[project].companyCaption}</td>
+            <td>
+                <span class="d-inline-block text-truncate" style="max-width: 150px;">
+                    ${projects[project].companyCaption}
+                </span>
+            </td>
             <td>${projects[project].generation}</td>
             <td>${projects[project].treesPlanted}</td>
             <td>${projects[project].CO2offset}</td>
-            <td>${projects[project].description}</td>
+            <td>
+                <span class="d-inline-block text-truncate" style="max-width: 150px;">
+                    ${projects[project].description}
+                </span>
+            </td>
             <td>
                 <button class="edit btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">Edit</button>
                 <button class="delete btn btn-outline-danger">Delete</button>
@@ -172,77 +180,77 @@ projectRef.on('value', (snapshot) => {
             saveChanges.addEventListener("submit", (event) => {
                 event.preventDefault();
 
-                    console.log('Update Button Clicked');
+                console.log('Update Button Clicked');
 
-                    let files = document.getElementById("projectImage1").files;
-                    if (files.length > 0) {
+                let files = document.getElementById("projectImage1").files;
+                if (files.length > 0) {
 
-                        // Upload new photos to Firebase Storage
-                        let promises = [];
-                        for (let i = 0; i < files.length; i++) {
-                            let file = files[i];
-                            let storageRef = firebase.storage().ref(`photos/${projectId}/${file.name}`);
-                            promises.push(storageRef.put(file));
-                        }
+                    // Upload new photos to Firebase Storage
+                    let promises = [];
+                    for (let i = 0; i < files.length; i++) {
+                        let file = files[i];
+                        let storageRef = firebase.storage().ref(`photos/${projectId}/${file.name}`);
+                        promises.push(storageRef.put(file));
+                    }
 
-                        Promise.all(promises).then(() => {
-                            console.log('Uploaded all files');
+                    Promise.all(promises).then(() => {
+                        console.log('Uploaded all files');
 
-                            // Get download URLs of all uploaded photos
-                            let downloadURLs = [];
-                            let storageRef = firebase.storage().ref(`photos/${projectId}`);
-                            storageRef.listAll().then((res) => {
-                                res.items.forEach((itemRef) => {
-                                    itemRef.getDownloadURL().then((url) => {
-                                        downloadURLs.push(url);
+                        // Get download URLs of all uploaded photos
+                        let downloadURLs = [];
+                        let storageRef = firebase.storage().ref(`photos/${projectId}`);
+                        storageRef.listAll().then((res) => {
+                            res.items.forEach((itemRef) => {
+                                itemRef.getDownloadURL().then((url) => {
+                                    downloadURLs.push(url);
 
-                                        // Update photoUrls in Realtime Database
-                                        if (downloadURLs.length === files.length) {
-                                            projectRef.child(projectId).update({
-                                                companyName: document.getElementById("companyName1").value,
-                                                companyCaption: document.getElementById("companyCaption1").value,
-                                                generation: document.getElementById("generation1").value,
-                                                treesPlanted: document.getElementById("treesPlanted1").value,
-                                                CO2offset: document.getElementById("CO2Offset1").value,
-                                                description: document.getElementById("description1").value,
-                                                imageUrls: downloadURLs,
-                                            }).then(() => {
-                                                console.log('Updated photoUrls');
-                                                alert("Updated");
-                                                location.reload();
-                                                //updateProject();
-                                            }).catch((error) => {
-                                                console.log(error);
-                                            });
-                                        }
-                                    }).catch((error) => {
-                                        console.log(error);
-                                    });
+                                    // Update photoUrls in Realtime Database
+                                    if (downloadURLs.length === files.length) {
+                                        projectRef.child(projectId).update({
+                                            companyName: document.getElementById("companyName1").value,
+                                            companyCaption: document.getElementById("companyCaption1").value,
+                                            generation: document.getElementById("generation1").value,
+                                            treesPlanted: document.getElementById("treesPlanted1").value,
+                                            CO2offset: document.getElementById("CO2Offset1").value,
+                                            description: document.getElementById("description1").value,
+                                            imageUrls: downloadURLs,
+                                        }).then(() => {
+                                            console.log('Updated photoUrls');
+                                            alert("Updated");
+                                            location.reload();
+                                            //updateProject();
+                                        }).catch((error) => {
+                                            console.log(error);
+                                        });
+                                    }
+                                }).catch((error) => {
+                                    console.log(error);
                                 });
-                            }).catch((error) => {
-                                console.log(error);
                             });
                         }).catch((error) => {
                             console.log(error);
                         });
+                    }).catch((error) => {
+                        console.log(error);
+                    });
 
-                    } else {
-                        // Update form without uploading new photos
-                        projectRef.child(projectId).update({
-                            companyName: document.getElementById("companyName1").value,
-                            companyCaption: document.getElementById("companyCaption1").value,
-                            generation: document.getElementById("generation1").value,
-                            treesPlanted: document.getElementById("treesPlanted1").value,
-                            CO2offset: document.getElementById("CO2Offset1").value,
-                            description: document.getElementById("description1").value,
-                        }).then((onFullFilled) => {
-                            alert("Updated");
-                            console.log('Updated');
-                            location.reload();
-                        }, (onRejected) => {
-                            console.log(onRejected);
-                        });
-                    }
+                } else {
+                    // Update form without uploading new photos
+                    projectRef.child(projectId).update({
+                        companyName: document.getElementById("companyName1").value,
+                        companyCaption: document.getElementById("companyCaption1").value,
+                        generation: document.getElementById("generation1").value,
+                        treesPlanted: document.getElementById("treesPlanted1").value,
+                        CO2offset: document.getElementById("CO2Offset1").value,
+                        description: document.getElementById("description1").value,
+                    }).then((onFullFilled) => {
+                        alert("Updated");
+                        console.log('Updated');
+                        location.reload();
+                    }, (onRejected) => {
+                        console.log(onRejected);
+                    });
+                }
             })
 
 
