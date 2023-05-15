@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="/src/main.css">
 
     <!-- local css file-->
-    <link rel="stylesheet" href="/css/aboutUs.css">
+    <link rel="stylesheet" href="/css/swiper.css">
+
+    <!-- swiper js cdn css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 
     <!-- font awesome icon with personal id (need register) -->
     <script src="https://kit.fontawesome.com/dbd99f58c7.js" crossorigin="anonymous"></script>
@@ -54,38 +57,36 @@
 
     <!--intro and image-->
     <div class="container-lg">
-        <div class="row justify-content-center">
-            <div class="col-md-4 text-center text-md-start">
-                <p class="lead my-4 text-muted text-justify">
+        <div class="row justify-content-center my-5">
+            <div class="col-10 col-lg-4 d-none d-lg-block">
+                <p class="lead my-4 text-muted">
                     Welcome to Sunergy, a sustainable energy company committed to providing reliable and affordable solar energy solutions to our clients.
                 </p>
                 <a href="/html/contact.html" class="btn btn-primary btn-lg text-white">Contact Us <i class="fa-solid fa-chevron-right"></i></a>
             </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-4 text-center">
+            <div class="col-lg-2 d-none d-lg-block"></div>
+            <div class="col-10 col-lg-4">
                 <div class="text-md-start fw-bold fs-1">
-                    ABOUT <span class="text-primary">SUNERGY</span><br>
-                    LEADER OF SOLAR <br>ENERGY FIELDS
+                    ABOUT <span class="text-primary">SUNERGY</span>
+                    LEADER OF SOLAR ENERGY FIELDS
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- intro image first row -->
-    <div class="intro mx-auto">
-        <div class="intro1 row lead my-4 justify-content-center">
-            <div class="col-md-7">
-                <img class="img-fluid rounded" src="../image/9.png" alt="pic">
-                <img class="img-fluid rounded" src="../image/3.jpg" alt="pic">
+        <div class="row justify-content-center">
+            <div class="col-10 col-lg-6">
+                <img class="img-fluid rounded" src="/image/3.jpg" alt="pic" style="height: 200px; width: 100%;">
             </div>
-        </div>
+            <div class="col-10 col-lg-4">
+                <img class="img-fluid rounded" src="/image/9.png" alt="pic" style="height: 200px; width: 100%;">
+            </div>
 
-        <!-- intro image second row -->
-            <div class="intro2 row lead my-4 justify-content-center">
-                <div class="col-md-7">
-                    <img class="img-fluid rounded" src="../image/2.jpg" alt="pic">
-                    <img class="img-fluid rounded" src="../image/about4.png" alt="pic">
-                </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-10 col-lg-4">
+                <img class="img-fluid rounded" src="/image/2.jpg" alt="pic" style="height: 200px; width: 100%;">
+            </div>
+            <div class="col-10 col-lg-6">
+                <img class="img-fluid rounded" src="/image/about4.png" alt="pic" style="height: 200px; width: 100%;">
             </div>
         </div>
     </div>
@@ -93,14 +94,18 @@
     <!-- Our mission and Vision -->
     <div class="container-lg my-5">
         <div class="row justify-content-center">
-            <div class="col-md-5 text-center text-md-start">
+            <div class="col-10 col-lg-5 col-md-5 text-center text-md-start">
                 <div class="text-md-start fw-bold fs-1">
                     Our Mission and Vision
                 </div>
             </div>
-            <div class="col-md-5 text-center">
+            <div class="col-10 col-lg-5 col-md-5 text-center">
                 <div class="text-md-start fw-light">
-                    At Sunergy, we believe in a world where energy is clean, abundant, and accessible to everyone. Our mission is to accelerate the transition to a sustainable energy future by empowering our clients to harness the power of the sun.
+                    <p style="text-align: justify;">
+                        At Sunergy, we believe in a world where energy is clean, abundant, and accessible 
+                        to everyone. Our mission is to accelerate the transition to a sustainable 
+                        energy future by empowering our clients to harness the power of the sun.
+                    </p>
                 </div>
             </div>
         </div>
@@ -112,34 +117,37 @@
     <!-- Why choose us -->
     <div class="container-lg mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-5 text-center text-md-start">
+            <div class="col-10 col-lg-5 col-md-5 text-center text-md-start">
                 <div class="fw-bold fs-1">
                     WHY CHOOSE US?
                 </div>
             </div>
-            <div class="col-md-5 text-center">
+            <div class="col-10 col-lg-5 col-md-5 text-center">
                 <div class="text-md-start fw-light">
-                    The most pronounced benefit from panels and solar energy is being able to save expenses. In addition, solar energy can contribute to reducing global warming. You also avoid dependence on conventional electricity. 
+                    <p style="text-align: justify;">
+                        The most pronounced benefit from panels and solar energy is being able to save expenses. 
+                        In addition, solar energy can contribute to reducing global warming. You also avoid dependence on conventional electricity. 
+                    </p>
                 </div>
             </div>
         </div>
 
         <div class="row lead mt-5 pb-5 justify-content-center">
             <div class="col-sm-1"></div>
-            <div class="col">
+            <div class="col-10 col-lg col-md">
                 <img class="img-fluid mb-4" src="../image/choose1.png" alt="pic">
                 <div class="fs-5 fw-bold">Environmentally Friendly</div>
-                <div class="fs-6">Help preserve the environment by using solar panels, and also this product uses environmentally friendly materials. </div>
+                <div class="fs-6"><p style="text-align: justify;">Help preserve the environment by using solar panels, and also this product uses environmentally friendly materials. </p> </div>
             </div>
-            <div class="col">
+            <div class="col-10 col-lg col-md">
                 <img class="img-fluid mb-4" src="../image/choose2.png" alt="pic">
                 <div class="fs-5 fw-bold">Reserve Energy</div>
-                <div class="fs-6">If you use solar panels, you will save tens of millions in one year, because you don't have to pay for electricity.</div>
+                <div class="fs-6"><p style="text-align: justify;">If you use solar panels, you will save tens of millions in one year, because you don't have to pay for electricity.</p></div>
             </div>
-            <div class="col">
+            <div class="col-10 col-lg col-md">
                 <img class="img-fluid mb-4" src="../image/choose3.png" alt="pic">
                 <div class="fs-5 fw-bold">Save The Earth</div>
-                <div class="fs-6">With this innovation, of course we are helping to save the earth from global warming, as well as other dangers. </div>
+                <div class="fs-6"><p style="text-align: justify;">With this innovation, of course we are helping to save the earth from global warming, as well as other dangers.</p> </div>
             </div>
             <div class="col-sm-1"></div>
         </div>
@@ -148,17 +156,13 @@
     <!-- Leadership -->
     <div class="container-lg pt-5">
         <div class="row lead my-4 justify-content-center align-items-center">
-            <div class="col-md-5">
+            <div class="col-10">
                 <div class="fs-2 fw-bold">LEADERSHIP</div>
-            </div>
-            <div class="col-md-5 text-end">
-                <i class="arrow fa-solid fa-angles-left"></i>
-                <i class="arrow fa-solid fa-angles-right"></i>
             </div>
         </div>
     </div>
 
-    <div class="leadership container-lg my-5 pb-5">
+    <!-- <div class="leadership container-lg my-5 pb-5">
         <div class="row justify-content-evenly">
             <div class="col-lg-2">
                 <img class="img-fluid rounded-circle" src="../image/leader1.png" alt="pic">
@@ -173,7 +177,47 @@
                 <img class="img-fluid rounded-circle" src="../image/leader4.png" alt="1.pic">
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <div class="container mb-5">
+        <div class="swiper-custom">
+          <!-- Slider main container -->
+          <div class="swiper mySwiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide img-fluid">
+                <img src="/image/leader1.png" alt="1.jpg" style="height: 200px; width: 200px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/leader2.png" alt="1.jpg" style="height: 200px; width: 200px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/leader3.png" alt="1.jpg" style="height: 200px; width: 200px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/leader4.png" alt="1.jpg" style="height: 200px; width: 200px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/leader1.png" alt="1.jpg" style="height: 200px; width: 200px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/leader2.png" alt="1.jpg" style="height: 200px; width: 200px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/leader3.png" alt="1.jpg" style="height: 200px; width: 200px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/leader4.png" alt="1.jpg" style="height: 200px; width: 200px;">
+              </div>
+            </div>
+
+            <!-- If we need navigation buttons -->
+            <!-- <div id="swiper-button-prev" class="swiper-button-prev"><i class="fab fa-youtube" style='font-size:24px'></i></div>
+            <div id="swiper-button-next" class="swiper-button-next"><i class="fab fa-youtube" style='font-size:24px'></i></div> -->
+          </div>
+        </div>
+      </div>
     
     <!-- footer navigation section -->
     <footer>
@@ -237,5 +281,9 @@
         </div>
 
     </footer>
+    <!-- swiper js cdn  -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="/js/swiper.js"></script>
+
 </body>
 </html>
