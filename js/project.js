@@ -21,7 +21,7 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
 
     const projectsDiv = document.getElementById('projects');
 
-    snapshot.forEach((projectSnapshot, index) => {
+    snapshot.forEach((projectSnapshot) => {
       const project = projectSnapshot.val();
 
       // const row = Math.floor(index / 2) + 1;
