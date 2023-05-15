@@ -13,8 +13,7 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-const projectsDiv = document.getElementById('projects');
-
+// Display First 4 projects to index.html
 database.ref('Project').orderByKey().limitToFirst(4).once('value')
   .then((snapshot) => {
     // Process the data here
@@ -33,7 +32,7 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
           <a href="/html/projectDetails.html">
             <div class="row1-col1 h-100 p-0" style="background-image: url(${project.imageUrls[0]});">
               <div class="hovtxt h-100 d-inline-block text-white text-justify p-5">
-                <div class="fs-5 fw-bold">${project.companyName}.</div>
+                <div class="fs-5 fw-bold">${project.companyName}</div>
                 <div class="fs-6" style="text-align: justify;">${project.description}</div>
               </div>
             </div>
@@ -48,96 +47,59 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
     console.log(error);
   });
 
-// database.ref('Project').orderByKey().limitToFirst(2).once('value')
-//   .then((snapshot) => {
-//     const projectsDiv = document.getElementById('projects');
-//     snapshot.forEach((projectSnapshot, index) => {
-//       const project = projectSnapshot.val();
-//       const projectDiv = document.createElement('div');
-//       projectDiv.classList.add('col-lg-5', 'col-xs-12', 'col-sm-12', 'col-md-5');
-//       projectDiv.innerHTML = `
-//         <a href="/html/projectDetails.html">
-//           <div class="h-100 p-0" style="background-image: url(${project.imageUrls[0]});">
-//             <div class="hovtxt h-100 d-inline-block text-white text-justify p-5">
-//               <div class="fs-5 fw-bold">${project.companyName}.</div>
-//               <div class="fs-6">${project.description}</div>
-//             </div>
-//           </div>
-//         </a>
-//       `;
-//       projectsDiv.appendChild(projectDiv);
-//     });
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
 
 
 
 
+  
+  // Display first 4 project to project.html and next 4 when next page is clicked
+  database.ref('Project').orderByKey().limitToFirst(4).once('value')
+  .then((snapshot) => {
+    // Process the data here
+
+    const projectsDetails = document.getElementById('projectsDetails');
+
+    snapshot.forEach((projectSnapshot) => {
+      const project = projectSnapshot.val();
 
 
+      const projectDetail = document.createElement('div');
+      projectDetail.classList.add('col-10');
+      projectDetail.innerHTML = `
+      <div class="card m-2">
+        <div class="row align-items-center">
+          <div class="image-parent col-12 col-lg-4">
+            <img src="${project.imageUrls[0]}" class="img-fluid" alt="">
+          </div>
+          <div class="card-body col-10 col-lg-8">
+            <div class="row justify-content-center">
+              <h5 class="card-title col-8 col-lg-12 col-md-12">
+                ${project.companyName}
+              </h5>
+              <div class="d-block d-lg-none col-2 text-end">
+                <a href="/html/projectDetails.html" class="stretched-link"><i class="arrow fa-solid fa-angle-right"></i></a>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-10 col-lg-11">
+                <p class="card-text">
+                  ${project.description}
+                </p>
+              </div>
+              <div class="d-none d-lg-block col-lg-1 ">
+                <a href="/html/projectDetails.html" class="stretched-link"><i class="arrow fa-solid fa-angle-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      `;
 
+      projectsDetails.appendChild(projectDetail);
+    });
 
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
-
-//   <div class="row lead my-4 justify-content-center">
-
-//   <div class="col-lg-5 col-xs-12 col-sm-12 col-md-5">
-//     <a href="/html/projectDetails.html">
-//       <div class="row1-col1 h-100 p-0" style="background-image: url(/image/1.jpg);">
-//         <div class="hovtxt h-100 d-inline-block text-white text-justify p-5">
-//           <div class="fs-5 fw-bold">Tesco Sdn. Bhd.</div>
-//           <div class="fs-6">With our extensive expertise offering bespoke carbon neutral technologies & financing solutions in the region,
-//             SUNERGY stands at the forefront in providing green energy solutions to meet your renewable energy goals.
-//             We help every client find the best approach to save money and the planet.</div>
-//         </div>
-//       </div>
-//     </a>
-//   </div>
-
-//   <div class="col-lg-5 col-xs-12 col-sm-12 col-md-5">
-//     <a href="/html/projectDetails.html">
-//       <div class="row1-col2 h-100 p-0" style="background-image: url(/image/2.jpg);">
-//         <div class="hovtxt h-100 d-inline-block text-white text-justify p-5">
-//           <div class="fs-5 fw-bold">Tesco Sdn. Bhd.</div>
-//           <div class="fs-6">With our extensive expertise offering bespoke carbon neutral technologies & financing solutions in the region,
-//             SUNERGY stands at the forefront in providing green energy solutions to meet your renewable energy goals.
-//             We help every client find the best approach to save money and the planet.</div>
-//         </div>
-//       </div>
-//     </a>
-//   </div>
-
-// </div>
-
-
-// <div class="row lead my-4 justify-content-center">
-
-//   <div class="col-lg-5 col-xs-12 col-sm-12 col-md-5">
-//     <a href="/html/projectDetails.html">
-//       <div class="row2-col1 h-100 p-0" style="background-image: url(/image/3.jpg);">
-//         <div class="hovtxt h-100 d-inline-block text-white text-justify p-5">
-//           <div class="fs-5 fw-bold">Tesco Sdn. Bhd.</div>
-//           <div class="fs-6">With our extensive expertise offering bespoke carbon neutral technologies & financing solutions in the region,
-//             SUNERGY stands at the forefront in providing green energy solutions to meet your renewable energy goals.
-//             We help every client find the best approach to save money and the planet.</div>
-//         </div>
-//       </div>
-//     </a>
-//   </div>
-
-//   <div class="col-lg-5 col-xs-12 col-sm-12 col-md-5">
-//     <a href="/html/projectDetails.html">
-//       <div class="row2-col2 h-100 p-0" style="background-image: url(/image/4.jpg);">
-//         <div class="hovtxt h-100 d-inline-block text-white text-justify p-5">
-//           <div class="fs-5 fw-bold">Tesco Sdn. Bhd.</div>
-//           <div class="fs-6">With our extensive expertise offering bespoke carbon neutral technologies & financing solutions in the region,
-//             SUNERGY stands at the forefront in providing green energy solutions to meet your renewable energy goals.
-//             We help every client find the best approach to save money and the planet.</div>
-//         </div>
-//       </div>
-//     </a>
-//   </div>
-
-// </div>
