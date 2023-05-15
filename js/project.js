@@ -42,6 +42,10 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
       projectsDiv.appendChild(projectDiv);
     });
 
+    // Code here for each project is clicked, direct to projectDetails.html and display project details respectively
+
+    
+
   })
   .catch((error) => {
     console.log(error);
