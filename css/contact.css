@@ -1,12 +1,12 @@
-.containerRight{
-    display:flex;
-    flex-direction:column;
-    height:750px;
+.containerRight {
+    display: flex;
+    flex-direction: column;
+    height: 750px;
 }
 
 .containerRight input,
-.containerRight select{
-    border-radius:10px;
-    border:1px solid #000;
-    padding:10px;
+.containerRight select {
+    border-radius: 10px;
+    border: 1px solid #000;
+    padding: 10px;
 }

@@ -1,7 +1,7 @@
 figure {
     position: relative;
 }
-  
+
 figcaption {
     position: absolute;
     left: 5%;
@@ -9,7 +9,7 @@ figcaption {
     text-align: left;
 }
 
-figcaption.cap{
+figcaption.cap {
     bottom: 10%;
     right: 0;
     font-size: xx-large;
@@ -37,16 +37,17 @@ figcaption.partner-com {
     height: 200px;
 }
 
-footer a{
+footer a {
     text-decoration: none;
 }
 
 @media screen and (max-width: 1500px) {
-    figcaption.cap{
+    figcaption.cap {
         bottom: 10%;
         right: 0;
         font-size: x-large;
     }
+
     figcaption.partner-com {
         bottom: 25%;
         left: 5%;
@@ -55,11 +56,12 @@ footer a{
 }
 
 @media screen and (max-width: 1150px) {
-    figcaption.cap{
+    figcaption.cap {
         bottom: 10%;
         right: 0;
         font-size: large;
     }
+
     figcaption.partner-com {
         bottom: 25%;
         left: 5%;
@@ -68,11 +70,12 @@ footer a{
 }
 
 @media screen and (max-width: 925px) {
-    figcaption.cap{
+    figcaption.cap {
         bottom: 10%;
         right: 0;
         font-size: medium;
     }
+
     figcaption.partner-com {
         bottom: 25%;
         left: 5%;
@@ -81,11 +84,12 @@ footer a{
 }
 
 @media screen and (max-width: 750px) {
-    figcaption.cap{
+    figcaption.cap {
         bottom: 10%;
         right: 0;
         font-size: small;
     }
+
     figcaption.partner-com {
         bottom: 25%;
         left: 5%;
@@ -94,11 +98,12 @@ footer a{
 }
 
 @media screen and (max-width: 600px) {
-    figcaption.cap{
+    figcaption.cap {
         bottom: 10%;
         right: 0;
         font-size: small;
     }
+
     figcaption.partner-com {
         bottom: 28%;
         left: 5%;
@@ -107,11 +112,12 @@ footer a{
 }
 
 @media screen and (max-width: 500px) {
-    figcaption.cap{
+    figcaption.cap {
         bottom: 10%;
         right: 0;
         font-size: small;
     }
+
     figcaption.partner-com {
         bottom: 30%;
         left: 5%;
@@ -120,11 +126,12 @@ footer a{
 }
 
 @media screen and (max-width: 400px) {
-    figcaption.cap{
+    figcaption.cap {
         bottom: 10%;
         right: 0;
         font-size: small;
     }
+
     figcaption.partner-com {
         bottom: 33%;
         left: 5%;
@@ -133,11 +140,12 @@ footer a{
 }
 
 @media screen and (max-width: 350px) {
-    figcaption.cap{
+    figcaption.cap {
         bottom: 10%;
         right: 0;
         font-size: small;
     }
+
     figcaption.partner-com {
         bottom: 40%;
         left: 5%;
@@ -145,6 +153,4 @@ footer a{
     }
 }
 
-@media screen and (max-width: 767px) {
-
-}
+@media screen and (max-width: 767px) {}

@@ -26,7 +26,7 @@ body {
     background-size: cover;
 }
 
-.row1-col2 {
+/* .row1-col2 {
     background-repeat: none;
     background-size: cover;
 }
@@ -39,7 +39,7 @@ body {
 .row2-col2 {
     background-repeat: none;
     background-size: cover;
-}
+} */
 
 /* hover effect for the project images */
 .hovtxt {
@@ -53,94 +53,4 @@ body {
 
 .hovtxt:hover {
     opacity: 0.8;
-}
-
-.p-70 {
-    padding: 70px;
-}
-
-.py-6 {
-    padding-top: 2rem;
-}
-
-.text-para {
-    color: #000;
-}
-
-.list-unstyled {
-    padding-left: 0;
-    list-style: none;
-}
-
-.list-unstyled li a {
-    text-decoration: none;
-}
-
-.list-unstyled li a:hover {
-    text-decoration: underline;
-}
-
-.py-4 {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-}
-
-.p-200 {
-    padding: 0px 200px;
-}
-
-.btn-24 {
-    font-size: 24px;
-    padding: 10px;
-    color: #000;
-}
-
-.btn-24:hover {
-    color: #6ECB63;
-}
-
-/* swiper css */
-.swiper-custom {
-    /* margin-top: 5%; */
-    position: relative;
-}
-
-.swiper {
-    width: 80%;
-    height: 80%;
-}
-
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}
-
-.swiper-slide img {
-    display: block;
-    width: 80%;
-    height: 80%;
-    /* object-fit: cover; */
-}
-
-.swiper-button-prev {
-    left: calc(50% - 40px);
-}
-
-.swiper-button-next {
-    right: calc(50% - 40px);
 }
