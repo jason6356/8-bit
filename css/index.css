@@ -1,21 +1,21 @@
-
 /* roboto font */
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
-html, body {
+html,
+body {
     font-family: 'Comfortaa', cursive;
 }
 
 /* align the home page first content center */
 .first-view {
-    height:750px;
+    height: 750px;
     display: flex;
     align-content: center;
     flex-wrap: wrap;
 }
 
 .second-view {
-    height:750px;
+    height: 750px;
     align-content: center;
     flex-wrap: wrap;
 }
@@ -72,7 +72,7 @@ html, body {
     list-style: none;
 }
 
-.list-unstyled li a{
+.list-unstyled li a {
     text-decoration: none;
 }
 
@@ -85,7 +85,7 @@ html, body {
     padding-bottom: 4rem;
 }
 
-.p-200{
+.p-200 {
     padding: 0px 200px;
 }
 
@@ -136,22 +136,8 @@ html, body {
     height: 80%;
     /* object-fit: cover; */
 }
-.swiper-button-prev, .swiper-button-next {
-    /* top:unset !important;
-    bottom: 80px;
-    position: absolute;
-    background-color: black;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%; */
-}
-.swiper-button-prev::after, .swiper-button-next::after{
-    /* color: rgba(99,88,238,1);
-    font-size: 18px; */
-}
 
-
-.swiper-button-prev{
+.swiper-button-prev {
     left: calc(50% - 40px);
 }
 
