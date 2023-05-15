@@ -5,10 +5,6 @@
     cursor: pointer;
 }
 
-.image-parent {
-    max-width: 250px;
-}
-
 .card-text {
     text-align: justify;
 }

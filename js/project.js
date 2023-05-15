@@ -51,9 +51,9 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
 
 
 
-  
-  // Display first 4 project to project.html and next 4 when next page is clicked
-  database.ref('Project').orderByKey().limitToFirst(4).once('value')
+
+// Display first 4 project to project.html and next 4 when next page is clicked
+database.ref('Project').orderByKey().limitToFirst(4).once('value')
   .then((snapshot) => {
     // Process the data here
 
@@ -64,12 +64,12 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
 
 
       const projectDetail = document.createElement('div');
-      projectDetail.classList.add('col-10');
+      projectDetail.classList.add('col-12');
       projectDetail.innerHTML = `
       <div class="card m-2">
         <div class="row align-items-center">
           <div class="image-parent col-12 col-lg-4">
-            <img src="${project.imageUrls[0]}" class="img-fluid" alt="">
+            <img src="${project.imageUrls[0]}" class="img-fluid" alt="" style="height: 200px;width: 100%;">
           </div>
           <div class="card-body col-10 col-lg-8">
             <div class="row justify-content-center">
