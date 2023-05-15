@@ -34,7 +34,7 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
             <div class="row1-col1 h-100 p-0" style="background-image: url(${project.imageUrls[0]});">
               <div class="hovtxt h-100 d-inline-block text-white text-justify p-5">
                 <div class="fs-5 fw-bold">${project.companyName}.</div>
-                <div class="fs-6">${project.description}</div>
+                <div class="fs-6" style="text-align: justify;">${project.description}</div>
               </div>
             </div>
           </a>
