@@ -13,6 +13,8 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
+const projectRef = firebase.database().ref('Project');
+
 // Display first 4 project to project.html
 database.ref('Project').orderByKey().limitToFirst(4).once('value')
   .then((snapshot) => {
@@ -60,6 +62,34 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
     });
 
     // Code here for each project is clicked, direct to projectDetails.html and display project details respectively
+    let projectButton = document.querySelectorAll(".stretched-link");
+    projectButton.forEach(pojectBtn => {
+      pojectBtn.addEventListener("click", () => {
+        let projectId = pojectBtn.parentElement.parentElement.parentElement.parentElement.dataset.id;
+
+        window.location.assign("/html/projectDetails.html");
+
+        projectRef.child(projectId).get().then((snapshot => {
+          //console.log(snapshot.val());
+
+          let companyName = snapshot.val().companyName;
+          let companyCaption = snapshot.val().companyCaption;
+          let generation = snapshot.val().generation;
+          let treesPlanted = snapshot.val().treesPlanted;
+          let CO2Offset = snapshot.val().CO2Offset;
+          let description = snapshot.val().description;
+          let imgUrls = snapshot.val().snapshot.val().imageUrls;
+  
+          document.getElementById("companyName").innerHTML = companyName;
+          document.getElementById("companyCaption").innerHTML = companyCaption;
+          document.getElementById("generation").innerHTML = generation;
+          document.getElementById("tressPlanted").innerHTML = treesPlanted;
+          document.getElementById("CO2Offset").innerHTML = CO2Offset;
+          document.getElementById("description").innerHTML = description;
+          
+        }))
+      });
+    });
 
   })
   .catch((error) => {

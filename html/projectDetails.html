@@ -60,8 +60,8 @@
     <div class="col-8 text-center mx-auto">
         <figure>
             <img class="img-fluid rounded" src="/image/4.jpg" alt="pic">
-            <figcaption class="partner-com">Partner Company Name Sdn. Bhd.</figcaption>
-            <figcaption class="cap fw-bold">The modern world and <br>people everywhere.</figcaption>
+            <figcaption class="partner-com" id="companyName">Partner Company Name Sdn. Bhd.</figcaption>
+            <figcaption class="cap fw-bold" id="companyCaption">The modern world and <br>people everywhere.</figcaption>
         </figure>
     </div>
 
@@ -70,17 +70,17 @@
         <div class="row lead my-4 pb-5 justify-content-center fs-6">
             <div class="col-12 col-lg-4 col-md-4 text-md-start text-center">
                 <img class="img-fluid" src="/image/generation.png" alt="1.jpg">
-                <div class="mx-3">111,929</div>
+                <div class="mx-3" id="generation">111,929</div>
                 <div class="mx-3">Generation (MWh)</div>
             </div>
             <div class="col-12 col-lg-4 col-md-4 text-md-start text-center">
                 <img class="img-fluid" src="/image/trees-planted.png" alt="1.jpg">
-                <div class="mx-3">1,079,086</div>
+                <div class="mx-3" id="treesPlanted">1,079,086</div>
                 <div class="mx-3">Trees Planted</div>
             </div>
             <div class="col-12 col-lg-2 col-md-2 text-md-start text-center">
                 <img class="img-fluid" src="/image/co2-offset.png" alt="1.jpg">
-                <div class="mx-3">64,771</div>
+                <div class="mx-3" id="CO2Offset">64,771</div>
                 <div class="mx-3">CO2 Offset (tonnes)</div>
             </div>
         </div>
@@ -91,7 +91,7 @@
     <div class="container-lg my-5 py-5 align-items-center">
         <div class="row justify-content-center">
             <div class="col-10 fs-2 fw-bold">ABOUT PROJECT</div>
-            <div class="col-10 fs-5 fw-light" style="text-align: justify;">
+            <div class="col-10 fs-5 fw-light" style="text-align: justify;" id="description">
                 With our extensive expertise offering bespoke carbon neutral technologies & financing solutions in the region, SUNERGY stands at the forefront in providing green energy solutions to meet your renewable energy goals. We help every client find the best approach to save money and the planet.
             </div>
         </div>
@@ -133,7 +133,7 @@
           <!-- Slider main container -->
           <div class="swiper mySwiper">
             <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper" id="imageUrls">
               <!-- Slides -->
               <div class="swiper-slide img-fluid">
                 <img src="/image/1.jpg" alt="1.jpg" style="height: 150px;">
@@ -230,5 +230,9 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="/js/swiper.js"></script>
 </body>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 <script src="/js/project.js"></script>
 </html>
