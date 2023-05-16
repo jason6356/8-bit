@@ -16,6 +16,7 @@ firebase.initializeApp(firebaseConfig);
 // Initialize variables
 let tableBody = document.querySelector("#contactUs tbody");
 
+
 const inboxRef = firebase.database().ref('ContactMessage');
 
 //Read Data
