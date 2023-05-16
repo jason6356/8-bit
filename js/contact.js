@@ -58,6 +58,17 @@ form.addEventListener('submit', (event) => {
   }
 
 
+  // Create a new Date object
+const currentDate = new Date();
+
+// Get the current date components
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1; // Months are zero-based, so we add 1
+const day = currentDate.getDate();
+
+// Format the date as desired (e.g., YYYY-MM-DD)
+const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+
   // create a new "Reservation" object with the input values
   var newContact = {
     name: nameInput,
@@ -67,6 +78,7 @@ form.addEventListener('submit', (event) => {
     email: emailInput,
     message: messageInput,
     status: statusInput,
+    dateSubmitted: formattedDate,
   };
 
   // Add the user's information to the Realtime Database
