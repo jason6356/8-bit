@@ -1,10 +1,11 @@
 
-var swiper = new Swiper(".mySwiper", {
+var swiperContainer = document.querySelector(".swiper-container");
+var swiperOptions = new Swiper(".mySwiper", {
     slidesPerView: 2.5,
-    spaceBetween:10,
+    spaceBetween: 10,
     slidesPerGroupSkip: 1,
-    loop:false,
-    loopFillGroupWithBlank:true,
+    loop: false,
+    loopFillGroupWithBlank: true,
 
     breakpoints: {
         1000: {
@@ -31,10 +32,32 @@ var swiper = new Swiper(".mySwiper", {
     },
     autoplay: {
         delay: 5000,
+        disableOnInteraction: false,
         loop: true,
     },
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
     },
-  });
+    on: {
+        on: {
+            slideChange: function () {
+                swiperContainer.classList.remove("swiper-animation");
+            },
+        },
+    },
+});
+
+
+
+var observer = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            swiperContainer.classList.add("swiper-animation");
+            swiper = new Swiper(swiperContainer, swiperOptions);
+            observer.unobserve(entry.target);
+        }
+    });
+});
+
+observer.observe(swiperContainer);
