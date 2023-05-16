@@ -68,23 +68,25 @@
 
     <!-- number of generation, trees planted and co2 offset -->
     <div class="container-lg mt-5">
-        <div class="row lead my-4 pb-5 justify-content-center fs-6">
-            <div class="col-12 col-lg-4 col-md-4 text-md-start text-center">
-                <img class="img-fluid" src="/image/generation.png" alt="1.jpg">
-                <div class="mx-3" id="generation">111,929</div>
-                <div class="mx-3">Generation (MWh)</div>
-            </div>
-            <div class="col-12 col-lg-4 col-md-4 text-md-start text-center">
-                <img class="img-fluid" src="/image/trees-planted.png" alt="1.jpg">
-                <div class="mx-3" id="treesPlanted">1,079,086</div>
-                <div class="mx-3">Trees Planted</div>
-            </div>
-            <div class="col-12 col-lg-2 col-md-2 text-md-start text-center">
-                <img class="img-fluid" src="/image/co2-offset.png" alt="1.jpg">
-                <div class="mx-3" id="CO2Offset">64,771</div>
-                <div class="mx-3">CO2 Offset (tonnes)</div>
-            </div>
+      <div class="row lead my-4 pb-5 justify-content-center fs-6">
+        <div class="col-1 d-none d-lg-block d-md-block"></div>
+        <div class="col-10 col-lg col-md mb-3 text-center">
+          <img class="img-fluid" src="/image/generation.png" alt="1.jpg">
+          <div class="mx-3 fs-2 fw-bold"> <span class="num" data-val="111929"></span></div>
+          <div class="mx-3">Generation (MWh)</div>
         </div>
+        <div class="col-10 col-lg col-md mb-3 text-center">
+          <img class="img-fluid" src="/image/trees-planted.png" alt="1.jpg">
+          <div class="mx-3 fs-2 fw-bold"><span class="num" data-val="1079086"></span></div>
+          <div class="mx-3">Trees Planted</div>
+        </div>
+        <div class="col-10 col-lg col-md mb-3 text-center">
+          <img class="img-fluid" src="/image/co2-offset.png" alt="1.jpg">
+          <div class="mx-3 fs-2 fw-bold"><span class="num" data-val="64771"></span></div>
+          <div class="mx-3">CO2 Offset (tonnes)</div>
+        </div>
+        <div class="col-1 d-none d-lg-block d-md-block"></div>
+      </div>
     </div>
     
 
@@ -235,4 +237,5 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 <script src="/js/project.js"></script>
+<script src="/js/counter.js"></script>
 </html>
