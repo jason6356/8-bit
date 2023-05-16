@@ -41,7 +41,7 @@ inboxRef.on('value', (snapshot) => {
                     ${inboxes[inbox].message}
                 </span>
             </td>
-            <td>Pending</td>
+            <td>${inboxes[inbox].status}</td>
             <td>01-01-2023</td>
             <td>
                 <button class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
