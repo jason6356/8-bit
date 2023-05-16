@@ -14,49 +14,51 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // Initialize variables
-let tableBody = document.querySelector("#Project tbody");
-let addUser = document.querySelector("#addAProject"),
+let tableBody = document.querySelector("#News tbody");
+let addNews = document.querySelector("#addANews"),
     popup = document.querySelector(".popup"),
     addform = document.querySelector("#add form"),
     saveChanges = document.querySelector("#edit form");
 
 const database = firebase.database();
-const projectRef = firebase.database().ref('Project');
+const NewsRef = firebase.database().ref('News');
 var storageRef = firebase.storage().ref();
 
 let projectCount = 0;
 
-function createProject(companyName, companyCaption, generation, treesPlanted, CO2offset, description, images) {
-    if (typeof companyName !== 'string' || companyName.trim().length === 0) {
-        console.log('Error: companyName must be a non-empty string');
+function createProject(newsTitle, newsDescription, newsDate, postedDate, postedTime, newsArticle, images) {
+    if (typeof newsTitle !== 'string' || newsTitle.trim().length === 0) {
+        console.log('Error: newsTitle must be a non-empty string');
         return;
     }
 
-    if (typeof companyCaption !== 'string' || companyCaption.trim().length === 0) {
-        console.log('Error: companyCaption must be a non-empty string');
+    if (typeof newsDescription !== 'string' || newsDescription.trim().length === 0) {
+        console.log('Error: newsDescription must be a non-empty string');
         return;
     }
 
-    const parsedGeneration = parseInt(generation);
-    if (isNaN(parsedGeneration) || parsedGeneration <= 0) {
-        console.log('Error: generation must be a positive integer');
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+    if (!dateRegex.test(newsDate)) {
+        console.log('Error: News Date must be a formatted date');
         return;
     }
 
-    const parsedTreesPlanted = parseInt(treesPlanted);
-    if (isNaN(parsedTreesPlanted) || parsedTreesPlanted <= 0) {
-        console.log('Error: treesPlanted must be a positive integer');
+    
+    if (!dateRegex.test(postedDate)) {
+        console.log('Error: PostedDate must be a formatted date');
         return;
     }
 
-    const parsedCO2Offset = parseInt(CO2offset);
-    if (isNaN(parsedCO2Offset) || parsedCO2Offset <= 0) {
-        console.log('Error: CO2offset must be a positive integer');
+    const timeRegex = /^(0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+
+    if (!timeRegex.test(postedTime)) {
+        console.log('Error: PostedTime must be a formatted time');
         return;
     }
 
-    if (typeof description !== 'string' || description.trim().length === 0) {
-        console.log('Error: description must be a non-empty string');
+    if (typeof newsArticle !== 'string' || newsArticle.trim().length === 0) {
+        console.log('Error: newsArticle must be a non-empty string');
         return;
     }
 
@@ -66,13 +68,13 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
     }
 
     // Add the user's information to the Realtime Database
-    generateId().then(function (projectId) {
-        console.log("Generated new project ID:", projectId);
+    generateId().then(function (newsId) {
+        console.log("Generated ews ID:", newsId);
 
         // Upload images to Firebase Storage
         var promises = [];
         images.forEach(function (image) {
-            var storageRef = firebase.storage().ref('photos/' + projectId + '/' + image.name);
+            var storageRef = firebase.storage().ref('newsPhotos/' + newsId + '/' + image.name);
             var uploadTask = storageRef.put(image);
             promises.push(uploadTask);
         });
@@ -88,20 +90,23 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
 
                     // Save the project data to the Realtime Database
                     if (imageUrls.length == images.length) {
-                        database.ref('Project/' + projectId).set({
-                            companyName: companyName,
-                            companyCaption: companyCaption,
-                            generation: parsedGeneration,
-                            treesPlanted: parsedTreesPlanted,
-                            CO2offset: parsedCO2Offset,
-                            description: description,
-                            imageUrls: imageUrls
+
+
+
+                        database.ref('News/' + newsId).set({
+                            newsTitle: newsTitle,
+                            newsDescription: newsDescription,
+                            newsDate: newsDate,
+                            postedDate: postedDate,
+                            postedTime: postedTime,
+                            newsArticle: newsArticle,
+                            newsImageUrls: imageUrls
                         }).then(function () {
-                            alert("Project Created!");
-                            console.log("Project Created!");
+                            alert("News Created!");
+                            console.log("News Created!");
                             location.reload();
                         }).catch(function (error) {
-                            console.log("Error saving project data:", error);
+                            console.log("Error saving News data:", error);
                         });
                     }
                 }).catch(function (error) {
@@ -113,37 +118,37 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
         });
 
     }).catch(function (error) {
-        console.log("Error generating new project ID:", error);
+        console.log("Error generating new News ID:", error);
     });
 }
 
 //Read Data
-projectRef.on('value', (snapshot) => {
-    const projects = snapshot.val();
+NewsRef.on('value', (snapshot) => {
+    const News = snapshot.val();
 
     tableBody.innerHTML = "";
 
     let i = 1;
 
-    for (project in projects) {
-        let tr = `
-        <tr data-id = ${project} >
+    for (news in News) {
+        let tr = `        
+        <tr data-id = ${news} >
             <td>${i}</td>
-            <td>${project}</td>
-            <td>${projects[project].companyName}</td>
+            <td>${news}</td>
+            <td>${News[news].newsDate}</td>
+            <td>${News[news].newsTitle}</td>
             <td>
                 <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                    ${projects[project].companyCaption}
+                    ${News[news].newsDescription}
                 </span>
             </td>
-            <td>${projects[project].generation}</td>
-            <td>${projects[project].treesPlanted}</td>
-            <td>${projects[project].CO2offset}</td>
             <td>
                 <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                    ${projects[project].description}
+                    ${News[news].newsArticle}
                 </span>
             </td>
+            <td>${News[news].postedDate}</td>
+            <td>${News[news].postedTime}</td>
             <td>
                 <button class="edit btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">Edit</button>
                 <button class="delete btn btn-outline-danger">Delete</button>
@@ -165,31 +170,30 @@ projectRef.on('value', (snapshot) => {
     let editButtons = document.querySelectorAll(".edit");
     editButtons.forEach(edit => {
         edit.addEventListener("click", () => {
-            let projectId = edit.parentElement.parentElement.dataset.id;
-            projectRef.child(projectId).get().then((snapshot => {
+            let newsId = edit.parentElement.parentElement.dataset.id;
+            console.log(newsId);
+            NewsRef.child(newsId).get().then((snapshot => {
                 //console.log(snapshot.val());
 
-                document.getElementById("companyName1").value = snapshot.val().companyName;
-                document.getElementById("companyCaption1").value = snapshot.val().companyCaption;
-                document.getElementById("generation1").value = snapshot.val().generation;
-                document.getElementById("treesPlanted1").value = snapshot.val().treesPlanted;
-                document.getElementById("CO2Offset1").value = snapshot.val().CO2offset;
-                document.getElementById("description1").value = snapshot.val().description;
+                document.getElementById("newsTitle1").value = snapshot.val().newsTitle;
+                document.getElementById("newsDescription1").value = snapshot.val().newsDescription;
+                document.getElementById("newsDate1").value = snapshot.val().newsDate;
+                document.getElementById("postedDate1").value = snapshot.val().postedDate;
+                document.getElementById("postedTime1").value = snapshot.val().postedTime;
+                document.getElementById("newsArticle1").value = snapshot.val().newsArticle;
             }))
 
             saveChanges.addEventListener("submit", (event) => {
                 event.preventDefault();
 
-                console.log('Update Button Clicked');
-
-                let files = document.getElementById("projectImage1").files;
+                let files = document.getElementById("newsImage1").files;
                 if (files.length > 0) {
 
                     // Upload new photos to Firebase Storage
                     let promises = [];
                     for (let i = 0; i < files.length; i++) {
                         let file = files[i];
-                        let storageRef = firebase.storage().ref(`photos/${projectId}/${file.name}`);
+                        let storageRef = firebase.storage().ref(`newsPhotos/${newsId}/${file.name}`);
                         promises.push(storageRef.put(file));
                     }
 
@@ -198,7 +202,7 @@ projectRef.on('value', (snapshot) => {
 
                         // Get download URLs of all uploaded photos
                         let downloadURLs = [];
-                        let storageRef = firebase.storage().ref(`photos/${projectId}`);
+                        let storageRef = firebase.storage().ref(`newsPhotos/${newsId}`);
                         storageRef.listAll().then((res) => {
                             res.items.forEach((itemRef) => {
                                 itemRef.getDownloadURL().then((url) => {
@@ -206,14 +210,14 @@ projectRef.on('value', (snapshot) => {
 
                                     // Update photoUrls in Realtime Database
                                     if (downloadURLs.length === files.length) {
-                                        projectRef.child(projectId).update({
-                                            companyName: document.getElementById("companyName1").value,
-                                            companyCaption: document.getElementById("companyCaption1").value,
-                                            generation: document.getElementById("generation1").value,
-                                            treesPlanted: document.getElementById("treesPlanted1").value,
-                                            CO2offset: document.getElementById("CO2Offset1").value,
-                                            description: document.getElementById("description1").value,
-                                            imageUrls: downloadURLs,
+                                        NewsRef.child(newsId).update({
+                                            newsTitle: document.getElementById("newsTitle1").value,
+                                            newsDescription: document.getElementById("newsDescription1").value,
+                                            newsDate: document.getElementById("newsDate1").value,
+                                            postedDate: document.getElementById("postedDate1").value,
+                                            postedTime: document.getElementById("postedTime1").value,
+                                            newsArticle: document.getElementById("newsArticle1").value,
+                                            newsImageUrls: downloadURLs,
                                         }).then(() => {
                                             console.log('Updated photoUrls');
                                             alert("Updated");
@@ -236,13 +240,13 @@ projectRef.on('value', (snapshot) => {
 
                 } else {
                     // Update form without uploading new photos
-                    projectRef.child(projectId).update({
-                        companyName: document.getElementById("companyName1").value,
-                        companyCaption: document.getElementById("companyCaption1").value,
-                        generation: document.getElementById("generation1").value,
-                        treesPlanted: document.getElementById("treesPlanted1").value,
-                        CO2offset: document.getElementById("CO2Offset1").value,
-                        description: document.getElementById("description1").value,
+                    NewsRef.child(newsId).update({
+                        newsTitle: document.getElementById("newsTitle1").value,
+                        newsDescription: document.getElementById("newsDescription1").value,
+                        newsDate: document.getElementById("newsDate1").value,
+                        postedDate: document.getElementById("postedDate1").value,
+                        postedTime: document.getElementById("postedTime1").value,
+                        newsArticle: document.getElementById("newsArticle1").value,
                     }).then((onFullFilled) => {
                         alert("Updated");
                         console.log('Updated');
@@ -261,14 +265,14 @@ projectRef.on('value', (snapshot) => {
     let deleteButtons = document.querySelectorAll(".delete");
     deleteButtons.forEach(deleteBtn => {
         deleteBtn.addEventListener("click", () => {
-            let projectId = deleteBtn.parentElement.parentElement.dataset.id;
+            let newsId = deleteBtn.parentElement.parentElement.dataset.id;
 
-            projectRef.child(projectId).get().then((snapshot => {
+            NewsRef.child(newsId).get().then((snapshot => {
                 //console.log(snapshot.val());
 
-                let projectPhotoURL = snapshot.val().imageUrls;
+                let newsPhotoURL = snapshot.val().newsImageUrls;
 
-                const photoRef = firebase.storage().refFromURL(projectPhotoURL);
+                const photoRef = firebase.storage().refFromURL(newsPhotoURL);
 
                 photoRef.delete();
 
@@ -277,7 +281,7 @@ projectRef.on('value', (snapshot) => {
 
 
 
-            projectRef.child(projectId).remove().then(() => {
+            NewsRef.child(newsId).remove().then(() => {
                 // alert("Deleted");
                 console.log('Project Deleted');
                 alert('Project Deleted');
@@ -288,18 +292,18 @@ projectRef.on('value', (snapshot) => {
 
 });
 
-addUser.addEventListener("click", () => {
+addNews.addEventListener("click", () => {
 
     addform.addEventListener("submit", (e) => {
         e.preventDefault();
 
         const images = [];
-        document.querySelectorAll("#projectImage").forEach(function (input) {
+        document.querySelectorAll("#newsImage").forEach(function (input) {
             for (let i = 0; i < input.files.length; i++) {
                 images.push(input.files[i]);
             }
 
-            createProject(document.getElementById("companyName").value, document.getElementById("companyCaption").value, document.getElementById("generation").value, document.getElementById("treesPlanted").value, document.getElementById("CO2Offset").value, document.getElementById("description").value, images);
+            createProject(document.getElementById("newsTitle").value, document.getElementById("newsDescription").value, document.getElementById("newsDate").value, document.getElementById("postedDate").value, document.getElementById("postedTime").value, document.getElementById("newsArticle").value, images);
 
         });
 
@@ -308,14 +312,14 @@ addUser.addEventListener("click", () => {
 
 function generateId() {
     return new Promise(function (resolve, reject) {
-        var ref = firebase.database().ref("Project");
+        var ref = firebase.database().ref("News");
 
         ref.once("value")
             .then(function (dataSnapshot) {
                 var lastSequenceNumber = 0;
                 dataSnapshot.forEach(function (transactionSnapshot) {
                     var projectID = transactionSnapshot.key;
-                    if (projectID != null && projectID.startsWith("P")) {
+                    if (projectID != null && projectID.startsWith("N")) {
                         var sequenceNumber = parseInt(projectID.substring(1));
                         if (!isNaN(sequenceNumber) && sequenceNumber > lastSequenceNumber) {
                             lastSequenceNumber = sequenceNumber;
@@ -324,7 +328,7 @@ function generateId() {
                 });
                 var nextSequenceNumber = lastSequenceNumber + 1;
                 var paddedSequenceNumber = String(nextSequenceNumber).padStart(5, "0");
-                let newProjectId = "P" + paddedSequenceNumber;
+                let newProjectId = "N" + paddedSequenceNumber;
                 resolve(newProjectId);
             })
             .catch(function (error) {
@@ -387,4 +391,3 @@ window.addEventListener("click", (e) => {
     }
 })
 */
-

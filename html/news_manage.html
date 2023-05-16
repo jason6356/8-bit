@@ -100,11 +100,11 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">News Title</label>
-                                        <input type="text" class="form-control" id="companyName" placeholder="" name="companyName">
+                                        <input type="text" class="form-control" id="newsTitle1" placeholder="" name="newsTitle1">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                        <textarea class="form-control" id="companyCaption" rows="3" name="companyCaption"></textarea>
+                                        <textarea class="form-control" id="newsDescription1" rows="3" name="newsDescription1"></textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-lg-4 col-md-4">
@@ -115,6 +115,7 @@
                                                 <input
                                                   class="form-control"
                                                   type="date"
+                                                  id="newsDate1"
                                                   required
                                                 />
                                             </div>
@@ -127,6 +128,7 @@
                                                 <input
                                                   class="form-control"
                                                   type="date"
+                                                  id="postedDate1"
                                                   required
                                                 />
                                             </div>
@@ -139,6 +141,7 @@
                                                 <input
                                                     type="time"
                                                     class="form-control"
+                                                    id="postedTime1"
                                                     required
                                                 />
                                             </div>
@@ -149,13 +152,13 @@
                                     <div class="row mb-3">
                                         <div class="col">
                                             <label for="exampleFormControlTextarea1" class="form-label">Article</label>
-                                            <textarea class="form-control" id="description" name="description" rows="6"></textarea>
+                                            <textarea class="form-control" id="newsArticle1" name="newsArticle1" rows="6"></textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col">
                                             <label for="exampleFormControlTextarea1" class="form-label">Upload Photo</label>
-                                            <input type="file" class="form-control" id="projectImage1" name="projectImage1" placeholder="" multiple required>
+                                            <input type="file" class="form-control" id="newsImage1" name="newsImage1" placeholder="" multiple required>
                                         </div>
                                     </div>
                                 </div>
@@ -163,9 +166,11 @@
                         </div>
 
                     </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="update-button" name="update-button" class="btn btn-info text-white">Save changes</button>
+                    <div class="modal-footer" id="edit">
+                    <form>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" id="update-button" name="update-button" class="btn btn-info text-white">Save changes</button>
+                    </form>
                     </div>
                 </div>
                 </div>
@@ -185,11 +190,11 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">News Title</label>
-                                        <input type="text" class="form-control" id="companyName" placeholder="" name="companyName">
+                                        <input type="text" class="form-control" id="newsTitle" placeholder="" name="newsTitle">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                        <textarea class="form-control" id="companyCaption" rows="3" name="companyCaption"></textarea>
+                                        <textarea class="form-control" id="newsDescription" rows="3" name="newsDescription"></textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-lg-4 col-md-4">
@@ -200,6 +205,7 @@
                                                 <input
                                                   class="form-control"
                                                   type="date"
+                                                  id="newsDate"
                                                   required
                                                 />
                                             </div>
@@ -212,6 +218,7 @@
                                                 <input
                                                   class="form-control"
                                                   type="date"
+                                                  id="postedDate"
                                                   required
                                                 />
                                             </div>
@@ -224,6 +231,7 @@
                                                 <input
                                                     type="time"
                                                     class="form-control"
+                                                    id="postedTime"
                                                     required
                                                 />
                                             </div>
@@ -234,13 +242,13 @@
                                     <div class="row mb-3">
                                         <div class="col">
                                             <label for="exampleFormControlTextarea1" class="form-label">Article</label>
-                                            <textarea class="form-control" id="description" name="description" rows="6"></textarea>
+                                            <textarea class="form-control" id="newsArticle" name="newsArticle" rows="6"></textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col">
                                             <label for="exampleFormControlTextarea1" class="form-label">Upload Photo</label>
-                                            <input type="file" class="form-control" id="projectImage1" name="projectImage1" placeholder="" multiple required>
+                                            <input type="file" class="form-control" id="newsImage" name="newsImage" placeholder="" multiple required>
                                         </div>
                                     </div>
                                 </div>
@@ -249,8 +257,10 @@
 
                     </div>
                     <div class="modal-footer" id="add">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info text-white">Submit</button>
+                        <form>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-info text-white">Submit</button>
+                        </form>
                     </div>
                 </div>
                 </div>
@@ -271,10 +281,10 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <button id="addAProject" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
+                                    <button id="addANews" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
                                 </div>
                             </div>
-                            <div id="Project" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
+                            <div id="News" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
                                 <table class="table">
                                     <thead class="bg-info text-white">
                                       <tr>
@@ -366,11 +376,12 @@
             </div>
         </div>
     </div>
-
-    <!-- firebase js  -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-    <!-- local js  -->
 </body>
+
+<!-- firebase js  -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<!-- local js  -->
+<script src="/js/news_manage.js"></script>
 </html>
