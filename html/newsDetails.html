@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap saas file -->
+    <link rel="stylesheet" href="/src/main.css">
+
+    <!-- local css file-->
+    <link rel="stylesheet" href="/css/projectDetails.css">
+    <link rel="stylesheet" href="/css/swiper.css">
+
+    <!-- swiper js cdn css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+    <!-- font awesome icon with personal id (need register) -->
+    <script src="https://kit.fontawesome.com/dbd99f58c7.js" crossorigin="anonymous"></script>
+
+    <!-- bootstrap js url -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <title>Project Details</title>
+</head>
+<body>
+    <div class="container">
+        <!-- navigation bar -->
+        <nav class="navbar navbar-expand-md bg-white navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand text-black fw-bold" href="../index.html">SUNERGY</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-center" id="collapsibleNavbar">
+                    <ul class="navbar-nav ms-auto list-unstyled">
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/project.html">Project</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/service.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/aboutUs.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/html/contact.html">Contact</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!--top image-->
+    <div class="col-8 text-center mx-auto">
+        <figure>
+            <img class="img-fluid rounded" src="/image/4.jpg" alt="pic">
+            <figcaption class="partner-com" id="newsTitle">Partner Company Name Sdn. Bhd.</figcaption>
+            <figcaption class="cap fw-bold" id="newsDescription">The modern world and <br>people everywhere.</figcaption>
+        </figure>
+    </div>
+
+    <!--about project-->
+    <div class="container-lg my-5 py-5 align-items-center">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-10 col-md-8 col-lg-8 fs-2 fw-bold">NEWS TITLE</div>
+            <div class="col-10 col-md-2 col-lg-2 text-lg-end text-md-end"><p><small class="text-muted">March 18, 2023</small></p></div>
+            
+            <div class="col-10 fs-5 fw-light" style="text-align: justify;" id="description">
+                With our extensive expertise offering bespoke carbon neutral technologies & financing solutions in the region, SUNERGY stands at the forefront in providing green energy solutions to meet your renewable energy goals. We help every client find the best approach to save money and the planet.
+            </div>
+        </div>
+    </div>
+
+    <!-- project gallery listing header with arrows key -->
+    <div class="container-lg pt-5">
+        <div class="row lead my-4 justify-content-center align-items-center">
+            <div class="col-10">
+                <div class="fs-2 fw-bold">NEWS GALLERY</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- project gallery listing -->
+    <!-- <div class="gallery container-lg my-5 pb-5">
+        <div class="row justify-content-evenly">
+            <div class="col-lg-2">
+                <img class="img-fluid" src="../image/3.jpg" alt="1.jpg">
+            </div>
+            <div class="col-lg-2">
+                <img class="img-fluid" src="../image/8.jpg" alt="1.jpg">
+            </div>
+            <div class="col-lg-2">
+                <img class="img-fluid" src="../image/7.jpg" alt="1.jpg">
+            </div>
+            <div class="col-lg-2">
+                <img class="img-fluid" src="../image/4.jpg" alt="1.jpg">
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container mb-5">
+        <div class="swiper-custom">
+          <!-- Slider main container -->
+          <div class="swiper mySwiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper" id="imageUrls">
+              <!-- Slides -->
+              <div class="swiper-slide img-fluid">
+                <img src="/image/1.jpg" alt="1.jpg" style="height: 150px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/2.jpg" alt="1.jpg" style="height: 150px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/3.jpg" alt="1.jpg" style="height: 150px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/4.jpg" alt="1.jpg" style="height: 150px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/5.jpg" alt="1.jpg" style="height: 150px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/6.jpg" alt="1.jpg" style="height: 150px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/7.jpg" alt="1.jpg" style="height: 150px;">
+              </div>
+              <div class="swiper-slide img-fluid">
+                <img src="/image/8.jpg" alt="1.jpg" style="height: 150px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <!-- footer navigation section -->
+    <footer>
+        <div class="py-6 border-top">
+            <div class="container py-4">
+                <div class="row justify-content-evenly">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="fw-bold text-uppercase fs-4">sunergy</div>
+                        <p>Welcome to Sunergy, a sustainable energy company committed to providing 
+                        reliable and affordable solar energy solutions to our clients.
+                        </p>
+                        <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="https://www.youtube.com/" class="text-para" title="YouTube"><i class="fab fa-youtube" style='font-size:24px'></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/" class="text-para" title="Twitter"><i class="fab fa-twitter" style='font-size:24px'></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/" class="text-para" title="Facebook"><i class="fab fa-facebook" style='font-size:24px'></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/" class="text-para" title="Instagram"><i class="fab fa-instagram" style='font-size:24px'></i></a>
+                        </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <h6 class="text-uppercase mb-3">Mailing List</h6>
+                        <p class="mb-3">Sign up to our mailing list to get the latest updates about our new products and promotions.</p>
+                        <form action="#" id="input-group mb-3">
+                        <div class="input-group mb-3">
+                            <input type="email" placeholder="Email Address" aria-label="Email Address" class="form-control">
+                            <button class="btn btn-outline-dark" type="submit"><i class="fa fa-paper-plane text-lg"></i></button>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-heading mb-3">Company</h6>
+                        <ul class="list-unstyled">
+                        <li><a href="/html/project.html" class="text-para text-uppercase text-black">Project</a></li>
+                        <li><a href="/html/service.html" class="text-para text-uppercase text-black">Services</a></li>
+                        <li><a href="/html/news.html" class="text-para text-uppercase text-black">News</a></li>
+                        <li><a href="/html/aboutUs.html" class="text-para text-uppercase text-black">About</a></li>
+                        <li><a href="/html/contact.html" class="text-para text-uppercase text-black">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-4 border-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col text-md-start">
+                        <p class="text-sm text-center mb-md-0">&copy; 2023 Sunergy Sdn. Bhd. Privacy Policy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- swiper js cdn  -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="/js/swiper.js"></script>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script src="/js/project.js"></script>
+</html>
