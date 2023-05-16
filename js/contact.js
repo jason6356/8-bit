@@ -37,6 +37,8 @@ var database = firebase.database();
 
 const form = document.querySelector('form');
 
+let inboxCount = 0;
+
 form.addEventListener('submit', (event) => {
   // prevent the default form submission behavior
   event.preventDefault();
@@ -65,43 +67,81 @@ form.addEventListener('submit', (event) => {
     message: messageInput
   };
 
-  // add the reservation data to the "Reservation" collection in the database
-  database.ref('ContactMessage').push(newContact)
-    .then(() => {
+    // Add the user's information to the Realtime Database
+    generateId().then(function (inboxId) {
+      console.log("Generated new inbox ID:", inboxId);
 
-      // Initialize service id and template id from EmailJS
-      const serviceID = "service_hq3f5m4";
+      // add the reservation data to the "Reservation" collection in the database
+      database.ref('ContactMessage/' + inboxId).set(newContact)
+      .then(() => {
 
-      const templateID = "template_49a106z";
+        // Initialize service id and template id from EmailJS
+        const serviceID = "service_hq3f5m4";
 
-      // Declare template input id
-      var params = {
-        nameInput: document.getElementById("name").value,
-        companyNameInput: document.getElementById("companyName").value,
-        emailInput: document.getElementById("email").value,
-        phoneInput: document.getElementById("phone").value,
-        serviceInput: document.getElementById("service").value,
-        messageInput: document.getElementById("message").value,
-      };
+        const templateID = "template_49a106z";
 
-      // Send message
-      emailjs.send(serviceID, templateID, params)
-        .then(function (response) {
-          console.log('SUCCESS!', response.status, response.text);
-          // alert("Confirmation email sent! Check your email.");
-        }, function (error) {
-          console.log('FAILED...', error);
-          alert("Failed to send confirmation email....");
-        });
+        // Declare template input id
+        var params = {
+          nameInput: document.getElementById("name").value,
+          companyNameInput: document.getElementById("companyName").value,
+          emailInput: document.getElementById("email").value,
+          phoneInput: document.getElementById("phone").value,
+          serviceInput: document.getElementById("service").value,
+          messageInput: document.getElementById("message").value,
+        };
 
-      // reset the form
-      form.reset();
-      console.log('Message send successfully!');
-      alert('Message Sent!');
-      location.reload();
-    })
-    .catch((error) => {
-      console.error('Error adding message: ', error);
+        // Send message
+        emailjs.send(serviceID, templateID, params)
+          .then(function (response) {
+            console.log('SUCCESS!', response.status, response.text);
+            // alert("Confirmation email sent! Check your email.");
+          }, function (error) {
+            console.log('FAILED...', error);
+            alert("Failed to send confirmation email....");
+          });
+
+        // reset the form
+        form.reset();
+        console.log('Message send successfully!');
+        alert('Message Sent!');
+        location.reload();
+      })
+      .catch((error) => {
+        console.error('Error adding message: ', error);
+      });
+      
+
+    }).catch(function (error) {
+        console.log("Error generating new inbox ID:", error);
     });
 
 });
+
+function generateId() {
+  return new Promise(function (resolve, reject) {
+      var ref = firebase.database().ref("ContactMessage");
+
+      ref.once("value")
+          .then(function (dataSnapshot) {
+              var lastSequenceNumber = 0;
+              dataSnapshot.forEach(function (transactionSnapshot) {
+                  var projectID = transactionSnapshot.key;
+                  if (projectID != null && projectID.startsWith("A")) {
+                      var sequenceNumber = parseInt(projectID.substring(1));
+                      if (!isNaN(sequenceNumber) && sequenceNumber > lastSequenceNumber) {
+                          lastSequenceNumber = sequenceNumber;
+                      }
+                  }
+              });
+              var nextSequenceNumber = lastSequenceNumber + 1;
+              var paddedSequenceNumber = String(nextSequenceNumber).padStart(5, "0");
+              let newProjectId = "A" + paddedSequenceNumber;
+              resolve(newProjectId);
+          })
+          .catch(function (error) {
+              // Handle error
+              console.log(error);
+              reject(error);
+          });
+  });
+}
