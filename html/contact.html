@@ -20,6 +20,14 @@
     <!-- bootstrap saas file -->
     <link rel="stylesheet" href="/src/main.css">
 
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function(){
+          emailjs.init("aaFWCUh-_oYWc0OH6");
+      })();
+    </script>
 </head>
 <body>
     <div class="container">
@@ -82,7 +90,7 @@
                 <div class="col">
                   <div class="mb-3">
                     <label for="name" class="form-label">Company Name</label>
-                    <input type="text" class="form-control" id="name" required />
+                    <input type="text" class="form-control" id="companyName" required />
                   </div>
                 </div>
               </div>
@@ -130,9 +138,11 @@
                 </div>
               </div>
               <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-primary text-white align">
-                  Submit
-                </button>
+                <form>
+                  <button type="submit" class="btn btn-primary text-white align">
+                    Submit
+                  </button>
+                </form>
               </div>
             </form>
           </div>
@@ -201,6 +211,13 @@
         </div>
 
     </footer>
-    <script src="/js/contact.js"></script>
+    
 </body>
+<!-- firebase js  -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<!-- local js  -->
+<script src="/js/contact.js"></script>
+
 </html>
