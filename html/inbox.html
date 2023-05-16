@@ -83,90 +83,98 @@
                 </div>
             </div>
 
-            <!-- Edit Modal -->
+            <!-- View Inbox Details Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Project</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">View Inbox Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Company Name</label>
-                                        <input type="text" class="form-control" id="companyName" placeholder="" name="companyName">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Company Caption</label>
-                                        <textarea class="form-control" id="companyCaption" rows="3" name="companyCaption"></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 col-lg-4 col-md-4">
-                                            <div class="mb-3">
-                                                <label for="numberOfPax" class="form-label"
-                                                  >Generation</label
-                                                >
-                                                <input
-                                                  class="form-control"
-                                                  type="number"
-                                                  id="generation"
-                                                  min="1"
-                                                  name="generation"
-                                                  placeholder="0"
-                                                  required
-                                                />
+                                <div class="col-12 col-lg-6 col-md-12">
+                                    <fieldset disabled>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Customer Name</label>
+                                            <input type="text" class="form-control" id="companyName" placeholder="" name="companyName">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Company Name</label>
+                                            <input type="text" class="form-control" id="companyName" placeholder="" name="companyName">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Email Address</label>
+                                            <input type="email" class="form-control" id="phpne" name="phone">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="mb-3">
+                                                  <label for="phone" class="form-label">Phone Number</label>
+                                                  <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon2">+6</span>
+                                                    <input type="tel" class="form-control" id="phone" placeholder="0123456789" pattern="01[0-9]{1}[0-9]{7}" required/>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="numberOfPax" class="form-label"
+                                                      >Date</label
+                                                    >
+                                                    <input
+                                                      class="form-control"
+                                                      type="date"
+                                                      required
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-6 col-lg-4 col-md-4">
-                                            <div class="mb-3">
-                                                <label for="numberOfPax" class="form-label"
-                                                  >Tree Planted</label
-                                                >
-                                                <input
-                                                  class="form-control"
-                                                  type="number"
-                                                  id="treesPlanted"
-                                                  min="1"
-                                                  name="treesPlanted"
-                                                  placeholder="0"
-                                                  required
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-lg-4 col-md-4">
-                                            <div class="mb-3">
-                                                <label for="numberOfPax" class="form-label"
-                                                  >CO2 Offset</label
-                                                >
-                                                <input
-                                                  class="form-control"
-                                                  type="number"
-                                                  id="CO2Offset"
-                                                  min="1"
-                                                  name="CO2Offset"
-                                                  placeholder="0"
-                                                  required
-                                                />
-                                            </div>
-                                        </div>
-                                      </div>
+                                    </fieldset>
                                 </div>
-                                <div class="col">
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                            <textarea class="form-control" id="description" name="description" rows="6"></textarea>
+                                <div class="col-12 col-lg-6 col-md-12">
+                                    <div class="row">
+                                        <fieldset disabled>
+                                            <div class="col-12 mb-3">
+                                                <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                                                <textarea class="form-control" id="description" name="description" rows="8"></textarea>
+                                            </div>
+                                        </fieldset>
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <fieldset disabled>
+                                                <div class="mb-3">
+                                                    <label for="service" class="form-label">Service Type</label>
+                                                    <select
+                                                      class="form-select mb-3"
+                                                      name="service"
+                                                      required>
+                                                      <option value="Partnership" selected>Partnership</option>
+                                                      <option value="Invester">Invester</option>
+                                                      <option value="Supplier">Supplier</option>
+                                                      <option value="Others">Others</option>
+                                                    </select>
+                                                  </div>
+                                            </fieldset>
+
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Upload Photo</label>
-                                            <input type="file" class="form-control" id="projectImage1" name="projectImage1" placeholder="" multiple required>
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <div class="mb-3">
+                                              <label for="service" class="form-label">Status</label>
+                                              <select
+                                                class="form-select mb-3"
+                                                name="status"
+                                                id="status"
+                                                required>
+                                                <option value="Pending" selected>Pending</option>
+                                                <option value="Scheduled">Scheduled</option>
+                                                <option value="Cancel">Cancel</option>
+                                              </select>
+                                            </div>
                                         </div>
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -179,110 +187,13 @@
                 </div>
                 </div>
             </div>
-
-            <!-- add new modal  -->
-            <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Project</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Company Name</label>
-                                        <input type="text" class="form-control" id="companyName" placeholder="" name="companyName">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Company Caption</label>
-                                        <textarea class="form-control" id="companyCaption" rows="3" name="companyCaption"></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 col-lg-4 col-md-4">
-                                            <div class="mb-3">
-                                                <label for="numberOfPax" class="form-label"
-                                                  >Generation</label
-                                                >
-                                                <input
-                                                  class="form-control"
-                                                  type="number"
-                                                  id="generation"
-                                                  min="1"
-                                                  name="generation"
-                                                  placeholder="0"
-                                                  required
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-lg-4 col-md-4">
-                                            <div class="mb-3">
-                                                <label for="numberOfPax" class="form-label"
-                                                  >Tree Planted</label
-                                                >
-                                                <input
-                                                  class="form-control"
-                                                  type="number"
-                                                  id="treesPlanted"
-                                                  min="1"
-                                                  name="treesPlanted"
-                                                  placeholder="0"
-                                                  required
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-lg-4 col-md-4">
-                                            <div class="mb-3">
-                                                <label for="numberOfPax" class="form-label"
-                                                  >CO2 Offset</label
-                                                >
-                                                <input
-                                                  class="form-control"
-                                                  type="number"
-                                                  id="CO2Offset"
-                                                  min="1"
-                                                  name="CO2Offset"
-                                                  placeholder="0"
-                                                  required
-                                                />
-                                            </div>
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="col">
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                            <textarea class="form-control" id="description" name="description" rows="6"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Upload Photo</label>
-                                            <input type="file" class="form-control" id="projectImage" name="projectImage" placeholder="" multiple required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer" id="add">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info text-white">Submit</button>
-                    </div>
-                </div>
-                </div>
-            </div>
             
             <div class="col py-3 bg-secondary fw-light">
                 <div class="container-fluid-px-4">
                     <div class="row g-3 my-2 d-flex justify-content-center">
                         <div class="col-10 col-md-12 col-lg-12">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-7">
                                     <h3 class="fs-2 ms-5">Customer Inbox</h3>
                                 </div>
                                 <div class="col-4">
@@ -290,9 +201,6 @@
                                         <input type="search" class="form-control" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                         <button class="btn btn-outline-dark" type="button" id="button-addon1"><i class="fa fa-search"></i></button>
                                     </div>
-                                </div>
-                                <div class="col-2">
-                                    <button id="addAProject" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
                                 </div>
                             </div>
                             <div id="contactUs" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">

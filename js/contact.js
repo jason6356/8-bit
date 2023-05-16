@@ -1,37 +1,37 @@
 (function () {
-    'use strict'
+  'use strict'
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
 
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
 
-                form.classList.add('was-validated')
-            }, false)
-        })
+        form.classList.add('was-validated')
+      }, false)
+    })
 })()
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyAkj0H1ecGm41CEiyyWDxkC-WZ0B20ZADY",
-    authDomain: "sunergy-4b6d0.firebaseapp.com",
-    databaseURL: "https://sunergy-4b6d0-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "sunergy-4b6d0",
-    storageBucket: "sunergy-4b6d0.appspot.com",
-    messagingSenderId: "724597515303",
-    appId: "1:724597515303:web:6bddc00b7e17d7d3ee1a02",
-    measurementId: "G-KY5QTKQZPD"
+  apiKey: "AIzaSyAkj0H1ecGm41CEiyyWDxkC-WZ0B20ZADY",
+  authDomain: "sunergy-4b6d0.firebaseapp.com",
+  databaseURL: "https://sunergy-4b6d0-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "sunergy-4b6d0",
+  storageBucket: "sunergy-4b6d0.appspot.com",
+  messagingSenderId: "724597515303",
+  appId: "1:724597515303:web:6bddc00b7e17d7d3ee1a02",
+  measurementId: "G-KY5QTKQZPD"
 };
-  
+
 firebase.initializeApp(firebaseConfig);
-  
+
 // Get a reference to the database service
 var database = firebase.database();
 
@@ -50,6 +50,7 @@ form.addEventListener('submit', (event) => {
   const phoneInput = document.getElementById("phone").value;
   const emailInput = document.getElementById("email").value;
   const messageInput = document.getElementById("message").value;
+  const statusInput = "Pending";
 
   if (nameInput == "" || companyName == "" || serviceInput == "" || phoneInput == "" || emailInput == "" || messageInput == "") {
     alert('Please fill in all the details!');
@@ -64,15 +65,16 @@ form.addEventListener('submit', (event) => {
     service: serviceInput,
     phone: phoneInput,
     email: emailInput,
-    message: messageInput
+    message: messageInput,
+    status: statusInput,
   };
 
-    // Add the user's information to the Realtime Database
-    generateId().then(function (inboxId) {
-      console.log("Generated new inbox ID:", inboxId);
+  // Add the user's information to the Realtime Database
+  generateId().then(function (inboxId) {
+    console.log("Generated new inbox ID:", inboxId);
 
-      // add the reservation data to the "Reservation" collection in the database
-      database.ref('ContactMessage/' + inboxId).set(newContact)
+    // add the reservation data to the "Reservation" collection in the database
+    database.ref('ContactMessage/' + inboxId).set(newContact)
       .then(() => {
 
         // Initialize service id and template id from EmailJS
@@ -109,39 +111,39 @@ form.addEventListener('submit', (event) => {
       .catch((error) => {
         console.error('Error adding message: ', error);
       });
-      
 
-    }).catch(function (error) {
-        console.log("Error generating new inbox ID:", error);
-    });
+
+  }).catch(function (error) {
+    console.log("Error generating new inbox ID:", error);
+  });
 
 });
 
 function generateId() {
   return new Promise(function (resolve, reject) {
-      var ref = firebase.database().ref("ContactMessage");
+    var ref = firebase.database().ref("ContactMessage");
 
-      ref.once("value")
-          .then(function (dataSnapshot) {
-              var lastSequenceNumber = 0;
-              dataSnapshot.forEach(function (transactionSnapshot) {
-                  var projectID = transactionSnapshot.key;
-                  if (projectID != null && projectID.startsWith("A")) {
-                      var sequenceNumber = parseInt(projectID.substring(1));
-                      if (!isNaN(sequenceNumber) && sequenceNumber > lastSequenceNumber) {
-                          lastSequenceNumber = sequenceNumber;
-                      }
-                  }
-              });
-              var nextSequenceNumber = lastSequenceNumber + 1;
-              var paddedSequenceNumber = String(nextSequenceNumber).padStart(5, "0");
-              let newProjectId = "A" + paddedSequenceNumber;
-              resolve(newProjectId);
-          })
-          .catch(function (error) {
-              // Handle error
-              console.log(error);
-              reject(error);
-          });
+    ref.once("value")
+      .then(function (dataSnapshot) {
+        var lastSequenceNumber = 0;
+        dataSnapshot.forEach(function (transactionSnapshot) {
+          var projectID = transactionSnapshot.key;
+          if (projectID != null && projectID.startsWith("A")) {
+            var sequenceNumber = parseInt(projectID.substring(1));
+            if (!isNaN(sequenceNumber) && sequenceNumber > lastSequenceNumber) {
+              lastSequenceNumber = sequenceNumber;
+            }
+          }
+        });
+        var nextSequenceNumber = lastSequenceNumber + 1;
+        var paddedSequenceNumber = String(nextSequenceNumber).padStart(5, "0");
+        let newProjectId = "A" + paddedSequenceNumber;
+        resolve(newProjectId);
+      })
+      .catch(function (error) {
+        // Handle error
+        console.log(error);
+        reject(error);
+      });
   });
 }
