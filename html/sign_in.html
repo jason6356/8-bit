@@ -14,16 +14,16 @@
             <p class="welcome">Welcome !</h3>
             <p>
                 <span>Sign in to</span><br>
-                Lorem Ipsum is imply</p>
+                Sunergy</p>
             
             <div class="username">
                 <label for="uname"><b>Username</b></label><br>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <input type="text" id="uname" placeholder="Enter Username" name="uname" required>
             </div>
             <br>
             <div class="password">
                 <label for="psw"><b>Password</b></label><br>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input type="password" id="psw" placeholder="Enter Password" name="psw" required>
             </div>
             <br>
             <label>
@@ -34,7 +34,11 @@
             <div class="login-btn">
             <input type="submit" name="Login">
             </div>
-        </div>
+        </form>
     </div>
 </body>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="../js/firebase.js"></script>
+<script src="../js/login.js"></script>
 </html>

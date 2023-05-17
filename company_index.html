@@ -22,6 +22,7 @@
 
         <!-- chart  -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
     
         <title>Sunergy Sdn. Bhd.</title>
 </head>
@@ -81,7 +82,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <li><a class="dropdown-item" id="signout" href="#">Sign out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -150,5 +151,10 @@
         </div>
     </div>
     <script src="/js/dashboard.js"></script>
+    <!-- Session handling JS-->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/session.js"></script>
 </body>
 </html>
