@@ -1,6 +1,5 @@
- import firebase from './firebase.js'
 
-  const database = firebase.database();
+const database = firebase.database();
   
   // Display First 4 projects to index.html
   database.ref('Project').orderByKey().limitToFirst(4).once('value')
