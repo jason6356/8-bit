@@ -71,8 +71,8 @@
                     <hr>
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/image/leader1.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">Hii Puong Hou</span>
+                            <img id="iconImg" src="/image/leader1.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                            <span id="iconName" class="d-none d-sm-inline mx-1">Hii Puong Hou</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow fw-light">
                             <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -381,8 +381,10 @@
 <!-- firebase js  -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 <!-- local js  -->
 <script src="../js/firebase.js"></script>
+<script src="../js/session.js"></script>
 <script src="../js/news_manage.js"></script>
 </html>
