@@ -16,7 +16,7 @@ const database = firebase.database();
 const projectRef = firebase.database().ref('Project');
 
 // Display first 4 project to project.html
-database.ref('Project').orderByKey().limitToFirst(4).once('value')
+database.ref('Project').orderByKey().once('value')
   .then((snapshot) => {
     // Process the data here
 
@@ -79,14 +79,14 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
           let CO2Offset = snapshot.val().CO2Offset;
           let description = snapshot.val().description;
           let imgUrls = snapshot.val().snapshot.val().imageUrls;
-  
+
           document.getElementById("companyName").innerHTML = companyName;
           document.getElementById("companyCaption").innerHTML = companyCaption;
           document.getElementById("generation").innerHTML = generation;
           document.getElementById("tressPlanted").innerHTML = treesPlanted;
           document.getElementById("CO2Offset").innerHTML = CO2Offset;
           document.getElementById("description").innerHTML = description;
-          
+
         }))
       });
     });
