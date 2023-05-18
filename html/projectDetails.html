@@ -60,7 +60,7 @@
     <!--top image-->
     <div class="col-8 text-center mx-auto">
         <figure>
-            <img class="img-fluid rounded" src="/image/4.jpg" alt="pic">
+            <img class="img-fluid rounded" id="projectImage[0]" src="/image/4.jpg" alt="pic">
             <figcaption class="partner-com" id="companyName">Partner Company Name Sdn. Bhd.</figcaption>
             <figcaption class="cap fw-bold" id="companyCaption">The modern world and <br>people everywhere.</figcaption>
         </figure>
@@ -72,17 +72,17 @@
         <div class="col-1 d-none d-lg-block d-md-block"></div>
         <div class="col-10 col-lg col-md mb-3 text-center">
           <img class="img-fluid" src="/image/generation.png" alt="1.jpg">
-          <div class="mx-3 fs-2 fw-bold"> <span class="num" data-val="111929"></span></div>
+          <div class="mx-3 fs-2 fw-bold"> <span class="num" id="generation" data-val="111929"></span></div>
           <div class="mx-3">Generation (MWh)</div>
         </div>
         <div class="col-10 col-lg col-md mb-3 text-center">
           <img class="img-fluid" src="/image/trees-planted.png" alt="1.jpg">
-          <div class="mx-3 fs-2 fw-bold"><span class="num" data-val="1079086"></span></div>
+          <div class="mx-3 fs-2 fw-bold"><span class="num" id="treesPlanted" data-val="1079086"></span></div>
           <div class="mx-3">Trees Planted</div>
         </div>
         <div class="col-10 col-lg col-md mb-3 text-center">
           <img class="img-fluid" src="/image/co2-offset.png" alt="1.jpg">
-          <div class="mx-3 fs-2 fw-bold"><span class="num" data-val="64771"></span></div>
+          <div class="mx-3 fs-2 fw-bold"><span class="num" id="CO2Offset" data-val="64771"></span></div>
           <div class="mx-3">CO2 Offset (tonnes)</div>
         </div>
         <div class="col-1 d-none d-lg-block d-md-block"></div>
@@ -138,6 +138,8 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper" id="imageUrls">
               <!-- Slides -->
+
+              <!--
               <div class="swiper-slide img-fluid">
                 <img src="/image/1.jpg" alt="1.jpg" style="height: 150px;">
               </div>
@@ -162,6 +164,8 @@
               <div class="swiper-slide img-fluid">
                 <img src="/image/8.jpg" alt="1.jpg" style="height: 150px;">
               </div>
+              -->
+
             </div>
           </div>
         </div>
@@ -236,7 +240,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-<script src="/js/project.js"></script>
 <script src="/js/counter.js"></script>
+<script src="/js/projectDetails.js"></script>
 <script src="/js/visitor_counter.js"></script>
 </html>
