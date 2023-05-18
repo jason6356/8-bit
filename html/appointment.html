@@ -105,6 +105,7 @@
                                         <input
                                           class="form-control"
                                           type="date"
+                                          id="appointmentDate"
                                           required
                                         />
                                     </div>
@@ -117,6 +118,7 @@
                                         <input
                                           class="form-control"
                                           type="time"
+                                          id="appointmentTime"
                                           required
                                         />
                                     </div>
@@ -124,11 +126,11 @@
                             <div class="row">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Customer Name</label>
-                                    <input type="text" class="form-control" id="customerName" name="customerName">
+                                    <input type="text" class="form-control" id="custName" name="customerName">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phpne" name="phone">
+                                    <input type="tel" class="form-control" id="custPhone" name="phone">
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="mb-3">
@@ -136,7 +138,7 @@
                                       <select
                                         class="form-select mb-3"
                                         name="service"
-                                        id="service"
+                                        id="serviceType"
                                         required>
                                         <option value="Partnership" selected>Partnership</option>
                                         <option value="Invester">Invester</option>
@@ -150,8 +152,10 @@
                     </div>
                 </div>
                 <div class="modal-footer" id="add">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-info text-white">Submit</button>
+                    <form>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info text-white">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -175,7 +179,8 @@
                             <button id="addAAppoinment" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
                         </div>
                     </div>
-                    <div id="User" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
+
+                    <div id="appointment" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
                         <table class="table">
                             <thead class="bg-info text-white">
                               <tr>
@@ -192,21 +197,21 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td>1.</th>
-                                <td>A00001</td>
-                                <td>02-02-2023</td>
-                                <td>18.30</td>
-                                <td>Cust 10</td>
-                                <td>012 234-2434</td>
-                                <td>Partnership</td>
-                                <td>Scheduled</td>
-                                <td>01-01-2023</td>
-                                <td>
-                                    <button class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                                    <button class="btn btn-outline-danger">Delete</button>
-                                </td>
-                              </tr>
+                                <tr>
+                                    <td>1.</th>
+                                    <td>A00001</td>
+                                    <td>02-02-2023</td>
+                                    <td>18.30</td>
+                                    <td>Cust 10</td>
+                                    <td>012 234-2434</td>
+                                    <td>Partnership</td>
+                                    <td>Scheduled</td>
+                                    <td>01-01-2023</td>
+                                    <td>
+                                        <button class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                                        <button class="btn btn-outline-danger">Delete</button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -220,6 +225,9 @@
     <!-- Session handling JS-->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="../js/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script src="../js/appointment.js"></script>
+    <!--<script src="../js/firebase.js"></script>-->
     <script src="../js/session.js"></script>
 </html>
