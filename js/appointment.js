@@ -125,6 +125,7 @@ appointmentRef.on('value', (snapshot) => {
                 document.getElementById("custName1").value = snapshot.val().custName;
                 document.getElementById("custPhone1").value = snapshot.val().custPhone;
                 document.getElementById("serviceType1").value = snapshot.val().serviceType;
+                document.getElementById("status").value = snapshot.val().appointmentStatus;
             }))
 
             saveChanges.addEventListener("submit", (event) => {
@@ -134,7 +135,7 @@ appointmentRef.on('value', (snapshot) => {
 
                 // Update form without uploading new photos
                 appointmentRef.child(appointmentId).update({
-                    status: document.getElementById("status").value,
+                    appointmentStatus: document.getElementById("status").value,
                 }).then((onFullFilled) => {
                     alert("Status Updated");
                     console.log('Status Updated');
