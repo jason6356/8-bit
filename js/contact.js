@@ -140,7 +140,7 @@ function generateId() {
         var lastSequenceNumber = 0;
         dataSnapshot.forEach(function (transactionSnapshot) {
           var projectID = transactionSnapshot.key;
-          if (projectID != null && projectID.startsWith("A")) {
+          if (projectID != null && projectID.startsWith("M")) {
             var sequenceNumber = parseInt(projectID.substring(1));
             if (!isNaN(sequenceNumber) && sequenceNumber > lastSequenceNumber) {
               lastSequenceNumber = sequenceNumber;
