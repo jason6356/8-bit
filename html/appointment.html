@@ -86,141 +86,216 @@
                 </div>
             </div>
 
-    <!-- add new modal  -->
-    <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Add New Appointment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                                <div class="col-12 col-lg-4 col-md-4">
-                                    <div class="mb-3">
-                                        <label for="numberOfPax" class="form-label"
-                                          >Date</label
-                                        >
-                                        <input
-                                          class="form-control"
-                                          type="date"
-                                          id="appointmentDate"
-                                          required
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-4 col-md-4">
-                                    <div class="mb-3">
-                                        <label for="numberOfPax" class="form-label"
-                                          >Time</label
-                                        >
-                                        <input
-                                          class="form-control"
-                                          type="time"
-                                          id="appointmentTime"
-                                          required
-                                        />
-                                    </div>
-                                </div>
-                            <div class="row">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Customer Name</label>
-                                    <input type="text" class="form-control" id="custName" name="customerName">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="custPhone" name="phone">
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <div class="mb-3">
-                                      <label for="service" class="form-label">Service Type</label>
-                                      <select
-                                        class="form-select mb-3"
-                                        name="service"
-                                        id="serviceType"
-                                        required>
-                                        <option value="Partnership" selected>Partnership</option>
-                                        <option value="Invester">Invester</option>
-                                        <option value="Supplier">Supplier</option>
-                                        <option value="Others">Others</option>
-                                      </select>
+            <!-- Edit Modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Project</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                        <div class="col-12 col-lg-4 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="numberOfPax" class="form-label"
+                                                >Date</label
+                                                >
+                                                <input
+                                                class="form-control"
+                                                type="date"
+                                                id="appointmentDate"
+                                                required
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-4 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="numberOfPax" class="form-label"
+                                                >Time</label
+                                                >
+                                                <input
+                                                class="form-control"
+                                                type="time"
+                                                id="appointmentTime"
+                                                required
+                                                />
+                                            </div>
+                                        </div>
+                                    <div class="row">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Customer Name</label>
+                                            <input type="text" class="form-control" id="custName" name="customerName">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" id="custPhone" name="phone">
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <div class="mb-3">
+                                            <label for="service" class="form-label">Service Type</label>
+                                            <select
+                                                class="form-select mb-3"
+                                                name="service"
+                                                id="serviceType"
+                                                required>
+                                                <option value="Partnership" selected>Partnership</option>
+                                                <option value="Invester">Invester</option>
+                                                <option value="Supplier">Supplier</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer" id="edit">
+                            <form>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" id="update-button" name="update-button" class="updatebtn btn btn-info text-white">Save changes</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer" id="add">
-                    <form>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info text-white">Submit</button>
-                    </form>
+            </div>
+
+            <!-- add new modal  -->
+            <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">Add New Appointment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                        <div class="col-12 col-lg-4 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="numberOfPax" class="form-label"
+                                                >Date</label
+                                                >
+                                                <input
+                                                class="form-control"
+                                                type="date"
+                                                id="appointmentDate"
+                                                required
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-4 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="numberOfPax" class="form-label"
+                                                >Time</label
+                                                >
+                                                <input
+                                                class="form-control"
+                                                type="time"
+                                                id="appointmentTime"
+                                                required
+                                                />
+                                            </div>
+                                        </div>
+                                    <div class="row">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Customer Name</label>
+                                            <input type="text" class="form-control" id="custName" name="customerName">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" id="custPhone" name="phone">
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <div class="mb-3">
+                                            <label for="service" class="form-label">Service Type</label>
+                                            <select
+                                                class="form-select mb-3"
+                                                name="service"
+                                                id="serviceType"
+                                                required>
+                                                <option value="Partnership" selected>Partnership</option>
+                                                <option value="Invester">Invester</option>
+                                                <option value="Supplier">Supplier</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" id="add">
+                            <form>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-info text-white">Submit</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="col py-3 bg-secondary fw-light">
+                <div class="container-fluid-px-4">
+                    <div class="row g-3 my-2 d-flex justify-content-center">
+                        <div class="col-10 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3 class="fs-2 ms-5">Appointment</h3>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <input type="search" class="form-control" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                        <button class="btn btn-outline-dark" type="button" id="button-addon1"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button id="addAAppoinment" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
+                                </div>
+                            </div>
+
+                            <div id="appointment" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
+                                <table class="table">
+                                    <thead class="bg-info text-white">
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Appointment ID</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Customer Name</th>
+                                        <th scope="col">Phone No.</th>
+                                        <th scope="col">Service Type</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Created Date</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</th>
+                                            <td>A00001</td>
+                                            <td>02-02-2023</td>
+                                            <td>18.30</td>
+                                            <td>Cust 10</td>
+                                            <td>012 234-2434</td>
+                                            <td>Partnership</td>
+                                            <td>Scheduled</td>
+                                            <td>01-01-2023</td>
+                                            <td>
+                                                <button class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                                                <button class="btn btn-outline-danger">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
             </div>
         </div>
     </div>
-
-    <div class="col py-3 bg-secondary fw-light">
-        <div class="container-fluid-px-4">
-            <div class="row g-3 my-2 d-flex justify-content-center">
-                <div class="col-10 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-6">
-                            <h3 class="fs-2 ms-5">Appointment</h3>
-                        </div>
-                        <div class="col-4">
-                            <div class="input-group mb-3">
-                                <input type="search" class="form-control" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                <button class="btn btn-outline-dark" type="button" id="button-addon1"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <button id="addAAppoinment" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
-                        </div>
-                    </div>
-
-                    <div id="appointment" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
-                        <table class="table">
-                            <thead class="bg-info text-white">
-                              <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Appointment ID</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Phone No.</th>
-                                <th scope="col">Service Type</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Created Date</th>
-                                <th scope="col">Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1.</th>
-                                    <td>A00001</td>
-                                    <td>02-02-2023</td>
-                                    <td>18.30</td>
-                                    <td>Cust 10</td>
-                                    <td>012 234-2434</td>
-                                    <td>Partnership</td>
-                                    <td>Scheduled</td>
-                                    <td>01-01-2023</td>
-                                    <td>
-                                        <button class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                                        <button class="btn btn-outline-danger">Delete</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>   
-    </div>
-    </div>
-</div>
 </body>
     <!-- Session handling JS-->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
