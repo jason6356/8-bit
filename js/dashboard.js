@@ -33,34 +33,66 @@ new Chart("bar", {
 });
 
 
-var xValues = ["1", "2", "3", "4", "5"];
-var yValues = [55, 49, 44, 24, 15];
-var barColors = "#AEC2B6";
+//-------------------------------------------------------------------------------------------------------------------------------------
 
-var chDonutData = {
-    labels: ['Feedback', 'Complaint', 'Other'],
-    datasets: [
-        {
-            backgroundColor: colors.slice(0, 3),
-            borderWidth: 0,
-            data: [74, 11, 40]
-        }
-    ]
-};
+//Service Types Doughnut chart
 
-var donutOptions = {
-    cutoutPercentage: 85,
-    legend: { position: 'bottom', padding: 5, labels: { pointStyle: 'circle', usePointStyle: true } }
-};
+// Function to count the service types
+function countServiceTypes() {
+    var messagesRef = database.ref('ContactMessage');
+    messagesRef.once('value', function (snapshot) {
+        var serviceCounts = {
+            Feedback: 0,
+            Investor: 0,
+            Supplier: 0,
+            Partnership: 0,
+            Others: 0
+        };
 
-new Chart("doughnut", {
-    type: "doughnut",
-    data: chDonutData,
-    options: {
-        title: {
-            display: true,
-            text: "Sunergy Doughnut chart"
+        snapshot.forEach(function (childSnapshot) {
+            var message = childSnapshot.val();
+            var service = message.service;
+            if (serviceCounts.hasOwnProperty(service)) {
+                serviceCounts[service]++;
+            }
+        });
+        console.log(serviceCounts);
+        updateDoughnutChart(serviceCounts);
+    });
+}
+
+// Function to update the doughnut chart
+function updateDoughnutChart(serviceCounts) {
+    var doughnutData = Object.values(serviceCounts);
+
+    var ctx = document.getElementById('doughnutChart');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: Object.keys(serviceCounts),
+            datasets: [{
+                data: doughnutData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)'
+                ],
+            }]
         },
-        donutOptions
-    }
-});
+        options: {
+            title: {
+                display: true,
+                text: "Inbox Service Types Doughnut chart"
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+}
+
+// Call the function to count the service types
+window.onload = function () {
+    countServiceTypes();
+};
