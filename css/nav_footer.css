@@ -64,3 +64,7 @@
     background-color: #6ECB63;
     border-color: #6ECB63;
 }
+
+.loadingSpinner {
+    display: none;
+}
