@@ -88,6 +88,7 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
                             description: description,
                             imageUrls: imageUrls
                         }).then(function () {
+                            loadingSpinnerContainer.style.display = 'none';
                             alert("Project Created!");
                             console.log("Project Created!");
                             location.reload();
@@ -259,26 +260,29 @@ projectRef.on('value', (snapshot) => {
         deleteBtn.addEventListener("click", () => {
             let projectId = deleteBtn.parentElement.parentElement.dataset.id;
 
-            projectRef.child(projectId).get().then((snapshot => {
-                //console.log(snapshot.val());
+            // Display a confirmation message
+            const confirmation = confirm("Are you sure you want to delete this project?");
 
-                let projectPhotoURL = snapshot.val().imageUrls;
+            if (confirmation) {
+                // Delete the project and photo
+                projectRef.child(projectId).get().then((snapshot) => {
+                    let projectPhotoURL = snapshot.val().imageUrls[0];
+                    const photoRef = firebase.storage().refFromURL(projectPhotoURL);
+                    photoRef.delete().then(() => {
+                        console.log('Photo Deleted');
+                    }).catch((error) => {
+                        console.log('Error deleting photo:', error);
+                    });
 
-                const photoRef = firebase.storage().refFromURL(projectPhotoURL);
-
-                photoRef.delete();
-
-                console.log('Photo Deleted');
-            }))
-
-
-
-            projectRef.child(projectId).remove().then(() => {
-                // alert("Deleted");
-                console.log('Project Deleted');
-                alert('Project Deleted');
-                location.reload();
-            });
+                    projectRef.child(projectId).remove().then(() => {
+                        console.log('Project Deleted');
+                        alert('Project Deleted');
+                        location.reload();
+                    }).catch((error) => {
+                        console.log('Error deleting project:', error);
+                    });
+                });
+            }
         });
     });
 
