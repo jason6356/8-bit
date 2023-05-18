@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.2.3",
+    "natural": "^6.3.0",
+    "natural-brain": "^0.3.2",
+    "sentiment": "^5.0.2"
   }
 }
