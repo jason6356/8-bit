@@ -60,7 +60,19 @@
     <!--top image-->
     <div class="col-8 text-center mx-auto">
         <figure>
-            <img class="img-fluid rounded" src="/image/4.jpg" alt="pic">
+            <div class="loadingSpinner mb-5 pb-5 my-5">
+              <strong>Loading</strong><br>
+              <div class="spinner-grow spinner-grow-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <div class="spinner-grow spinner-grow-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <div class="spinner-grow spinner-grow-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <img class="img-fluid rounded" id="newsImage[0]" src=".." alt="pic">
             <figcaption class="partner-com" id="newsTitle">Partner Company Name Sdn. Bhd.</figcaption>
             <figcaption class="cap fw-bold" id="newsDescription">The modern world and <br>people everywhere.</figcaption>
         </figure>
@@ -69,10 +81,10 @@
     <!--about project-->
     <div class="container-lg my-5 py-5 align-items-center">
         <div class="row justify-content-center align-items-center">
-            <div class="col-10 col-md-8 col-lg-8 fs-2 fw-bold">NEWS TITLE</div>
-            <div class="col-10 col-md-2 col-lg-2 text-lg-end text-md-end"><p><small class="text-muted">March 18, 2023</small></p></div>
+            <div class="col-10 col-md-8 col-lg-8 fs-2 fw-bold" id="newsTitle1">NEWS TITLE</div>
+            <div class="col-10 col-md-2 col-lg-2 text-lg-end text-md-end"><p><small class="text-muted" id="newsDate">March 18, 2023</small></p></div>
             
-            <div class="col-10 fs-5 fw-light" style="text-align: justify;" id="description">
+            <div class="col-10 fs-5 fw-light" style="text-align: justify;" id="newsArticle">
                 With our extensive expertise offering bespoke carbon neutral technologies & financing solutions in the region, SUNERGY stands at the forefront in providing green energy solutions to meet your renewable energy goals. We help every client find the best approach to save money and the planet.
             </div>
         </div>
@@ -110,8 +122,10 @@
           <!-- Slider main container -->
           <div class="swiper mySwiper">
             <!-- Additional required wrapper -->
-            <div class="swiper-wrapper" id="imageUrls">
+            <div class="swiper-wrapper" id="newsImageUrls">
               <!-- Slides -->
+
+              <!--
               <div class="swiper-slide img-fluid">
                 <img src="/image/1.jpg" alt="1.jpg" style="height: 150px;">
               </div>
@@ -136,6 +150,7 @@
               <div class="swiper-slide img-fluid">
                 <img src="/image/8.jpg" alt="1.jpg" style="height: 150px;">
               </div>
+              -->
             </div>
           </div>
         </div>
@@ -211,6 +226,6 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-<script src="/js/project.js"></script>
+<script src="../js/newsDetails.js"></script>
 <script src="/js/visitor_counter.js"></script>
 </html>

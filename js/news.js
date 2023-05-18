@@ -63,6 +63,7 @@ const firebaseConfig = {
     newsButton.forEach(newsBtn => {
       newsBtn.addEventListener("click", () => {
         const newsId = newsBtn.parentElement.parentElement.parentElement.parentElement.parentElement.dataset.id;
+
         window.location.href = 'newsDetails.html?newsId=' + newsId;
       });
     });
