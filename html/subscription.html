@@ -94,62 +94,47 @@
             
             <div class="col py-3 bg-secondary">
                 <div class="container-fluid-px-4">
-                    <h3 class="fs-2 ms-5 text-black">Dashboard</h3>
-                    <div class="row g-3 my-2 d-flex justify-content-center">
-                        <div class="col-10 col-md-12 col-lg-10">
-                            <div class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded">
-                                <img id="profileImg" src="/image/leader1.png" alt="hugenerd" width="100" height="100" class="rounded-circle ms-5">
-                                <h3 id="username" class="fs-4 ms-5 text-black">Hello, Hii Puong Hou</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 my-2 d-flex justify-content-center">
-                        <div class="col-10 col-md-4 col-lg-3">
-                            <div class="p-3 bg-white shadow-sm d-flex justify-content-evenly align-items-center rounded">
-                                <i id="visitor" class="fa-solid fa-users text-white rounded-circle fs-1 p-3"></i>
-                                <div>
-                                    <h3 class="fs-2 text-black"><span id="visitorCount">1234</span></h3>
-                                    <p class="text-gray">Visitors</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-10 col-md-4 col-lg-3">
-                            <div class="p-3 bg-white shadow-sm d-flex justify-content-evenly align-items-center rounded">
-                                <i class="fa-solid fa-city bg-primary rounded-circle text-white fs-1 p-3"></i>
-                                <div>
-                                    <h3 class="fs-2 text-black"><span id="projectCount">1234</span></h3>
-                                    <p class="text-gray">Projects</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-10 col-md-4 col-lg-4">
-                            <div class="p-3 bg-white shadow-sm d-flex justify-content-evenly align-items-center rounded">
-                                <i class="fa-solid fa-envelope text-white bg-warning rounded-circle fs-1 p-3"></i>
-                                <div>
-                                    <h3 class="fs-2 text-black"><span id="feedbackCount">1234</span></h3>
-                                    <p class="text-gray">Feedbacks</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="fs-2 ms-5 text-black">Send Subscription</h3>
                 </div>
-                <div class="container-fluid-px-4">
-                    <div class="row my-2 g-3 d-flex justify-content-center">
-                        <div class="col-10 col-lg-5 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <canvas id="bar"></canvas>
+                <div class="container mt-5">
+                    <div class="row justify-content-evenly align-items-center">
+                        <div class="col-10 mt-5 mt-lg-0">
+                          <form class="needs-validation" novalidate>
+                            <!-- title  -->
+                            <div class="row">
+                              <div class="col">
+                                <div class="mb-3">
+                                  <label for="subscriptionTitle" class="form-label">Subscription Title</label>
+                                  <input type="text" class="form-control" id="subscriptionTitle" required />
+                                </div>
+                              </div>
+                            </div>
+              
+                            <!-- message  -->
+                            <div class="row">
+                              <div class="col">
+                                <div class="mb-3">
+                                  <label for="subscriptionMessage" class="form-label">Message</label>
+                                  <textarea class="form-control" id="subscriptionMessage" rows="3" required></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="subscriptionFiles" class="form-label">Upload Photos/Files</label>
+                                    <input type="file" class="form-control" id="subscriptionFiles" name="subscriptionFiles" placeholder="" multiple>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-10 col-lg-5 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <canvas id="doughnutChart"></canvas>
-                                </div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                              <form>
+                                <button type="submit" class="btn btn-info text-white align">
+                                  Send
+                                </button>
+                              </form>
                             </div>
+                          </form>
                         </div>
-                    </div>
+                      </div>
                 </div>
             </div>
         </div>

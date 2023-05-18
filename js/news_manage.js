@@ -29,7 +29,7 @@ function createProject(newsTitle, newsDescription, newsDate, postedDate, postedT
         return;
     }
 
-    
+
     if (!dateRegex.test(postedDate)) {
         console.log('Error: PostedDate must be a formatted date');
         return;
@@ -252,26 +252,29 @@ NewsRef.on('value', (snapshot) => {
         deleteBtn.addEventListener("click", () => {
             let newsId = deleteBtn.parentElement.parentElement.dataset.id;
 
-            NewsRef.child(newsId).get().then((snapshot => {
-                //console.log(snapshot.val());
+            // Display a confirmation message
+            const confirmation = confirm("Are you sure you want to delete this news?");
 
-                let newsPhotoURL = snapshot.val().newsImageUrls;
+            if (confirmation) {
+                // Delete the news and photo
+                NewsRef.child(newsId).get().then((snapshot) => {
+                    let newsPhotoURL = snapshot.val().newsImageUrls[0];
+                    const photoRef = firebase.storage().refFromURL(newsPhotoURL);
+                    photoRef.delete().then(() => {
+                        console.log('Photo Deleted');
+                    }).catch((error) => {
+                        console.log('Error deleting photo:', error);
+                    });
 
-                const photoRef = firebase.storage().refFromURL(newsPhotoURL);
-
-                photoRef.delete();
-
-                console.log('Photo Deleted');
-            }))
-
-
-
-            NewsRef.child(newsId).remove().then(() => {
-                // alert("Deleted");
-                console.log('Project Deleted');
-                alert('Project Deleted');
-                location.reload();
-            });
+                    NewsRef.child(newsId).remove().then(() => {
+                        console.log('News Deleted');
+                        alert('News Deleted');
+                        location.reload();
+                    }).catch((error) => {
+                        console.log('Error deleting news:', error);
+                    });
+                });
+            }
         });
     });
 

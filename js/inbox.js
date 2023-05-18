@@ -72,7 +72,7 @@ inboxRef.on('value', (snapshot) => {
                 }, (onRejected) => {
                     console.log(onRejected);
                 });
-                
+
             })
 
 
@@ -85,12 +85,19 @@ inboxRef.on('value', (snapshot) => {
         deleteBtn.addEventListener("click", () => {
             let inboxId = deleteBtn.parentElement.parentElement.dataset.id;
 
-            inboxRef.child(inboxId).remove().then(() => {
-                // alert("Deleted");
-                console.log('Inbox Deleted');
-                alert('Inbox Deleted');
-                location.reload();
-            });
+            // Display a confirmation message
+            const confirmation = confirm("Are you sure you want to delete this inbox?");
+
+            if (confirmation) {
+                // Delete the inbox
+                inboxRef.child(inboxId).remove().then(() => {
+                    console.log('Inbox Deleted');
+                    alert('Inbox Deleted');
+                    location.reload();
+                }).catch((error) => {
+                    console.log('Error deleting inbox:', error);
+                });
+            }
         });
     });
 });
