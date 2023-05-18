@@ -66,6 +66,7 @@ function createProject(appointmentDate, appointmentTime, custName, custPhone, se
             custPhone: custPhone,
             serviceType: serviceType,
             createdDate: formattedDate,
+            appointmentStatus: 'Pending',
         }).then(function () {
             alert("Appointment Created!");
             console.log("Appointment Created!");
@@ -98,7 +99,7 @@ appointmentRef.on('value', (snapshot) => {
             <td>${appointments[appointment].custName}</td>
             <td>${appointments[appointment].custPhone}</td>
             <td>${appointments[appointment].serviceType}</td>
-            <td>Scheduled</td>
+            <td>${appointments[appointment].appointmentStatus}</td>
             <td>${appointments[appointment].createdDate}</td>
             <td>
                 <button class="edit btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
@@ -110,23 +111,20 @@ appointmentRef.on('value', (snapshot) => {
         i++;
     }
 
-    /*
+
     // Edit
     let editButtons = document.querySelectorAll(".edit");
     editButtons.forEach(edit => {
         edit.addEventListener("click", () => {
-            let inboxId = edit.parentElement.parentElement.dataset.id;
-            appointmentRef.child(inboxId).get().then((snapshot => {
+            let appointmentId = edit.parentElement.parentElement.dataset.id;
+            appointmentRef.child(appointmentId).get().then((snapshot => {
                 //console.log(snapshot.val());
 
-                document.getElementById("customerName").value = snapshot.val().name;
-                document.getElementById("companyName").value = snapshot.val().companyName;
-                document.getElementById("email").value = snapshot.val().email;
-                document.getElementById("phone").value = snapshot.val().phone;
-                document.getElementById("message").value = snapshot.val().message;
-                document.getElementById("service").value = snapshot.val().service;
-                document.getElementById("status").value = snapshot.val().status;
-                document.getElementById("date").value = snapshot.val().dateSubmitted;
+                document.getElementById("appointmentDate1").value = snapshot.val().appointmentDate;
+                document.getElementById("appointmentTime1").value = snapshot.val().appointmentTime;
+                document.getElementById("custName1").value = snapshot.val().custName;
+                document.getElementById("custPhone1").value = snapshot.val().custPhone;
+                document.getElementById("serviceType1").value = snapshot.val().serviceType;
             }))
 
             saveChanges.addEventListener("submit", (event) => {
@@ -135,7 +133,7 @@ appointmentRef.on('value', (snapshot) => {
                 console.log('Update Button Clicked');
 
                 // Update form without uploading new photos
-                appointmentRef.child(inboxId).update({
+                appointmentRef.child(appointmentId).update({
                     status: document.getElementById("status").value,
                 }).then((onFullFilled) => {
                     alert("Status Updated");
@@ -150,7 +148,6 @@ appointmentRef.on('value', (snapshot) => {
 
         })
     })
-    */
 
     //Delete Function Goes Here
     let deleteButtons = document.querySelectorAll(".delete");
