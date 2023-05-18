@@ -50,14 +50,14 @@ var swiperOptions = new Swiper(".mySwiper", {
 
 
 
-var observer = new IntersectionObserver(function (entries, observer) {
-    entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-            swiperContainer.classList.add("swiper-animation");
-            swiper = new Swiper(swiperContainer, swiperOptions);
-            observer.unobserve(entry.target);
-        }
-    });
-});
+// var observer = new IntersectionObserver(function (entries, observer) {
+//     entries.forEach(function (entry) {
+//         if (entry.isIntersecting) {
+//             swiperContainer.classList.add("swiper-animation");
+//             swiper = new Swiper(swiperContainer, swiperOptions);
+//             observer.unobserve(entry.target);
+//         }
+//     });
+// });
 
-observer.observe(swiperContainer);
+// observer.observe(swiperContainer);

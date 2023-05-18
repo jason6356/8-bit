@@ -40,3 +40,26 @@ function checkIfInView() {
 }
 
 window.addEventListener("scroll", checkIfInView);
+
+const database = firebase.database();
+
+// Increment and update the visitor count
+function updateVisitorCount() {
+    var counterRef = database.ref('visitors');
+    counterRef.transaction(function (currentCount) {
+        // Increment the counter by 1 if it exists, or initialize it to 1 otherwise
+        return (currentCount || 0) + 1;
+    });
+}
+
+// Call the function to update the visitor count
+updateVisitorCount();
+
+
+var visitorCountElement = document.getElementById('visitorCount');
+
+// Listen for changes in the visitor count and update the display
+database.ref('visitors').on('value', function (snapshot) {
+    var visitorCount = snapshot.val();
+    visitorCountElement.textContent = visitorCount;
+});
