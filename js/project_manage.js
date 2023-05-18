@@ -50,6 +50,11 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
         return;
     }
 
+    const loadingSpinnerContainer = document.querySelector('.loadingSpinner');
+
+    // Show the loading animation
+    loadingSpinnerContainer.style.display = 'block';
+
     // Add the user's information to the Realtime Database
     generateId().then(function (projectId) {
         console.log("Generated new project ID:", projectId);
@@ -73,6 +78,7 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
 
                     // Save the project data to the Realtime Database
                     if (imageUrls.length == images.length) {
+                        loadingSpinnerContainer.style.display = 'none';
                         database.ref('Project/' + projectId).set({
                             companyName: companyName,
                             companyCaption: companyCaption,
@@ -166,6 +172,10 @@ projectRef.on('value', (snapshot) => {
                 event.preventDefault();
 
                 console.log('Update Button Clicked');
+                const loadingSpinnerContainer = document.querySelector('.loadingSpinner');
+
+                // Show the loading animation
+                loadingSpinnerContainer.style.display = 'block';
 
                 let files = document.getElementById("projectImage1").files;
                 if (files.length > 0) {
@@ -191,6 +201,7 @@ projectRef.on('value', (snapshot) => {
 
                                     // Update photoUrls in Realtime Database
                                     if (downloadURLs.length === files.length) {
+                                        loadingSpinnerContainer.style.display = 'none';
                                         projectRef.child(projectId).update({
                                             companyName: document.getElementById("companyName1").value,
                                             companyCaption: document.getElementById("companyCaption1").value,
