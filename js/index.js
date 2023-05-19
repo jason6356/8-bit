@@ -16,10 +16,14 @@ database.ref('Project').orderByKey().limitToFirst(4).once('value')
       projectDiv.classList.add('col-lg-5', 'col-xs-12', 'col-sm-12', 'col-md-5', 'mb-3');
       projectDiv.innerHTML = `
             <a href="/html/projectDetails.html">
-              <div class="row1-col1 h-100 p-0" style="background-image: url(${project.imageUrls[0]});">
-                <div class="hovtxt h-100 d-inline-block text-white text-justify p-5">
-                  <div class="fs-5 fw-bold">${project.companyName}</div>
-                  <div class="fs-6" style="text-align: justify;">${project.description}</div>
+              <div class="row1-col1 p-0" style="background-image: url(${project.imageUrls[0]});">
+                <div class="hovtxt text-white text-justify p-5">
+                  <div class="fs-5 d-inline-block fw-bold">${project.companyName}</div>
+                  <div class="fs-6" style="text-align: justify;">
+                    <span class="d-inline-block text-truncate" ng-show="true" style="width: 100%;">
+                      ${project.description}
+                    </span>
+                  </div>
                 </div>
               </div>
             </a>
