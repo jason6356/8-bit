@@ -31,11 +31,11 @@ function displayProjects(pageNumber) {
 
   // Loop through the project data for the current page and create project cards
   for (let i = startIndex; i < endIndex; i++) {
-    if (i >= newsData.length) {
+    if (i >= projectData.length) {
       break; // Break if the end of the project data array is reached
     }
 
-    const project = newsData[i];
+    const project = projectData[i];
     const projectDetail = document.createElement('div');
     projectDetail.classList.add('col-12');
     projectDetail.innerHTML = `
@@ -86,7 +86,7 @@ database.ref('Project').orderByKey().once('value')
     snapshot.forEach((projectSnapshot) => {
       const project = projectSnapshot.val();
       project.key = projectSnapshot.key; // Store the project key in the project object
-      newsData.push(project);
+      projectData.push(project);
     });
 
     // Set the initial page to 1 and display projects
@@ -94,7 +94,7 @@ database.ref('Project').orderByKey().once('value')
     displayProjects(currentPage);
 
     // Calculate the number of pages based on the number of projects and items per page
-    const numPages = Math.ceil(newsData.length / 4);
+    const numPages = Math.ceil(projectData.length / 4);
 
     // Generate pagination numbers dynamically
     const paginationContainer = document.getElementById('paginationContainer');
