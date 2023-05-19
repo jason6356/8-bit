@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- data table API  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
     <!-- local css and js file -->
     
     <!-- bootstrap js url -->
@@ -178,23 +187,18 @@
                         <div class="col-6">
                             <h3 class="fs-2 ms-5">User Management</h3>
                         </div>
-                        <div class="col-4">
-                            <div class="input-group mb-3">
-                                <input type="search" class="form-control" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                <button class="btn btn-outline-dark" type="button" id="button-addon1"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        <div class="col-2">
+                    </div>
+                    <div id="User" class="p-3 row m-1 gap-2 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
+                        <div class="col-12 text-end">
                             <button id="addAUser" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
                         </div>
-                    </div>
-                    <div id="User" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
-                        <table class="table">
+                        <table id="userTable" class="col-12 table table-striped" style="width:100%">
                             <thead class="bg-info text-white">
                               <tr>
                                 <th scope="col">No.</th>
                                 <th scope="col">User ID</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Username</th>
                                 <th scope="col">Password</th>
                                 <th scope="col">Position</th>
                                 <th scope="col">Phone</th>
@@ -206,12 +210,76 @@
                                 <td>1</th>
                                 <td>S00001</td>
                                 <td>Staff 1</td>
-                                <td>*****</td>
+                                <td>staff123</td>
+                                <td>12345678</td>
                                 <td>IT</td>
                                 <td>012 234-2434</td>
                                 <td>
-                                    <button class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                                    <button class="btn btn-outline-danger">Delete</button>
+                                    <button class="btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <span class="d-none d-lg-block">Edit</span>
+                                        <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger">
+                                        <span class="d-none d-lg-block">Delete</span>
+                                        <i class="fa-solid fa-trash d-block d-lg-none"></i>
+                                    </button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>2</th>
+                                <td>S00002</td>
+                                <td>Staff 2</td>
+                                <td>staff123</td>
+                                <td>12345678</td>
+                                <td>IT</td>
+                                <td>012 234-2434</td>
+                                <td>
+                                    <button class="btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <span class="d-none d-lg-block">Edit</span>
+                                        <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger">
+                                        <span class="d-none d-lg-block">Delete</span>
+                                        <i class="fa-solid fa-trash d-block d-lg-none"></i>
+                                    </button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>3</th>
+                                <td>S00003</td>
+                                <td>Staff 3</td>
+                                <td>staff123</td>
+                                <td>12345678</td>
+                                <td>IT</td>
+                                <td>012 234-2434</td>
+                                <td>
+                                    <button class="btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <span class="d-none d-lg-block">Edit</span>
+                                        <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger">
+                                        <span class="d-none d-lg-block">Delete</span>
+                                        <i class="fa-solid fa-trash d-block d-lg-none"></i>
+                                    </button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>4</th>
+                                <td>S00004</td>
+                                <td>Staff 4</td>
+                                <td>staff123</td>
+                                <td>12345678</td>
+                                <td>IT</td>
+                                <td>012 234-2434</td>
+                                <td>
+                                    <button class="btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <span class="d-none d-lg-block">Edit</span>
+                                        <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger">
+                                        <span class="d-none d-lg-block">Delete</span>
+                                        <i class="fa-solid fa-trash d-block d-lg-none"></i>
+                                    </button>
                                 </td>
                               </tr>
                             </tbody>
@@ -227,6 +295,7 @@
     <!-- Session handling JS-->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="../js/firebase.js"></script>
-    <script src="../js/session.js"></script>
+    <script src="/js/firebase.js"></script>
+    <script src="/js/session.js"></script>
+    <script defer src="/js/user_manage.js"></script>
 </html>
