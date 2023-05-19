@@ -116,6 +116,13 @@ database.ref('Project').orderByKey().once('value')
     paginationLinks.forEach(link => {
       link.addEventListener("click", () => {
         currentPage = parseInt(link.innerText); // Get the page number from the link
+
+        // Update active class for pagination links
+        paginationLinks.forEach(link => {
+          link.parentElement.classList.remove('active');
+        });
+        link.parentElement.classList.add('active');
+
         displayProjects(currentPage);
       });
     });
