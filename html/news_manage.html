@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- data table API  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    
+        <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
         <!-- local css and js file -->
     
         <!-- bootstrap js url -->
@@ -278,18 +287,12 @@
                                 <div class="col-6">
                                     <h3 class="fs-2 ms-5">News</h3>
                                 </div>
-                                <div class="col-4">
-                                    <div class="input-group mb-3">
-                                        <input type="search" class="form-control" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                        <button class="btn btn-outline-dark" type="button" id="button-addon1"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <button id="addANews" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
-                                </div>
                             </div>
-                            <div id="News" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
-                                <table class="table">
+                            <div id="News" class="row gap-2 p-3 m-1 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive" id="table-1">
+                                <div class="col-12 text-end">
+                                    <button id="addANews" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add a News</button>
+                                </div>
+                                <table id="newsTable" class="col-12 table table-striped">
                                     <thead class="bg-info text-white">
                                       <tr>
                                         <th scope="col">No.</th>
@@ -297,7 +300,6 @@
                                         <th scope="col">Date of News</th>
                                         <th scope="col">Title</th>
                                         <th scope="col">Description</th>
-                                        <th scope="col">Article</th>
                                         <th scope="col">Posted Date</th>
                                         <th scope="col">Posted Time</th>
                                         <th scope="col">Action</th>

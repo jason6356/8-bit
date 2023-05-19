@@ -136,12 +136,7 @@ projectRef.on('value', (snapshot) => {
             <td>${projects[project].treesPlanted}</td>
             <td>${projects[project].CO2offset}</td>
             <td>
-                <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                    ${projects[project].description}
-                </span>
-            </td>
-            <td>
-                <button class="edit btn btn-info text-white mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">
+                <button class="edit btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">
                     <span class="d-none d-lg-block">Edit</span>
                     <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
                 </button>

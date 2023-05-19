@@ -107,6 +107,10 @@ function createProject(newsTitle, newsDescription, newsDate, postedDate, postedT
     });
 }
 
+function initializeDataTable() {
+    $('#newsTable').DataTable();
+}
+
 //Read Data
 NewsRef.on('value', (snapshot) => {
     const News = snapshot.val();
@@ -127,15 +131,10 @@ NewsRef.on('value', (snapshot) => {
                     ${News[news].newsDescription}
                 </span>
             </td>
-            <td>
-                <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                    ${News[news].newsArticle}
-                </span>
-            </td>
             <td>${News[news].postedDate}</td>
             <td>${News[news].postedTime}</td>
             <td>
-                <button class="edit btn btn-info text-white mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">
+                <button class="edit btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">
                     <span class="d-none d-lg-block">Edit</span>
                     <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
                 </button>
@@ -149,6 +148,8 @@ NewsRef.on('value', (snapshot) => {
         tableBody.innerHTML += tr;
         i++;
     }
+
+    initializeDataTable();
 
     /*
     if (i < 10) {

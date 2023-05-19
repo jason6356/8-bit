@@ -332,18 +332,12 @@
                                 <div class="col-6">
                                     <h3 class="fs-2 ms-5">Projects</h3>
                                 </div>
-                                <div class="col-4">
-                                    <div class="input-group mb-3">
-                                        <input type="search" class="form-control" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                        <button class="btn btn-outline-dark" type="button" id="button-addon1"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-2">
+                            </div>
+                            <div id="Project" class="row p-3 m-1 gap-2 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive-lg" id="table-1">
+                                <div class="col-12 text-end">
                                     <button id="addAProject" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
                                 </div>
-                            </div>
-                            <div id="Project" class="p-3 bg-white shadow-sm d-flex justify-content-start align-items-center rounded table-responsive-lg" id="table-1">
-                                <table id="projectTable" class="table table-striped">
+                                <table id="projectTable" class="col-12 table table-striped">
                                     <thead class="bg-info text-white">
                                       <tr>
                                         <th scope="col">No.</th>
@@ -353,7 +347,6 @@
                                         <th scope="col">Generation</th>
                                         <th scope="col">Tree Planted</th>
                                         <th scope="col">CO2 Offset</th>
-                                        <th scope="col">Description</th>
                                         <th scope="col">Action</th>
                                       </tr>
                                     </thead>

@@ -4,6 +4,10 @@ let saveChanges = document.querySelector("#edit form");
 
 const inboxRef = firebase.database().ref('ContactMessage');
 
+function initializeDataTable() {
+    $('#inboxTable').DataTable();
+}
+
 //Read Data
 inboxRef.on('value', (snapshot) => {
     const inboxes = snapshot.val();
@@ -18,19 +22,12 @@ inboxRef.on('value', (snapshot) => {
             <td>${i}.</td>
             <td>${inbox}</td>
             <td>${inboxes[inbox].name}</td>
-            <td>${inboxes[inbox].companyName}</td>
             <td>${inboxes[inbox].phone}</td>
             <td>${inboxes[inbox].email}</td>
             <td>${inboxes[inbox].service}</td>
-            <td>
-                <span class="d-inline-block text-truncate" style="max-width: 100px;">
-                    ${inboxes[inbox].message}
-                </span>
-            </td>
-            <td>${inboxes[inbox].status}</td>
             <td>01-01-2023</td>
             <td>
-                <button class="edit btn btn-info text-white mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button class="edit btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <span class="d-none d-lg-block">View</span>    
                     <i class="fa-solid fa-expand d-block d-lg-none"></i>
                 </button>
@@ -44,6 +41,8 @@ inboxRef.on('value', (snapshot) => {
         tableBody.innerHTML += tr;
         i++;
     }
+
+    initializeDataTable();
 
     // Edit
     let editButtons = document.querySelectorAll(".edit");

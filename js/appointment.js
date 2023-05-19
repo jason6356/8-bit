@@ -81,6 +81,10 @@ function createProject(appointmentDate, appointmentTime, custName, custPhone, se
     });
 }
 
+function initializeDataTable() {
+    $('#appointmentTable').DataTable();
+}
+
 //Read Data
 appointmentRef.on('value', (snapshot) => {
     const appointments = snapshot.val();
@@ -102,7 +106,7 @@ appointmentRef.on('value', (snapshot) => {
             <td>${appointments[appointment].appointmentStatus}</td>
             <td>${appointments[appointment].createdDate}</td>
             <td>
-                <button class="edit btn btn-info text-white mb-2" data-bs-toggle="modal" data-bs-target="#editModal">
+                <button class="edit btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#editModal">
                     <span class="d-none d-lg-block">Edit</span>
                     <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
                 </button>
@@ -116,6 +120,8 @@ appointmentRef.on('value', (snapshot) => {
         tableBody.innerHTML += tr;
         i++;
     }
+
+    initializeDataTable();
 
 
     // Edit
