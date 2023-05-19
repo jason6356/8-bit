@@ -135,8 +135,14 @@ NewsRef.on('value', (snapshot) => {
             <td>${News[news].postedDate}</td>
             <td>${News[news].postedTime}</td>
             <td>
-                <button class="edit btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">Edit</button>
-                <button class="delete btn btn-outline-danger">Delete</button>
+                <button class="edit btn btn-info text-white mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">
+                    <span class="d-none d-lg-block">Edit</span>
+                    <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
+                </button>
+                <button class="delete btn btn-outline-danger">
+                    <span class="d-none d-lg-block">Delete</span>
+                    <i class="fa-solid fa-trash d-block d-lg-none"></i>
+                </button>
             </td>
         </tr>
         `

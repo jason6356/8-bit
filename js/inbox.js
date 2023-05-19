@@ -30,8 +30,14 @@ inboxRef.on('value', (snapshot) => {
             <td>${inboxes[inbox].status}</td>
             <td>01-01-2023</td>
             <td>
-                <button class="edit btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
-                <button class="delete btn btn-outline-danger">Delete</button>
+                <button class="edit btn btn-info text-white mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <span class="d-none d-lg-block">View</span>    
+                    <i class="fa-solid fa-expand d-block d-lg-none"></i>
+                </button>
+                <button class="delete btn btn-outline-danger">
+                    <span class="d-none d-lg-block">Delete</span>
+                    <i class="fa-solid fa-trash d-block d-lg-none"></i>
+                </button>
             </td>
         </tr>
         `

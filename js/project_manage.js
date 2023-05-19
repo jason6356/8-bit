@@ -11,6 +11,10 @@ var storageRef = firebase.storage().ref();
 
 let projectCount = 0;
 
+function initializeDataTable() {
+    $('#projectTable').DataTable();
+}
+
 function createProject(companyName, companyCaption, generation, treesPlanted, CO2offset, description, images) {
     if (typeof companyName !== 'string' || companyName.trim().length === 0) {
         console.log('Error: companyName must be a non-empty string');
@@ -50,10 +54,10 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
         return;
     }
 
-    const loadingSpinnerContainer = document.querySelector('.loadingSpinner');
+    const loadingSpinnerContainer2 = document.querySelector('.loadingSpinner2');
 
     // Show the loading animation
-    loadingSpinnerContainer.style.display = 'block';
+    loadingSpinnerContainer2.style.display = 'block';
 
     // Add the user's information to the Realtime Database
     generateId().then(function (projectId) {
@@ -78,7 +82,7 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
 
                     // Save the project data to the Realtime Database
                     if (imageUrls.length == images.length) {
-                        loadingSpinnerContainer.style.display = 'none';
+                        loadingSpinnerContainer2.style.display = 'none';
                         database.ref('Project/' + projectId).set({
                             companyName: companyName,
                             companyCaption: companyCaption,
@@ -88,7 +92,7 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
                             description: description,
                             imageUrls: imageUrls
                         }).then(function () {
-                            loadingSpinnerContainer.style.display = 'none';
+                            // loadingSpinnerContainer2.style.display = 'none';
                             alert("Project Created!");
                             console.log("Project Created!");
                             location.reload();
@@ -137,14 +141,22 @@ projectRef.on('value', (snapshot) => {
                 </span>
             </td>
             <td>
-                <button class="edit btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">Edit</button>
-                <button class="delete btn btn-outline-danger">Delete</button>
+                <button class="edit btn btn-info text-white mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">
+                    <span class="d-none d-lg-block">Edit</span>
+                    <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
+                </button>
+                <button class="delete btn btn-outline-danger">
+                    <span class="d-none d-lg-block">Delete</span>
+                    <i class="fa-solid fa-trash d-block d-lg-none"></i>
+                </button>
             </td>
         </tr>
         `
         tableBody.innerHTML += tr;
         i++;
     }
+
+    initializeDataTable();
 
     /*
     if (i < 10) {

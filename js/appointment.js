@@ -7,7 +7,7 @@ const firebaseConfig = {
     messagingSenderId: "724597515303",
     appId: "1:724597515303:web:6bddc00b7e17d7d3ee1a02",
     measurementId: "G-KY5QTKQZPD"
-  };
+};
 
 firebase.initializeApp(firebaseConfig);
 
@@ -102,8 +102,14 @@ appointmentRef.on('value', (snapshot) => {
             <td>${appointments[appointment].appointmentStatus}</td>
             <td>${appointments[appointment].createdDate}</td>
             <td>
-                <button class="edit btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                <button class="delete btn btn-outline-danger">Delete</button>
+                <button class="edit btn btn-info text-white mb-2" data-bs-toggle="modal" data-bs-target="#editModal">
+                    <span class="d-none d-lg-block">Edit</span>
+                    <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
+                </button>
+                <button class="delete btn btn-outline-danger">
+                    <span class="d-none d-lg-block">Delete</span>
+                    <i class="fa-solid fa-trash d-block d-lg-none"></i>
+                </button>
             </td>
         </tr>
         `
@@ -143,7 +149,7 @@ appointmentRef.on('value', (snapshot) => {
                 }, (onRejected) => {
                     console.log(onRejected);
                 });
-                
+
             })
 
 
