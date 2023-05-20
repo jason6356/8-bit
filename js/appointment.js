@@ -147,7 +147,12 @@ appointmentRef.on('value', (snapshot) => {
 
                 // Update form without uploading new photos
                 appointmentRef.child(appointmentId).update({
+                    appointmentDate: document.getElementById("appointmentDate1").value,
+                    appointmentTime: document.getElementById("appointmentTime1").value,
                     appointmentStatus: document.getElementById("status").value,
+                    custName: document.getElementById("custName1").value,
+                    custPhone: document.getElementById("custPhone1").value,
+                    serviceType: document.getElementById("serviceType1").value,
                 }).then((onFullFilled) => {
                     alert("Status Updated");
                     console.log('Status Updated');
