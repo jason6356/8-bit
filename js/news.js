@@ -42,7 +42,7 @@ function displayProjects(pageNumber) {
         <div class="card mb-3" style="max-width: 540px;" data-id = "${news.key}">
             <div class="row g-0">
                 <div class="col-md-5 col-lg-5">
-                    <img src="${news.newsImageUrls[0]}" class="img-fluid rounded-start" alt="..." style="height: 200px; width: 100%;">
+                    <img src="${news.newsImageUrls[0]}" class="img-fluid rounded-start" alt="..." style="height: 300px; width: 100%;">
                 </div>
                 <div class="col-md-7 col-lg-7">
                     <div class="card-body">
