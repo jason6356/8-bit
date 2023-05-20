@@ -8,7 +8,7 @@ body {
 
 /* align the home page first content center */
 .first-view {
-    height: 750px;
+    height: 600px;
     display: flex;
     align-content: center;
     flex-wrap: wrap;
