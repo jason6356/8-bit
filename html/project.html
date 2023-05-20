@@ -285,13 +285,16 @@
                 </ul>
               </div>
 
-              <div class="col-10 col-lg-4 col-md-4 mb-5 mb-lg-0">
+              <div class="col-10 col-lg-4 col-md-4 mb-5 mb-lg-0" id="subscribe">
                 <h6 class="text-uppercase mb-3">Mailing List</h6>
-                <p class="mb-3">Sign up to our mailing list to get the latest updates about our new products and promotions.</p>
+                <p class="mb-3">Sign up to our mailing list to get the latest updates about our new products and promotions.
+                </p>
                 <form action="#" id="input-group mb-3">
                   <div class="input-group mb-3">
-                    <input type="email" placeholder="Email Address" aria-label="Email Address" class="form-control">
-                    <button class="btn btn-outline-dark" id="btn-outline-color" type="submit"><i class="fa fa-paper-plane text-lg"></i></button>
+                    <input type="email" id="subscribeEmail" placeholder="Email Address" aria-label="Email Address"
+                      class="form-control" required>
+                    <button class="btn btn-outline-dark" id="btn-outline-color" type="submit"><i
+                        class="fa fa-paper-plane text-lg"></i></button>
                   </div>
                 </form>
               </div>
@@ -326,6 +329,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script src="/js/mailing.js"></script>
 <script src="/js/project.js"></script>
 <script src="/js/visitor_counter.js"></script>
 <!-- <script src="/js/project_pagination.js"></script> -->

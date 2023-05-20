@@ -18,9 +18,6 @@ subscribeButton.addEventListener("submit", (event) => {
     // Generate a new child node ID using push()
     let newSubscriptionRef = subscriptionRef.push();
     
-    // Get the generated subscription ID
-    let subscriptionId = newSubscriptionRef.key;
-    
     // Set the subscription data using the generated ID
     newSubscriptionRef.set({
       subscriptionEmail: email,
