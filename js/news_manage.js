@@ -149,7 +149,7 @@ NewsRef.on('value', (snapshot) => {
         i++;
     }
 
-    initializeDataTable();
+    // initializeDataTable();
 
     /*
     if (i < 10) {
