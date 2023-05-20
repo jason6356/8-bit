@@ -151,7 +151,7 @@ projectRef.on('value', (snapshot) => {
         i++;
     }
 
-    initializeDataTable();
+    // initializeDataTable();
 
     /*
     if (i < 10) {
@@ -306,7 +306,12 @@ addUser.addEventListener("click", () => {
                 images.push(input.files[i]);
             }
 
-            createProject(document.getElementById("companyName").value, document.getElementById("companyCaption").value, document.getElementById("generation").value, document.getElementById("treesPlanted").value, document.getElementById("CO2Offset").value, document.getElementById("description").value, images);
+            createProject(document.getElementById("companyName").value,
+                document.getElementById("companyCaption").value,
+                document.getElementById("generation").value,
+                document.getElementById("treesPlanted").value,
+                document.getElementById("CO2Offset").value,
+                document.getElementById("description").value, images);
 
         });
 
