@@ -10,10 +10,116 @@ const projectRef = firebase.database().ref('Project');
 var storageRef = firebase.storage().ref();
 
 let projectCount = 0;
+let itemsPerPage = 10;
+let currentPage = 1;
 
-function initializeDataTable() {
-    $('#projectTable').DataTable();
+let totalProjects = 0;
+
+// Update pagination controls
+function updatePagination() {
+    const totalPages = Math.ceil(totalProjects / itemsPerPage);
+    const paginationList = document.getElementById("paginationList");
+    paginationList.innerHTML = ""; // Clear previous pagination links
+
+    for (let page = 1; page <= totalPages; page++) {
+        const li = document.createElement("li");
+        li.classList.add("page-item");
+        if (page === currentPage) {
+            li.classList.add("active");
+        }
+
+        const a = document.createElement("a");
+        a.classList.add("page-link");
+        a.href = "#";
+        a.textContent = page;
+        a.addEventListener("click", () => {
+            currentPage = page;
+            retrieveDataForPage(currentPage);
+            updatePagination();
+        });
+
+        li.appendChild(a);
+        paginationList.appendChild(li);
+    }
 }
+
+// Retrieve data and populate table based on pagination
+function retrieveDataForPage(page) {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    tableBody.innerHTML = "";
+
+    let i = startIndex + 1;
+
+    for (let j = startIndex; j < endIndex && j < projectsArray.length; j++) {
+        const [project, projectData] = projectsArray[j];
+
+        let tr = `
+        <tr data-id=${project}>
+          <td>${i}</td>
+          <td>${project}</td>
+          <td>${projectData.companyName}</td>
+          <td>
+            <span class="d-inline-block text-truncate" style="max-width: 150px;">
+              ${projectData.companyCaption}
+            </span>
+          </td>
+          <td>${projectData.generation}</td>
+          <td>${projectData.treesPlanted}</td>
+          <td>${projectData.CO2offset}</td>
+          <td>
+            <button class="edit btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">
+              <span class="d-none d-lg-block">Edit</span>
+              <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
+            </button>
+            <button class="delete btn btn-outline-danger">
+              <span class="d-none d-lg-block">Delete</span>
+              <i class="fa-solid fa-trash d-block d-lg-none"></i>
+            </button>
+          </td>
+        </tr>
+      `;
+
+        tableBody.innerHTML += tr;
+        i++;
+    }
+    updateEditAndDeleteButtonListeners();
+}
+
+// function updateEditAndDeleteButtonListeners() {
+//     let editButtons = document.querySelectorAll(".edit");
+//     editButtons.forEach((edit) => {
+//         edit.addEventListener("click", () => {
+//             let projectId = edit.parentElement.parentElement.dataset.id;
+//             // Rest of the edit functionality
+//             // ...
+//         });
+//     });
+
+//     let deleteButtons = document.querySelectorAll(".delete");
+//     deleteButtons.forEach((deleteBtn) => {
+//         deleteBtn.addEventListener("click", () => {
+//             let projectId = deleteBtn.parentElement.parentElement.dataset.id;
+//             // Rest of the delete functionality
+//             // ...
+//         });
+//     });
+// }
+
+// Retrieve data and populate array
+function retrieveData() {
+    projectRef.on("value", (snapshot) => {
+        const projects = snapshot.val();
+        projectsArray = Object.entries(projects);
+        totalProjects = projectsArray.length;
+        currentPage = 1; // Reset to the first page
+        retrieveDataForPage(currentPage);
+        updatePagination();
+    });
+}
+
+retrieveData();
 
 function createProject(companyName, companyCaption, generation, treesPlanted, CO2offset, description, images) {
     if (typeof companyName !== 'string' || companyName.trim().length === 0) {
@@ -113,209 +219,136 @@ function createProject(companyName, companyCaption, generation, treesPlanted, CO
     });
 }
 
-//Read Data
-projectRef.on('value', (snapshot) => {
-    const projects = snapshot.val();
+// Edit button event listener
+tableBody.addEventListener("click", (event) => {
+    if (event.target.classList.contains("edit")) {
+        let editButton = event.target;
+        let projectId = editButton.parentElement.parentElement.dataset.id;
+        // Rest of the edit functionality
+        // ...
+        let projectData = projectsArray.find(([project, data]) => project === projectId)[1];
 
-    tableBody.innerHTML = "";
+        // Populate the edit modal or form fields with the project data
+        document.getElementById("companyName1").value = projectData.companyName;
+        document.getElementById("companyCaption1").value = projectData.companyCaption;
+        document.getElementById("generation1").value = projectData.generation;
+        document.getElementById("treesPlanted1").value = projectData.treesPlanted;
+        document.getElementById("CO2Offset1").value = projectData.CO2offset;
+        document.getElementById("description1").value = projectData.description;
 
-    let i = 1;
+        saveChanges.addEventListener("submit", (event) => {
+            event.preventDefault();
+            // Update the project in Firebase based on the projectId
+            console.log('Update Button Clicked');
+            const loadingSpinnerContainer = document.querySelector('.loadingSpinner');
 
-    for (project in projects) {
-        let tr = `
-        <tr data-id = ${project} >
-            <td>${i}</td>
-            <td>${project}</td>
-            <td>${projects[project].companyName}</td>
-            <td>
-                <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                    ${projects[project].companyCaption}
-                </span>
-            </td>
-            <td>${projects[project].generation}</td>
-            <td>${projects[project].treesPlanted}</td>
-            <td>${projects[project].CO2offset}</td>
-            <td>
-                <button class="edit btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">
-                    <span class="d-none d-lg-block">Edit</span>
-                    <i class="fa-solid fa-pen-to-square d-block d-lg-none"></i>
-                </button>
-                <button class="delete btn btn-outline-danger">
-                    <span class="d-none d-lg-block">Delete</span>
-                    <i class="fa-solid fa-trash d-block d-lg-none"></i>
-                </button>
-            </td>
-        </tr>
-        `
-        tableBody.innerHTML += tr;
-        i++;
-    }
+            // Show the loading animation
+            loadingSpinnerContainer.style.display = 'block';
 
-    // initializeDataTable();
+            let files = document.getElementById("projectImage1").files;
+            if (files.length > 0) {
 
-    /*
-    if (i < 10) {
-        const paginationSection = document.querySelector('.tb-footer');
-        paginationSection.style.display = "none";
-    }
-    */
+                // Upload new photos to Firebase Storage
+                let promises = [];
+                for (let i = 0; i < files.length; i++) {
+                    let file = files[i];
+                    let storageRef = firebase.storage().ref(`photos/${projectId}/${file.name}`);
+                    promises.push(storageRef.put(file));
+                }
 
-    // Edit
-    let editButtons = document.querySelectorAll(".edit");
-    editButtons.forEach(edit => {
-        edit.addEventListener("click", () => {
-            let projectId = edit.parentElement.parentElement.dataset.id;
-            projectRef.child(projectId).get().then((snapshot => {
-                //console.log(snapshot.val());
+                Promise.all(promises).then(() => {
+                    console.log('Uploaded all files');
 
-                document.getElementById("companyName1").value = snapshot.val().companyName;
-                document.getElementById("companyCaption1").value = snapshot.val().companyCaption;
-                document.getElementById("generation1").value = snapshot.val().generation;
-                document.getElementById("treesPlanted1").value = snapshot.val().treesPlanted;
-                document.getElementById("CO2Offset1").value = snapshot.val().CO2offset;
-                document.getElementById("description1").value = snapshot.val().description;
-            }))
+                    // Get download URLs of all uploaded photos
+                    let downloadURLs = [];
+                    let storageRef = firebase.storage().ref(`photos/${projectId}`);
+                    storageRef.listAll().then((res) => {
+                        res.items.forEach((itemRef) => {
+                            itemRef.getDownloadURL().then((url) => {
+                                downloadURLs.push(url);
 
-            saveChanges.addEventListener("submit", (event) => {
-                event.preventDefault();
-
-                console.log('Update Button Clicked');
-                const loadingSpinnerContainer = document.querySelector('.loadingSpinner');
-
-                // Show the loading animation
-                loadingSpinnerContainer.style.display = 'block';
-
-                let files = document.getElementById("projectImage1").files;
-                if (files.length > 0) {
-
-                    // Upload new photos to Firebase Storage
-                    let promises = [];
-                    for (let i = 0; i < files.length; i++) {
-                        let file = files[i];
-                        let storageRef = firebase.storage().ref(`photos/${projectId}/${file.name}`);
-                        promises.push(storageRef.put(file));
-                    }
-
-                    Promise.all(promises).then(() => {
-                        console.log('Uploaded all files');
-
-                        // Get download URLs of all uploaded photos
-                        let downloadURLs = [];
-                        let storageRef = firebase.storage().ref(`photos/${projectId}`);
-                        storageRef.listAll().then((res) => {
-                            res.items.forEach((itemRef) => {
-                                itemRef.getDownloadURL().then((url) => {
-                                    downloadURLs.push(url);
-
-                                    // Update photoUrls in Realtime Database
-                                    if (downloadURLs.length === files.length) {
-                                        loadingSpinnerContainer.style.display = 'none';
-                                        projectRef.child(projectId).update({
-                                            companyName: document.getElementById("companyName1").value,
-                                            companyCaption: document.getElementById("companyCaption1").value,
-                                            generation: document.getElementById("generation1").value,
-                                            treesPlanted: document.getElementById("treesPlanted1").value,
-                                            CO2offset: document.getElementById("CO2Offset1").value,
-                                            description: document.getElementById("description1").value,
-                                            imageUrls: downloadURLs,
-                                        }).then(() => {
-                                            console.log('Updated photoUrls');
-                                            alert("Updated");
-                                            location.reload();
-                                            //updateProject();
-                                        }).catch((error) => {
-                                            console.log(error);
-                                        });
-                                    }
-                                }).catch((error) => {
-                                    console.log(error);
-                                });
+                                // Update photoUrls in Realtime Database
+                                if (downloadURLs.length === files.length) {
+                                    loadingSpinnerContainer.style.display = 'none';
+                                    projectRef.child(projectId).update({
+                                        companyName: document.getElementById("companyName1").value,
+                                        companyCaption: document.getElementById("companyCaption1").value,
+                                        generation: document.getElementById("generation1").value,
+                                        treesPlanted: document.getElementById("treesPlanted1").value,
+                                        CO2offset: document.getElementById("CO2Offset1").value,
+                                        description: document.getElementById("description1").value,
+                                        imageUrls: downloadURLs,
+                                    }).then(() => {
+                                        console.log('Updated photoUrls');
+                                        alert("Updated");
+                                        location.reload();
+                                        //updateProject();
+                                    }).catch((error) => {
+                                        console.log(error);
+                                    });
+                                }
+                            }).catch((error) => {
+                                console.log(error);
                             });
-                        }).catch((error) => {
-                            console.log(error);
                         });
                     }).catch((error) => {
                         console.log(error);
                     });
+                }).catch((error) => {
+                    console.log(error);
+                });
 
-                } else {
-                    // Update form without uploading new photos
-                    projectRef.child(projectId).update({
-                        companyName: document.getElementById("companyName1").value,
-                        companyCaption: document.getElementById("companyCaption1").value,
-                        generation: document.getElementById("generation1").value,
-                        treesPlanted: document.getElementById("treesPlanted1").value,
-                        CO2offset: document.getElementById("CO2Offset1").value,
-                        description: document.getElementById("description1").value,
-                    }).then((onFullFilled) => {
-                        alert("Updated");
-                        console.log('Updated');
-                        location.reload();
-                    }, (onRejected) => {
-                        console.log(onRejected);
-                    });
-                }
-            })
-
-
-        })
-    })
-
-
-    let deleteButtons = document.querySelectorAll(".delete");
-    deleteButtons.forEach(deleteBtn => {
-        deleteBtn.addEventListener("click", () => {
-            let projectId = deleteBtn.parentElement.parentElement.dataset.id;
-
-            // Display a confirmation message
-            const confirmation = confirm("Are you sure you want to delete this project?");
-
-            if (confirmation) {
-                // Delete the project and photo
-                projectRef.child(projectId).get().then((snapshot) => {
-                    let projectPhotoURL = snapshot.val().imageUrls[0];
-                    const photoRef = firebase.storage().refFromURL(projectPhotoURL);
-                    photoRef.delete().then(() => {
-                        console.log('Photo Deleted');
-                    }).catch((error) => {
-                        console.log('Error deleting photo:', error);
-                    });
-
-                    projectRef.child(projectId).remove().then(() => {
-                        console.log('Project Deleted');
-                        alert('Project Deleted');
-                        location.reload();
-                    }).catch((error) => {
-                        console.log('Error deleting project:', error);
-                    });
+            } else {
+                // Update form without uploading new photos
+                projectRef.child(projectId).update({
+                    companyName: document.getElementById("companyName1").value,
+                    companyCaption: document.getElementById("companyCaption1").value,
+                    generation: document.getElementById("generation1").value,
+                    treesPlanted: document.getElementById("treesPlanted1").value,
+                    CO2offset: document.getElementById("CO2Offset1").value,
+                    description: document.getElementById("description1").value,
+                }).then((onFullFilled) => {
+                    alert("Updated");
+                    console.log('Updated');
+                    location.reload();
+                }, (onRejected) => {
+                    console.log(onRejected);
                 });
             }
         });
-    });
-
+    }
 });
 
-addUser.addEventListener("click", () => {
+// Delete button event listener
+tableBody.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete")) {
+        let deleteButton = event.target;
+        let projectId = deleteButton.parentElement.parentElement.dataset.id;
 
-    addform.addEventListener("submit", (e) => {
-        e.preventDefault();
+        // Display a confirmation message
+        const confirmation = confirm("Are you sure you want to delete this project?");
 
-        const images = [];
-        document.querySelectorAll("#projectImage").forEach(function (input) {
-            for (let i = 0; i < input.files.length; i++) {
-                images.push(input.files[i]);
-            }
+        if (confirmation) {
+            // Delete the project and photo
+            projectRef.child(projectId).get().then((snapshot) => {
+                let projectPhotoURL = snapshot.val().imageUrls[0];
+                const photoRef = firebase.storage().refFromURL(projectPhotoURL);
+                photoRef.delete().then(() => {
+                    console.log('Photo Deleted');
+                }).catch((error) => {
+                    console.log('Error deleting photo:', error);
+                });
 
-            createProject(document.getElementById("companyName").value,
-                document.getElementById("companyCaption").value,
-                document.getElementById("generation").value,
-                document.getElementById("treesPlanted").value,
-                document.getElementById("CO2Offset").value,
-                document.getElementById("description").value, images);
-
-        });
-
-    });
+                projectRef.child(projectId).remove().then(() => {
+                    console.log('Project Deleted');
+                    alert('Project Deleted');
+                    location.reload();
+                }).catch((error) => {
+                    console.log('Error deleting project:', error);
+                });
+            });
+        }
+    }
 });
 
 function generateId() {
@@ -347,56 +380,170 @@ function generateId() {
     });
 }
 
-/*
-function validateForm(form) {
-    let isValid = true;
+function updateEditAndDeleteButtonListeners() {
+    let editButtons = document.querySelectorAll(".edit");
+    editButtons.forEach((edit) => {
+        edit.addEventListener("click", () => {
+            let projectId = edit.parentElement.parentElement.dataset.id;
 
-    // Validate companyName
-    if (form.companyName.value.trim() === "") {
-        alert("Please enter a company name");
-        isValid = false;
-    }
+            // Retrieve existing data for the selected project
+            projectRef.child(projectId).get().then((snapshot) => {
+                let projectData = snapshot.val();
 
-    // Validate companyCaption
-    if (form.companyCaption.value.trim() === "") {
-        alert("Please enter a company caption");
-        isValid = false;
-    }
+                // Populate the form fields with the retrieved data
+                document.getElementById("companyName1").value = projectData.companyName;
+                document.getElementById("companyCaption1").value = projectData.companyCaption;
+                document.getElementById("generation1").value = projectData.generation;
+                document.getElementById("treesPlanted1").value = projectData.treesPlanted;
+                document.getElementById("CO2Offset1").value = projectData.CO2offset;
+                document.getElementById("description1").value = projectData.description;
 
-    // Validate generation
-    if (form.generation.value.trim() === "" || isNaN(parseInt(form.generation.value))) {
-        alert("Please enter a valid generation number");
-        isValid = false;
-    }
+                // Handle the form submission event when the user clicks the update/save button
+                saveChanges.addEventListener("submit", (event) => {
+                    event.preventDefault();
 
-    // Validate treesPlanted
-    if (form.treesPlanted.value.trim() === "" || isNaN(parseInt(form.treesPlanted.value))) {
-        alert("Please enter a valid number of trees planted");
-        isValid = false;
-    }
+                    console.log('Update Button Clicked');
+                    const loadingSpinnerContainer = document.querySelector('.loadingSpinner');
 
-    // Validate CO2Offset
-    if (form.CO2Offset.value.trim() === "" || isNaN(parseInt(form.CO2Offset.value))) {
-        alert("Please enter a valid CO2 offset number");
-        isValid = false;
-    }
+                    // Show the loading animation
+                    loadingSpinnerContainer.style.display = 'block';
 
-    // Validate description
-    if (form.description.value.trim() === "") {
-        alert("Please enter a project description");
-        isValid = false;
-    }
+                    let files = document.getElementById("projectImage1").files;
+                    if (files.length > 0) {
+                        // Upload new photos to Firebase Storage
+                        let promises = [];
+                        for (let i = 0; i < files.length; i++) {
+                            let file = files[i];
+                            let storageRef = firebase.storage().ref(`photos/${projectId}/${file.name}`);
+                            promises.push(storageRef.put(file));
+                        }
 
-    return isValid;
+                        Promise.all(promises).then(() => {
+                            console.log('Uploaded all files');
+
+                            // Get download URLs of all uploaded photos
+                            let downloadURLs = [];
+                            let storageRef = firebase.storage().ref(`photos/${projectId}`);
+                            storageRef.listAll().then((res) => {
+                                res.items.forEach((itemRef) => {
+                                    itemRef.getDownloadURL().then((url) => {
+                                        downloadURLs.push(url);
+
+                                        // Update photoUrls in Realtime Database
+                                        if (downloadURLs.length === files.length) {
+                                            loadingSpinnerContainer.style.display = 'none';
+                                            projectRef.child(projectId).update({
+                                                companyName: document.getElementById("companyName1").value,
+                                                companyCaption: document.getElementById("companyCaption1").value,
+                                                generation: document.getElementById("generation1").value,
+                                                treesPlanted: document.getElementById("treesPlanted1").value,
+                                                CO2offset: document.getElementById("CO2Offset1").value,
+                                                description: document.getElementById("description1").value,
+                                                imageUrls: downloadURLs,
+                                            }).then(() => {
+                                                console.log('Updated photoUrls');
+                                                alert("Updated");
+                                                location.reload();
+                                            }).catch((error) => {
+                                                console.log(error);
+                                            });
+                                        }
+                                    }).catch((error) => {
+                                        console.log(error);
+                                    });
+                                });
+                            }).catch((error) => {
+                                console.log(error);
+                            });
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                    } else {
+                        // Update form without uploading new photos
+                        projectRef.child(projectId).update({
+                            companyName: document.getElementById("companyName1").value,
+                            companyCaption: document.getElementById("companyCaption1").value,
+                            generation: document.getElementById("generation1").value,
+                            treesPlanted: document.getElementById("treesPlanted1").value,
+                            CO2offset: document.getElementById("CO2Offset1").value,
+                            description: document.getElementById("description1").value,
+                        }).then(() => {
+                            alert("Updated");
+                            console.log('Updated');
+                            location.reload();
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                    }
+                });
+            });
+        });
+    });
+
+    let deleteButtons = document.querySelectorAll(".delete");
+    deleteButtons.forEach((deleteBtn) => {
+        deleteBtn.addEventListener("click", () => {
+            let projectId = deleteBtn.parentElement.parentElement.dataset.id;
+
+            // Display a confirmation message
+            const confirmation = confirm("Are you sure you want to delete this project?");
+
+            if (confirmation) {
+                // Retrieve the project data for deletion
+                projectRef.child(projectId).get().then((snapshot) => {
+                    let projectData = snapshot.val();
+
+                    // Delete the associated photo from Firebase Storage
+                    let projectPhotoURL = projectData.imageUrls[0];
+                    const photoRef = firebase.storage().refFromURL(projectPhotoURL);
+                    photoRef.delete().then(() => {
+                        console.log('Photo Deleted');
+                    }).catch((error) => {
+                        console.log('Error deleting photo:', error);
+                    });
+
+                    // Delete the project from Firebase Realtime Database
+                    projectRef.child(projectId).remove().then(() => {
+                        console.log('Project Deleted');
+                        alert('Project Deleted');
+                        location.reload();
+                    }).catch((error) => {
+                        console.log('Error deleting project:', error);
+                    });
+                });
+            }
+        });
+    });
 }
 
-//Close Popup
-window.addEventListener("click", (e) => {
-    if (e.target == popup) {
-        popup.classList.remove("active");
-        addform.reset();
-        updateform.reset();
-    }
-})
-*/
+// Call the function to update the event listeners
+updateEditAndDeleteButtonListeners();
 
+let searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("input", () => {
+    filterTable(searchInput.value);
+});
+
+function filterTable(searchQuery) {
+    let table = document.getElementById("projectTable"); // Replace "yourTableId" with the actual ID of your table
+    let rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+        let row = rows[i];
+        let rowData = row.textContent || row.innerText;
+
+        if (rowData.toLowerCase().includes(searchQuery.toLowerCase())) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    }
+}
+
+const entriesPerPageSelect = document.getElementById("entriesPerPage");
+entriesPerPageSelect.addEventListener("change", () => {
+    itemsPerPage = parseInt(entriesPerPageSelect.value);
+    currentPage = 1; // Reset to the first page
+    retrieveDataForPage(currentPage);
+    updatePagination();
+});

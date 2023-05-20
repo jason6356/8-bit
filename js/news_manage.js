@@ -125,7 +125,11 @@ NewsRef.on('value', (snapshot) => {
             <td>${i}</td>
             <td>${news}</td>
             <td>${News[news].newsDate}</td>
-            <td>${News[news].newsTitle}</td>
+            <td>
+                <span class="d-inline-block text-truncate" style="max-width: 150px;">
+                    ${News[news].newsTitle}
+                </span>
+            </td>
             <td>
                 <span class="d-inline-block text-truncate" style="max-width: 150px;">
                     ${News[news].newsDescription}
