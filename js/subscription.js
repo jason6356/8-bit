@@ -1,20 +1,23 @@
 // Get a reference to the database service
 var database = firebase.database();
 
+const subscriptionRef = firebase.database().ref('Subscription');
+
 const form = document.querySelector('#subscriptionForm form');
 
 form.addEventListener('submit', (event) => {
     // prevent the default form submission behavior
     event.preventDefault();
-  
+
+    console.log("Submit Button Clicked");
     // get form input values
     const subscriptionTitle = document.getElementById("subscriptionTitle").value;
     const subscriptionMessage = document.getElementById("subscriptionMessage").value;
-    const subscriptionFiles = document.getElementById("subscriptionFiles").files;
+    //const subscriptionFiles = document.getElementById("subscriptionFiles").files;
   
     if (subscriptionTitle == "" || subscriptionMessage == "") {
       alert('Please fill in all the details!');
-      return
+      return;
     }
   
   
@@ -42,47 +45,65 @@ form.addEventListener('submit', (event) => {
 
     // add the reservation data to the "Reservation" collection in the database
     database.ref('SubscriptionHistory/' + subscriptionId).set(subscriptionMessageHistory)
-      .then(() => {
-
-        // Initialize service id and template id from EmailJS
-        const serviceID = "service_y94bped";
-
-        const templateID = "template_kv67ffd";
-
-        // Declare template input id
-        var params = {
-          subscriptionTitle: document.getElementById("subscriptionTitle").value,
-          subscriptionMessage: document.getElementById("subscriptionMessage").value,
-        };
-
-        //Create Array to store all email address 
-
-        // Send message
-        emailjs.send(serviceID, templateID, params)
-          .then(function (response) {
-            console.log('SUCCESS!', response.status, response.text);
-            // alert("Confirmation email sent! Check your email.");
-        }, function (error) {
-            console.log('FAILED...', error);
-            alert("Failed to send confirmation email....");
-        });
-
-    // reset the form
-    form.reset();
-    console.log('Message send successfully!');
-    alert('Message Sent!');
-    location.reload();
+    .then(() => {
+    
+    console.log('History Created!');
+    alert('History Created!');
     })
     .catch((error) => {
     console.error('Error adding message: ', error);
     });
 
 
-}).catch(function (error) {
-    console.log("Error generating new inbox ID:", error);
-});
+  }).catch(function (error) {
+      console.log("Error generating new inbox ID:", error);
+  });
+
+  // Initialize service id and template id from EmailJS
+  const serviceID = "service_y94bped";
+
+  const templateID = "template_kv67ffd";
+  
+  // Retrieve the data from the collection
+  subscriptionRef.once('value')
+  .then((snapshot) => {
+    // Iterate through each child node of 'Subscription'
+    snapshot.forEach((childSnapshot) => {
+      // Get the value of the 'subscriptionEmail' attribute
+      const email = childSnapshot.child('subscriptionEmail').val();
+  
+      // Declare template input id
+      var params = {
+        subscriptionEmail: email,
+        subscriptionTitle: document.getElementById("subscriptionTitle").value,
+        subscriptionMessage: document.getElementById("subscriptionMessage").value,
+      };
+  
+      // Send message
+      emailjs.send(serviceID, templateID, params)
+      .then(function (response) {
+          console.log('SUCCESS!', response.status, response.text);
+          alert('Messagee sent to: ', email);
+          // alert("Confirmation email sent! Check your email.");
+      }, function (error) {
+          console.log('FAILED...', error);
+          alert("Failed to send confirmation email....");
+      });
+  
+    });
+  
+    form.reset();
+              
+  })
+  .catch((error) => {
+    console.error('Error retrieving subscription data:', error);
+  });
+
+  
   
 });
+
+
 
 
 function generateId() {
