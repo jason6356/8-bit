@@ -252,14 +252,28 @@
                     <div class="row g-3 d-flex justify-content-center">
                         <div class="col-10 col-md-12 col-lg-12">
                             <div class="row justify-content-between">
-                                <div class="col-3">
+                                <div class="col-6">
                                     <h3 class="fs-2 ms-5">Appointment</h3>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <input id="searchInput" type="search" class="form-control" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                        <button class="btn btn-outline-dark" type="button" id="button-addon1"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button id="addAAppoinment" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
                                 </div>
                             </div>
 
                             <div id="appointment" class="p-3 m-1 row bg-white shadow-sm d-flex gap-2 justify-content-start align-items-center rounded table-responsive" id="table-1">
-                                <div class="col-12 text-end">
-                                    <button id="addAAppoinment" name="addNew" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
+                                <div class="col-2">
+                                    <label for="entriesPerPage">Show entries:</label>
+                                    <select id="entriesPerPage">
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    </select>
                                 </div>
                                 <table id="appointmentTable" class="col-12 table table-striped">
                                     <thead class="bg-info text-white">
@@ -294,6 +308,13 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <tfoot>
+                                    <div id="paginationContainer" class="d-flex justify-content-center mb-5">
+                                        <nav aria-label="Page navigation">
+                                          <ul class="pagination" id="paginationList"></ul>
+                                        </nav>
+                                      </div>
+                                </tfoot>
                             </div>
                         </div>
                     </div>
