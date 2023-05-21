@@ -18,7 +18,12 @@ chatForm.addEventListener('submit', function (event) {
     messageList.appendChild(userMessageItem);
 
     // Define the URL of the Flask server API
+    // Deploy API
     const apiUrl = 'https://cool-elbz.onrender.com/chatbot';
+
+    // Use your local host address
+    // const apiUrl = 'http://127.0.0.1:5501/chatbot';
+
 
     // Create the request payload
     const payload = {
@@ -30,7 +35,7 @@ chatForm.addEventListener('submit', function (event) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Origin' : '*'
+            'Origin': '*'
         },
         body: JSON.stringify(payload)
     };
