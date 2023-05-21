@@ -9,9 +9,13 @@ const database = firebase.database();
 const NewsRef = firebase.database().ref('News');
 var storageRef = firebase.storage().ref();
 
-let projectCount = 0;
+let newsCount = 0;
+let itemsPerPage = 10;
+let currentPage = 1;
 
-function createProject(newsTitle, newsDescription, newsDate, postedDate, postedTime, newsArticle, images) {
+let totalNews = 0;
+
+function createNews(newsTitle, newsDescription, newsDate, postedDate, postedTime, newsArticle, images) {
     if (typeof newsTitle !== 'string' || newsTitle.trim().length === 0) {
         console.log('Error: newsTitle must be a non-empty string');
         return;
@@ -107,36 +111,110 @@ function createProject(newsTitle, newsDescription, newsDate, postedDate, postedT
     });
 }
 
-function initializeDataTable() {
-    $('#newsTable').DataTable();
+addNews.addEventListener("click", () => {
+
+    addform.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const images = [];
+        document.querySelectorAll("#newsImage").forEach(function (input) {
+            for (let i = 0; i < input.files.length; i++) {
+                images.push(input.files[i]);
+            }
+
+            createNews(document.getElementById("newsTitle").value, document.getElementById("newsDescription").value, document.getElementById("newsDate").value, document.getElementById("postedDate").value, document.getElementById("postedTime").value, document.getElementById("newsArticle").value, images);
+
+        });
+
+    });
+});
+
+function generateId() {
+    return new Promise(function (resolve, reject) {
+        var ref = firebase.database().ref("News");
+
+        ref.once("value")
+            .then(function (dataSnapshot) {
+                var lastSequenceNumber = 0;
+                dataSnapshot.forEach(function (transactionSnapshot) {
+                    var projectID = transactionSnapshot.key;
+                    if (projectID != null && projectID.startsWith("N")) {
+                        var sequenceNumber = parseInt(projectID.substring(1));
+                        if (!isNaN(sequenceNumber) && sequenceNumber > lastSequenceNumber) {
+                            lastSequenceNumber = sequenceNumber;
+                        }
+                    }
+                });
+                var nextSequenceNumber = lastSequenceNumber + 1;
+                var paddedSequenceNumber = String(nextSequenceNumber).padStart(5, "0");
+                let newProjectId = "N" + paddedSequenceNumber;
+                resolve(newProjectId);
+            })
+            .catch(function (error) {
+                // Handle error
+                console.log(error);
+                reject(error);
+            });
+    });
 }
 
-//Read Data
-NewsRef.on('value', (snapshot) => {
-    const News = snapshot.val();
+// Update pagination controls
+function updatePagination() {
+    const totalPages = Math.ceil(totalNews / itemsPerPage);
+    const paginationList = document.getElementById("paginationList");
+    paginationList.innerHTML = ""; // Clear previous pagination links
+
+    for (let page = 1; page <= totalPages; page++) {
+        const li = document.createElement("li");
+        li.classList.add("page-item");
+        if (page === currentPage) {
+            li.classList.add("active");
+        }
+
+        const a = document.createElement("a");
+        a.classList.add("page-link");
+        a.href = "#";
+        a.textContent = page;
+        a.addEventListener("click", () => {
+            currentPage = page;
+            retrieveDataForPage(currentPage);
+            updatePagination();
+        });
+
+        li.appendChild(a);
+        paginationList.appendChild(li);
+    }
+}
+
+// Retrieve data and populate table based on pagination
+function retrieveDataForPage(page) {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
 
     tableBody.innerHTML = "";
 
-    let i = 1;
+    let i = startIndex + 1;
 
-    for (news in News) {
-        let tr = `        
+    for (let j = startIndex; j < endIndex && j < newsArray.length; j++) {
+        const [news, newsData] = newsArray[j];
+
+        let tr = `
         <tr data-id = ${news} >
             <td>${i}</td>
             <td>${news}</td>
-            <td>${News[news].newsDate}</td>
+            <td>${newsData.newsDate}</td>
             <td>
                 <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                    ${News[news].newsTitle}
+                    ${newsData.newsTitle}
                 </span>
             </td>
             <td>
                 <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                    ${News[news].newsDescription}
+                    ${newsData.newsDescription}
                 </span>
             </td>
-            <td>${News[news].postedDate}</td>
-            <td>${News[news].postedTime}</td>
+            <td>${newsData.postedDate}</td>
+            <td>${newsData.postedTime}</td>
             <td>
                 <button class="edit btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit">
                     <span class="d-none d-lg-block">Edit</span>
@@ -148,23 +226,155 @@ NewsRef.on('value', (snapshot) => {
                 </button>
             </td>
         </tr>
-        `
+      `;
+
         tableBody.innerHTML += tr;
         i++;
     }
+    updateEditAndDeleteButtonListeners();
+}
 
-    // initializeDataTable();
+// Retrieve data and populate array
+function retrieveData() {
+    NewsRef.on("value", (snapshot) => {
+        const news = snapshot.val();
+        newsArray = Object.entries(news);
+        totalNews = newsArray.length;
+        currentPage = 1; // Reset to the first page
+        retrieveDataForPage(currentPage);
+        updatePagination();
+    });
+}
 
-    /*
-    if (i < 10) {
-        const paginationSection = document.querySelector('.tb-footer');
-        paginationSection.style.display = "none";
+retrieveData();
+
+// Edit button event listener
+tableBody.addEventListener("click", (event) => {
+    if (event.target.classList.contains("edit")) {
+        let editButton = event.target;
+        let newsId = editButton.parentElement.parentElement.dataset.id;
+        // Rest of the edit functionality
+        let newsData = newsArray.find(([news, data]) => news === newsId)[1];
+
+        // Populate the edit modal or form fields with the news data
+        document.getElementById("newsTitle1").value = snapshot.val().newsTitle;
+        document.getElementById("newsDescription1").value = snapshot.val().newsDescription;
+        document.getElementById("newsDate1").value = snapshot.val().newsDate;
+        document.getElementById("postedDate1").value = snapshot.val().postedDate;
+        document.getElementById("postedTime1").value = snapshot.val().postedTime;
+        document.getElementById("newsArticle1").value = snapshot.val().newsArticle;
+
+        saveChanges.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            let files = document.getElementById("newsImage1").files;
+            if (files.length > 0) {
+
+                // Upload new photos to Firebase Storage
+                let promises = [];
+                for (let i = 0; i < files.length; i++) {
+                    let file = files[i];
+                    let storageRef = firebase.storage().ref(`newsPhotos/${newsId}/${file.name}`);
+                    promises.push(storageRef.put(file));
+                }
+
+                Promise.all(promises).then(() => {
+                    console.log('Uploaded all files');
+
+                    // Get download URLs of all uploaded photos
+                    let downloadURLs = [];
+                    let storageRef = firebase.storage().ref(`newsPhotos/${newsId}`);
+                    storageRef.listAll().then((res) => {
+                        res.items.forEach((itemRef) => {
+                            itemRef.getDownloadURL().then((url) => {
+                                downloadURLs.push(url);
+
+                                // Update photoUrls in Realtime Database
+                                if (downloadURLs.length === files.length) {
+                                    NewsRef.child(newsId).update({
+                                        newsTitle: document.getElementById("newsTitle1").value,
+                                        newsDescription: document.getElementById("newsDescription1").value,
+                                        newsDate: document.getElementById("newsDate1").value,
+                                        postedDate: document.getElementById("postedDate1").value,
+                                        postedTime: document.getElementById("postedTime1").value,
+                                        newsArticle: document.getElementById("newsArticle1").value,
+                                        newsImageUrls: downloadURLs,
+                                    }).then(() => {
+                                        console.log('Updated photoUrls');
+                                        alert("Updated");
+                                        location.reload();
+                                        //updateProject();
+                                    }).catch((error) => {
+                                        console.log(error);
+                                    });
+                                }
+                            }).catch((error) => {
+                                console.log(error);
+                            });
+                        });
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                }).catch((error) => {
+                    console.log(error);
+                });
+
+            } else {
+                // Update form without uploading new photos
+                NewsRef.child(newsId).update({
+                    newsTitle: document.getElementById("newsTitle1").value,
+                    newsDescription: document.getElementById("newsDescription1").value,
+                    newsDate: document.getElementById("newsDate1").value,
+                    postedDate: document.getElementById("postedDate1").value,
+                    postedTime: document.getElementById("postedTime1").value,
+                    newsArticle: document.getElementById("newsArticle1").value,
+                }).then((onFullFilled) => {
+                    alert("Updated");
+                    console.log('Updated');
+                    location.reload();
+                }, (onRejected) => {
+                    console.log(onRejected);
+                });
+            }
+        });
     }
-    */
+});
 
-    // Edit
+// Delete button event listener
+tableBody.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete")) {
+        let deleteBtn = event.target;
+        let newsId = deleteBtn.parentElement.parentElement.dataset.id;
+
+        // Display a confirmation message
+        const confirmation = confirm("Are you sure you want to delete this news?");
+
+        if (confirmation) {
+            // Delete the news and photo
+            NewsRef.child(newsId).get().then((snapshot) => {
+                let newsPhotoURL = snapshot.val().newsImageUrls[0];
+                const photoRef = firebase.storage().refFromURL(newsPhotoURL);
+                photoRef.delete().then(() => {
+                    console.log('Photo Deleted');
+                }).catch((error) => {
+                    console.log('Error deleting photo:', error);
+                });
+
+                NewsRef.child(newsId).remove().then(() => {
+                    console.log('News Deleted');
+                    alert('News Deleted');
+                    location.reload();
+                }).catch((error) => {
+                    console.log('Error deleting news:', error);
+                });
+            });
+        }
+    }
+});
+
+function updateEditAndDeleteButtonListeners() {
     let editButtons = document.querySelectorAll(".edit");
-    editButtons.forEach(edit => {
+    editButtons.forEach((edit) => {
         edit.addEventListener("click", () => {
             let newsId = edit.parentElement.parentElement.dataset.id;
             console.log(newsId);
@@ -251,15 +461,12 @@ NewsRef.on('value', (snapshot) => {
                         console.log(onRejected);
                     });
                 }
-            })
-
-
-        })
-    })
-
+            });
+        });
+    });
 
     let deleteButtons = document.querySelectorAll(".delete");
-    deleteButtons.forEach(deleteBtn => {
+    deleteButtons.forEach((deleteBtn) => {
         deleteBtn.addEventListener("click", () => {
             let newsId = deleteBtn.parentElement.parentElement.dataset.id;
 
@@ -288,105 +495,36 @@ NewsRef.on('value', (snapshot) => {
             }
         });
     });
-
-});
-
-addNews.addEventListener("click", () => {
-
-    addform.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const images = [];
-        document.querySelectorAll("#newsImage").forEach(function (input) {
-            for (let i = 0; i < input.files.length; i++) {
-                images.push(input.files[i]);
-            }
-
-            createProject(document.getElementById("newsTitle").value, document.getElementById("newsDescription").value, document.getElementById("newsDate").value, document.getElementById("postedDate").value, document.getElementById("postedTime").value, document.getElementById("newsArticle").value, images);
-
-        });
-
-    });
-});
-
-function generateId() {
-    return new Promise(function (resolve, reject) {
-        var ref = firebase.database().ref("News");
-
-        ref.once("value")
-            .then(function (dataSnapshot) {
-                var lastSequenceNumber = 0;
-                dataSnapshot.forEach(function (transactionSnapshot) {
-                    var projectID = transactionSnapshot.key;
-                    if (projectID != null && projectID.startsWith("N")) {
-                        var sequenceNumber = parseInt(projectID.substring(1));
-                        if (!isNaN(sequenceNumber) && sequenceNumber > lastSequenceNumber) {
-                            lastSequenceNumber = sequenceNumber;
-                        }
-                    }
-                });
-                var nextSequenceNumber = lastSequenceNumber + 1;
-                var paddedSequenceNumber = String(nextSequenceNumber).padStart(5, "0");
-                let newProjectId = "N" + paddedSequenceNumber;
-                resolve(newProjectId);
-            })
-            .catch(function (error) {
-                // Handle error
-                console.log(error);
-                reject(error);
-            });
-    });
 }
 
-/*
-function validateForm(form) {
-    let isValid = true;
+// Call the function to update the event listeners
+updateEditAndDeleteButtonListeners();
 
-    // Validate companyName
-    if (form.companyName.value.trim() === "") {
-        alert("Please enter a company name");
-        isValid = false;
+let searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("input", () => {
+    filterTable(searchInput.value);
+});
+
+function filterTable(searchQuery) {
+    let table = document.getElementById("newsTable"); // Replace "yourTableId" with the actual ID of your table
+    let rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+        let row = rows[i];
+        let rowData = row.textContent || row.innerText;
+
+        if (rowData.toLowerCase().includes(searchQuery.toLowerCase())) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
     }
-
-    // Validate companyCaption
-    if (form.companyCaption.value.trim() === "") {
-        alert("Please enter a company caption");
-        isValid = false;
-    }
-
-    // Validate generation
-    if (form.generation.value.trim() === "" || isNaN(parseInt(form.generation.value))) {
-        alert("Please enter a valid generation number");
-        isValid = false;
-    }
-
-    // Validate treesPlanted
-    if (form.treesPlanted.value.trim() === "" || isNaN(parseInt(form.treesPlanted.value))) {
-        alert("Please enter a valid number of trees planted");
-        isValid = false;
-    }
-
-    // Validate CO2Offset
-    if (form.CO2Offset.value.trim() === "" || isNaN(parseInt(form.CO2Offset.value))) {
-        alert("Please enter a valid CO2 offset number");
-        isValid = false;
-    }
-
-    // Validate description
-    if (form.description.value.trim() === "") {
-        alert("Please enter a project description");
-        isValid = false;
-    }
-
-    return isValid;
 }
 
-//Close Popup
-window.addEventListener("click", (e) => {
-    if (e.target == popup) {
-        popup.classList.remove("active");
-        addform.reset();
-        updateform.reset();
-    }
-})
-*/
+const entriesPerPageSelect = document.getElementById("entriesPerPage");
+entriesPerPageSelect.addEventListener("change", () => {
+    itemsPerPage = parseInt(entriesPerPageSelect.value);
+    currentPage = 1; // Reset to the first page
+    retrieveDataForPage(currentPage);
+    updatePagination();
+});
