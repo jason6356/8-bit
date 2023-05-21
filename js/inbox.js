@@ -4,28 +4,62 @@ let saveChanges = document.querySelector("#edit form");
 
 const inboxRef = firebase.database().ref('ContactMessage');
 
-function initializeDataTable() {
-    $('#inboxTable').DataTable();
+let inboxCount = 0;
+let itemsPerPage = 10;
+let currentPage = 1;
+
+let totalInboxs = 0;
+
+
+// Update pagination controls
+function updatePagination() {
+    const totalPages = Math.ceil(totalInboxs / itemsPerPage);
+    const paginationList = document.getElementById("paginationList");
+    paginationList.innerHTML = ""; // Clear previous pagination links
+
+    for (let page = 1; page <= totalPages; page++) {
+        const li = document.createElement("li");
+        li.classList.add("page-item");
+        if (page === currentPage) {
+            li.classList.add("active");
+        }
+
+        const a = document.createElement("a");
+        a.classList.add("page-link");
+        a.href = "#";
+        a.textContent = page;
+        a.addEventListener("click", () => {
+            currentPage = page;
+            retrieveDataForPage(currentPage);
+            updatePagination();
+        });
+
+        li.appendChild(a);
+        paginationList.appendChild(li);
+    }
 }
 
-//Read Data
-inboxRef.on('value', (snapshot) => {
-    const inboxes = snapshot.val();
+// Retrieve data and populate table based on pagination
+function retrieveDataForPage(page) {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
 
     tableBody.innerHTML = "";
 
-    let i = 1;
+    let i = startIndex + 1;
 
-    for (inbox in inboxes) {
+    for (let j = startIndex; j < endIndex && j < inboxsArray.length; j++) {
+        const [inbox, inboxData] = inboxsArray[j];
+
         let tr = `
         <tr data-id = ${inbox}>
             <td>${i}.</td>
             <td>${inbox}</td>
-            <td>${inboxes[inbox].name}</td>
-            <td>${inboxes[inbox].phone}</td>
-            <td>${inboxes[inbox].email}</td>
-            <td>${inboxes[inbox].service}</td>
-            <td>01-01-2023</td>
+            <td>${inboxData.name}</td>
+            <td>${inboxData.phone}</td>
+            <td>${inboxData.email}</td>
+            <td>${inboxData.service}</td>
+            <td>${inboxData.dateSubmitted}</td>
             <td>
                 <button class="edit btn btn-info text-white mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <span class="d-none d-lg-block">View</span>    
@@ -37,14 +71,29 @@ inboxRef.on('value', (snapshot) => {
                 </button>
             </td>
         </tr>
-        `
+      `;
+
         tableBody.innerHTML += tr;
         i++;
     }
+    updateEditAndDeleteButtonListeners();
+}
 
-    initializeDataTable();
+// Retrieve data and populate array
+function retrieveData() {
+    inboxRef.on("value", (snapshot) => {
+        const inboxs = snapshot.val();
+        inboxsArray = Object.entries(inboxs);
+        totalInboxs = inboxsArray.length;
+        currentPage = 1; // Reset to the first page
+        retrieveDataForPage(currentPage);
+        updatePagination();
+    });
+}
 
-    // Edit
+retrieveData();
+
+function updateEditAndDeleteButtonListeners() {
     let editButtons = document.querySelectorAll(".edit");
     editButtons.forEach(edit => {
         edit.addEventListener("click", () => {
@@ -82,7 +131,7 @@ inboxRef.on('value', (snapshot) => {
 
 
         })
-    })
+    });
 
     //Delete Function Goes Here
     let deleteButtons = document.querySelectorAll(".delete");
@@ -105,4 +154,36 @@ inboxRef.on('value', (snapshot) => {
             }
         });
     });
+}
+
+// Call the function to update the event listeners
+updateEditAndDeleteButtonListeners();
+
+let searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("input", () => {
+    filterTable(searchInput.value);
+});
+
+function filterTable(searchQuery) {
+    let table = document.getElementById("inboxTable"); // Replace "yourTableId" with the actual ID of your table
+    let rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+        let row = rows[i];
+        let rowData = row.textContent || row.innerText;
+
+        if (rowData.toLowerCase().includes(searchQuery.toLowerCase())) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    }
+}
+
+const entriesPerPageSelect = document.getElementById("entriesPerPage");
+entriesPerPageSelect.addEventListener("change", () => {
+    itemsPerPage = parseInt(entriesPerPageSelect.value);
+    currentPage = 1; // Reset to the first page
+    retrieveDataForPage(currentPage);
+    updatePagination();
 });
